@@ -1,0 +1,74 @@
+[
+    {
+        "ltId": "178367835091057",
+        "packageName": "MdBlog",
+        "menuLevel": 1,
+        "menuName": "MdBlog",
+        "contentName": null,
+        "parentMenuId": null,
+        "routePath": "#",
+        "slug": null,
+        "target": "self",
+        "sortOrder": 8
+    },
+    {
+        "ltId": "178369921047365",
+        "packageName": "MdBlog",
+        "menuLevel": 2,
+        "menuName": "Category.html",
+        "contentName": "Category.html",
+        "parentMenuId": "178367835091057",
+        "routePath": "\/MdBlog\/Category",
+        "slug": null,
+        "target": "_blank",
+        "sortOrder": null
+    },
+    {
+        "ltId": "178371055383714",
+        "packageName": "MdBlog",
+        "menuLevel": 2,
+        "menuName": "Tags.html",
+        "contentName": "Tags.html",
+        "parentMenuId": "178367835091057",
+        "routePath": "\/MdBlog\/Tags",
+        "slug": null,
+        "target": "_blank",
+        "sortOrder": null
+    },
+    {
+        "ltId": "178389306820771",
+        "packageName": "MdBlog",
+        "menuLevel": 2,
+        "menuName": "Post.html",
+        "contentName": "Post.html",
+        "parentMenuId": "178367835091057",
+        "routePath": "\/blog\/post\/{slug}",
+        "slug": null,
+        "target": "_blank",
+        "sortOrder": null
+    },
+    {
+        "ltId": "178611558754213",
+        "packageName": "MdBlog",
+        "menuLevel": 2,
+        "menuName": "Manage-post-author.html",
+        "contentName": "Manage-post-author.html",
+        "parentMenuId": "178367835091057",
+        "routePath": "\/MdBlog\/Manage-post-author",
+        "slug": null,
+        "target": "_blank",
+        "sortOrder": null
+    },
+    {
+        "ltId": "178725948043681",
+        "packageName": "MdBlog",
+        "menuLevel": 2,
+        "menuName": "Manage-report.html",
+        "contentName": "Manage-report.html",
+        "parentMenuId": "178367835091057",
+        "routePath": "\/MdBlog\/Manage-report",
+        "slug": null,
+        "target": "_blank",
+        "sortOrder": null
+    }
+]

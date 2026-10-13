@@ -1,0 +1,18 @@
+{
+    "ltId": "178367835066411",
+    "packageName": "MdBlog",
+    "packageType": "module",
+    "version": "1.0.0",
+    "dependsOn": [
+        {
+            "packageName": "MdLt",
+            "version": "1.3.0"
+        }
+    ],
+    "isPublished": null,
+    "readme": "Blog Module",
+    "languageUsed": "html, tailwind\/css, javascript, php",
+    "description": "Blog Module",
+    "lifetechOcmsVersion": null,
+    "ltVersion": "2.7.4"
+}

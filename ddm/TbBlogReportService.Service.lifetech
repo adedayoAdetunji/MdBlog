@@ -1,0 +1,10 @@
+<?php
+namespace Lt\Modules\MdBlog\Services;
+
+use Lt\Modules\MdBlog\Models\TbBlogReport;
+        
+class TbBlogReportService
+{
+
+}
+

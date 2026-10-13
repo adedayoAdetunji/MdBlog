@@ -1,0 +1,10 @@
+<?php
+namespace Lt\Modules\MdBlog\Controllers;
+
+use Lt\Modules\MdBlog\Services\TbBlogUserService;
+        
+class TbBlogUserController
+{
+
+}
+
