@@ -17,9 +17,9 @@
 
 ## 🔧 Requirements
 
-- **LifetechOCMS** >= v1.3 (MdLt module dependency)
+- **LifetechOCMS** >= v2.74 (MdLt module dependency)
 - **PHP** - Tested with PHP 7.4+
-- **Database** - MySQL/MariaDB support
+- **Database** - MySQL support
 - **Frontend** - Modern browser with ES6 JavaScript support
 - **CSS Framework** - Tailwind CSS (included)
 
@@ -326,10 +326,6 @@ For complete LifetechOCMS documentation, visit:
 ---
 
 ---
-
-**Version:** 1.0.0
-**Last Updated:** 2026-10-13
-**Status:** Stable
 
 ## 📦 Package Metadata
 
