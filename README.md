@@ -2,12 +2,6 @@
 
 > A comprehensive, feature-rich blogging module for LifetechOCMS with post management, comments, categories, tags, and reporting capabilities.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-![Version](https://img.shields.io/badge/version-1.0-blue.svg)
-![PHP](https://img.shields.io/badge/PHP-compatible-green.svg)
-![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow.svg)
-
-
 ## ✨ Features
 
 - **Blog Post Management** - Create, read, update, and delete blog posts with full WYSIWYG editor support
