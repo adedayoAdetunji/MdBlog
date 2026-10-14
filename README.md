@@ -6,20 +6,7 @@
 ![Version](https://img.shields.io/badge/version-1.0-blue.svg)
 ![PHP](https://img.shields.io/badge/PHP-compatible-green.svg)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow.svg)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC.svg)](https://tailwindcss.com)
 
-## 📋 Table of Contents
-
-- [Features](#features)
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Project Structure](#project-structure)
-- [Configuration](#configuration)
-- [Usage](#usage)
-- [Module Components](#module-components)
-- [API & Controllers](#api--controllers)
-- [Customization](#customization)
-- [License](#license)
 
 ## ✨ Features
 
