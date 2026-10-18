@@ -1,0 +1,1138 @@
+<style>
+    <?php  ltImport('MdBlog','styles.css')  ?>
+    #expand_more {
+      transition: transform 0.3s ease; /* always animate transform */
+    }
+    .rotate-180 {
+      transform: rotate(180deg);
+    }
+
+</style>
+    
+    <div class="container mx-auto my-4 w-full px-2 md:my-14" id="root">
+      <main>
+        <!--<main class="pt-2 flex-1 p-1 py-2 transition-all duration-300 overflow-y-auto h-full">-->
+    
+        <section class="max-w-[90rem] px-4 pt-12 sm:px-6 sm:pt-16">
+          <p class="text-accent mb-3 text-sm font-semibold tracking-widest uppercase">Read our latest blog</p>
+          <h1 data-typed-heading class="max-w-3xl text-4xl leading-tight font-semibold tracking-tight text-balance sm:text-5xl md:text-6xl"></h1>
+          <p class="text-muted mt-5 max-w-xl text-lg leading-relaxed text-pretty">Long-form writing on technology, design, travel, food, business, and culture - published by a small team taht still cares about the craft</p>
+        </section>
+        <!-- Search + filters -->
+        <section id="categories" class="mt-10 max-w-full px-4 sm:px-6">
+          <div class="flex flex-col gap-4">
+            <div class="relative">
+              <svg class="text-muted pointer-events-none absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.3-4.3" />
+              </svg>
+              <label for="search" class="sr-only">Search posts</label>
+              <input id="search" type="search" placeholder="Search posts by title or excerpt…" class="border-border bg-surface text-foreground placeholder:text-muted focus:border-accent w-full rounded-full border py-3 pr-4 pl-12 text-base focus:rounded-full focus:outline-none" />
+            </div>
+            <!--<div id="filters" class="no-scrollbar -mx-1 flex gap-2 overflow-x-auto px-1 pb-1" role="group" aria-label="Filter by category"></div>-->
+
+          </div>
+        </section>
+                <!--
+                    Post grid:
+                    #post-grid, #no-results, and #pagination work together.
+                    listing.js filters the data, renders the current page of cards, and
+                    updates the pagination buttons whenever the user searches or filters.
+                 -->
+            <section class="container px-4 pt-8 pb-8 sm:px-6">
+              <!-- Results Toolbar -->
+              <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <!-- Result Count -->
+                <div id="paginationInfo" class="text-muted text-sm font-medium"></div>
+            
+                <!-- Actions -->
+                <div class="flex flex-wrap items-center gap-2">
+                 <!--Filters by Category    -->
+                    <div class="relative" id="filterDropdownContainer">
+                        <!-- The Trigger Button -->
+                        <button id="filtersBtn" class="bg-surface text-foreground focus:border-accent flex items-center gap-2 rounded-full px-4 py-2 text-sm whitespace-nowrap transition-colors">
+                            <span id="filtersBtnText">All Categories</span>
+                            <i id="expand_more" class="fas fa-chevron-down transition-transform duration-200"></i> 
+                        </button>
+                        
+                        <!-- The Dropdown Menu (Hidden by default) -->
+                        <div id="filtersMenu" class="border-border bg-surface absolute left-0 top-full z-50 mt-2 hidden w-56 flex-col overflow-hidden rounded-xl border py-2 shadow-lg">
+                            <!-- Category buttons will be injected here -->
+                        </div>
+                    </div>
+                  <!-- Filter (Future) -->
+                    <button id="filterBtn" type="button" class="border-border bg-surface text-foreground hover:border-accent hover:text-accent hidden rounded-full border px-4 py-2 text-sm font-medium transition">
+                      <i class="ri-filter-3-line mr-1"></i>
+                      Filters
+                    </button>
+            
+                  <!-- Sort -->
+                    <select id="sortPosts" class="border-border bg-surface text-foreground focus:border-accent rounded-full border px-4 py-2 text-sm focus:outline-none">
+                      <option value="latest">Latest</option>
+                      <option value="oldest">Oldest</option>
+                      <option value="popular">Most Viewed</option>
+                      <option value="liked">Most Liked</option>
+                      <option value="comments">Most Discussed</option>
+                      <option value="title_asc">Title (A–Z)</option>
+                      <option value="title_desc">Title (Z–A)</option>
+                    </select>
+                  <button id="clearFilters" type="button" class="hidden bg-accent hover:bg-accent-hover rounded-full px-5 py-2 text-sm font-medium text-white transition">Clear Filters</button>
+                </div>
+              </div>
+            
+              <!-- Active Filters -->
+              <div id="activeFilters" class="mb-6 flex hidden flex-wrap items-center gap-2">
+                <!-- JS renders chips here -->
+              </div>
+            
+              <!-- Posts -->
+              <!--<div id="post-grid" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"></div>-->
+              <div id="post-grid" class="grid grid-cols-1 items-start gap-6 sm:grid-cols-2 lg:grid-cols-3"></div>
+            
+              <!-- Empty State -->
+              <div id="no-results" class="hidden grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+               
+              </div>
+            
+              <!-- Pagination -->
+              <nav id="pagination" class="mt-12 flex flex-wrap items-center justify-center gap-2" aria-label="Post pagination"></nav>
+            </section>
+
+        
+        <!--
+                    Popular posts:
+                    This section is filled by listing.js using the same compact card design
+                    used in the post sidebar. The posts are sorted by views.
+                  -->
+        <section class="max-w-[90rem] px-4 pt-2 pb-14 sm:px-6">
+          <div class="mb-5 flex items-end justify-between gap-4">
+            <div>
+              <p class="text-accent text-sm font-semibold tracking-widest uppercase">Popular posts</p>
+              <h2 class="mt-2 font-serif text-2xl font-semibold tracking-tight">Most-read stories this week</h2>
+            </div>
+            <!--<a href="#categories" class="hidden text-sm font-semibold text-accent hover:text-accent-hover sm:inline">-->
+            <!--  Browse all-->
+            <!--</a>-->
+          </div>
+          <div id="popular-posts" class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"></div>
+        </section>
+      </main>
+    </div>
+
+      
+<script>
+<?php  ltImport('MdBlog','Tailwind-config.js') ?>
+
+
+    let POSTS = [];
+    let CATEGORIES = [{ ltId: 1, categoryName: "All Categories" }];
+    const PAGE_WINDOW = 2;
+    const PREV_ICON = `
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round"
+            aria-hidden="true">
+            <path d="m15 18-6-6 6-6"/>
+        </svg>`;
+    
+    const NEXT_ICON = `
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round"
+            aria-hidden="true">
+            <path d="m9 18 6-6-6-6"/>
+        </svg>`;
+
+    function heartIcon(filled) {
+        return `
+            <svg
+                class="h-4 w-4 transition ${filled ? "fill-accent text-accent" : "fill-none"}"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true">
+    
+                <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/>
+            </svg>
+        `;
+    }
+    
+    const EYE_ICON = `
+        <svg
+            class="h-4 w-4"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true">
+    
+            <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/>
+            <circle cx="12" cy="12" r="3"/>
+        </svg>
+    `;
+
+    let postGrid = document.getElementById('post-grid'); 
+    let filtersEl = document.getElementById('filters');  // to filter by category
+    let noResults = document.getElementById('no-results');  // to display no result message
+    let paginationEl = document.getElementById("pagination");
+    let searchEl = document.getElementById("search");
+    const paginationInfo = document.getElementById("paginationInfo");
+    const popularEl = document.getElementById("popular-posts");
+    const clearFilters = document.getElementById("clearFilters");
+    const sortPosts = document.getElementById("sortPosts");
+    
+    const filtersBtn = document.getElementById('filtersBtn');
+    const filtersBtnText = document.getElementById('filtersBtnText');
+    const expandIcon = document.getElementById('expand_more');
+    const filtersMenu = document.getElementById('filtersMenu');
+    let isDropdownOpen = false;
+
+
+    // let filtered = [];
+    let likedSet = loadLiked();
+    let debounceTimer = null;
+    
+    let params = new URLSearchParams(window.location.search);
+    
+    const state = {
+        page: Number(params.get('page'))  || 1,
+        category: params.get("category") || 1,
+        q: params.get("q") || "",
+        sort: params.get("sort") || "latest",
+        limit: 9,
+        totalItems: 0
+    };
+    
+    // function slugify(title) {
+    //   return title
+    //     .toLowerCase()
+    //     .replace(/[^a-z0-9\s-]/g, '')   // remove special chars
+    //     .trim()
+    //     .replace(/\s+/g, '-');          // replace spaces with hyphens
+    // }
+    
+/**
+ * Typewriter animation for the hero heading.
+ *
+ */
+    
+    (() => {
+        
+         const heading = document.querySelector("[data-typed-heading]");
+        if (!heading) {
+            return;
+        }
+    
+        // Respect users who prefer reduced motion.
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            return;
+        }
+    
+        // const fullText = heading.textContent.trim();
+        const fullText = 'Stories worth the read, from the edges of every field.';
+    
+        if (!fullText) {
+            return;
+        }
+    
+        const TYPE_SPEED = 60;
+        let index = 0;
+    
+        heading.setAttribute("aria-label", fullText);
+        heading.textContent = "";
+    
+        const cursor = document.createElement("span");
+        cursor.className = "typed-cursor";
+        cursor.setAttribute("aria-hidden", "true");
+        cursor.textContent = "";
+    
+        heading.appendChild(cursor);
+    
+        function type() {
+            if (index >= fullText.length) {
+                heading.classList.add("typed-heading-complete");
+                return;
+            }
+    
+            cursor.insertAdjacentText("beforebegin", fullText[index]);
+            index++;
+    
+            setTimeout(type, TYPE_SPEED);
+        }
+    
+        type();
+        
+    })();
+    
+    // function loader(msg){
+    //     return `<section id="loadingBox" class="text-gray-700 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-900 w-full rounded-3xl p-10 text-center mx-auto col-span-3 ">
+    //             <div class="mx-auto h-10 w-10 rounded-full border-4 border-white/20 border-t-indigo-400 animate-spin"></div>
+    //             <p class="mt-4 text-gray-700 hover:text-gray-500 font-medium">${msg}</p>
+    //         </section>`;
+    // }
+    function compactSkeletonLoader() {
+        let skeleta = `
+            <div class="flex gap-3 animate-pulse">
+                <!-- Image Skeleton -->
+                <div class="h-24 w-24 shrink-0 rounded-lg bg-gray-300 dark:bg-gray-400"></div>
+                
+                <!-- Content Skeleton -->
+                <div class="w-full min-w-0 py-0.5">
+                    
+                    <!-- Top Row: Category & Read Time -->
+                    <div class="flex items-center justify-between gap-3">
+                        <div class="h-3 w-16 rounded bg-gray-200 dark:bg-gray-400"></div>
+                        <div class="h-3 w-12 rounded bg-gray-200 dark:bg-gray-400"></div>
+                    </div>
+                    
+                    <!-- Title: 2 lines to match your clamp-2 -->
+                    <div class="mt-3 h-4 w-full rounded bg-gray-200 dark:bg-gray-400"></div>
+                    <div class="mt-1.5 h-4 w-4/5 rounded bg-gray-200 dark:bg-gray-400"></div>
+                    
+                    <!-- Likes Row -->
+                    <div class="mt-3 h-3 w-32 rounded bg-gray-200 dark:bg-gray-400"></div>
+                    
+                    <!-- Date/Author Row -->
+                    <div class="mt-2 h-3 w-24 rounded bg-gray-200 dark:bg-gray-400"></div>
+                    
+                </div>
+            </div>
+            `;
+            return Array(6).fill("").map(() => skeleta).join("");
+    }
+    
+    function skeletonLoader(limit) {
+        let skeleton = `
+            <article class="overflow-hidden rounded-2xl border border-border bg-surface animate-pulse">
+                
+                <!-- Image Skeleton (Matches aspect-[16/10]) -->
+                <div class="aspect-[16/10] w-full bg-gray-300 dark:bg-gray-400"></div>
+        
+                <div class="p-5">
+                    <!-- Category Badge Skeleton -->
+                    <div class="h-6 w-20 rounded-full bg-gray-200 dark:bg-gray-400"></div>
+        
+                    <!-- Title Skeleton (2 lines to match clamp-2) -->
+                    <div class="mt-4 h-6 w-3/4 rounded-md bg-gray-200 dark:bg-gray-400"></div>
+                    <div class="mt-2 h-6 w-1/2 rounded-md bg-gray-200 dark:bg-gray-400"></div>
+        
+                    <!-- Excerpt Skeleton (2 lines) -->
+                    <div class="mt-5 h-4 w-full rounded-md bg-gray-200 dark:bg-gray-400"></div>
+                    <div class="mt-2 h-4 w-4/5 rounded-md bg-gray-200 dark:bg-gray-400"></div>
+        
+                    <!-- Footer Skeleton -->
+                    <div class="mt-5 flex items-center justify-between border-t border-border pt-4">
+                        
+                        <!-- Date area -->
+                        <div class="h-4 w-24 rounded-md bg-gray-200 dark:bg-gray-400"></div>
+        
+                        <!-- Like & View area -->
+                        <div class="flex items-center gap-4">
+                            <div class="h-4 w-12 rounded-md bg-gray-200 dark:bg-gray-400"></div>
+                            <div class="h-4 w-12 rounded-md bg-gray-200 dark:bg-gray-400"></div>
+                        </div>
+        
+                    </div>
+                </div>
+                
+            </article>
+            
+            
+        `;
+        
+        return Array(limit).fill("").map(() => skeleton).join("");
+    }
+    
+    function errorMsg(msg){
+        return `
+                <div class="col-span-full py-16 text-center bg-red-500/10 border border-red-400/20 rounded-3xl p-8 text-red-200 w-full">
+                    <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-slate-100 mb-4">
+                        <svg class="h-6 w-6 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+                        </svg>
+                    </div>
+                    <h3 class="text-foreground text-xl font-semibold">No posts found</h3>
+            
+                    <p class="text-muted mt-2">Try changing your search or filters.</p>
+                
+                    <button id="clearFilterBtn" type="button" onclick="clearFilter()" class="bg-accent hover:bg-accent-hover mt-6 rounded-full px-5 py-2 text-sm font-medium text-white transition">Clear Filters</button>
+                </div>
+        `;
+    
+    }
+    function errorMsgWidget(){
+        return `
+                <div class="col-span-full py-8 text-center bg-red-500/10 border border-red-400/20 rounded-3xl p-8 text-red-200 w-full">
+                    <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-slate-100 mb-4">
+                        <svg class="h-6 w-6 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+                        </svg>
+                    </div>
+                    <h3 class="text-foreground text-xl font-semibold">No posts found</h3>
+                </div>
+        `;
+    
+    }
+    
+
+    
+    function showClearFilter(status = true){
+        clearFilters.classList.toggle('hidden', status);
+    }
+    
+    async function clearFilter(){
+            state.page = 1;
+            state.category = 1;
+            state.q = "";
+            state.sort = "latest";
+            searchEl.value = '';
+            sortPosts.value = "latest";
+            updateActiveFilter();
+            updateUrl();
+            showClearFilter(true);
+            await loadPost(state);
+            ///
+    }
+    
+    clearFilters.addEventListener('click', function(e){
+        clearFilter();
+    });
+
+    function loadLiked() {
+        // NOTE: session-only interaction state, not app data persistence.
+        try {
+          return new Set(JSON.parse(sessionStorage.getItem("liked") || "[]"));
+        } catch (e) {
+          return new Set();
+        }
+      }
+
+    const dateFormatter = new Intl.DateTimeFormat(undefined, {
+        month: "short",
+        day: "numeric",
+        year: "numeric"
+    });
+    
+    function formatDate(iso) {
+        if (!iso) return "";
+    
+        // const date = new Date(`${iso}T00:00:00`);
+        const date = new Date(iso.replace(" ", "T"));
+    
+        return Number.isNaN(date.getTime())
+            ? ""
+            : dateFormatter.format(date);
+    }
+    
+    function formatCount(n) {
+        if (n < 1000) return String(n);
+        if (n < 1_000_000) {
+            return `${(n / 1000).toFixed(1).replace(/\.0$/, "")}k`;
+        }
+    
+        return `${(n / 1_000_000).toFixed(1).replace(/\.0$/, "")}M`;
+    }
+
+
+    
+    function getCategoryName(catId){
+        if(typeof catId == 'string') return catId;
+        let cat = CATEGORIES.find(c => Number(c.ltId) === Number(catId)).categoryName;
+        return cat;
+    }
+    function getCategoryId(catName){
+        if(catName== "" || !catName) return 1;
+        if(typeof catName == 'number') return catName;
+        
+        let cat = CATEGORIES.find(c => c.categoryName.toLowerCase() === catName.toLowerCase()).ltId;
+        
+        return cat;
+    }
+    
+
+    // 1. Toggle dropdown visibility
+    filtersBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent the click-outside listener from firing immediately
+        isDropdownOpen = !isDropdownOpen;
+        
+        expandIcon.classList.toggle("rotate-180", isDropdownOpen);
+        filtersMenu.classList.toggle("hidden", !isDropdownOpen);
+        filtersMenu.classList.toggle("flex", isDropdownOpen);
+    });
+    
+    // 2. Close dropdown when clicking outside (Standard UI behavior)
+    document.addEventListener('click', (e) => {
+        if (isDropdownOpen && !filtersMenu.contains(e.target)) {
+            isDropdownOpen = false;
+            expandIcon.classList.remove("rotate-180");
+            filtersMenu.classList.add("hidden");
+            filtersMenu.classList.remove("flex");
+        }
+    });
+
+// 3. Render the categories inside the dropdown menu
+    function renderFiltersByCategory() {
+        filtersMenu.innerHTML = ''; // Clear existing
+        
+        CATEGORIES.forEach((cat) => {
+            let active = cat.ltId == getCategoryId(state.category);
+            let btn = document.createElement('button');
+            btn.type = "button";
+            btn.textContent = cat.categoryName;
+            btn.dataset.id = cat.ltId;
+            btn.setAttribute("aria-pressed", String(active));
+            
+            // Base classes for a dropdown item
+            btn.className = "w-full text-left px-4 py-2 text-sm font-medium transition-colors hover:bg-accent/10 hover:text-accent " + 
+                            (active ? "bg-accent/10 text-accent font-bold" : "text-foreground");
+            
+            btn.addEventListener("click", async function() {
+                state.category = cat.ltId;
+                
+                // Update the main button text to reflect selection
+                filtersBtnText.textContent = cat.categoryName;
+                
+                updateActiveFilter();
+                state.page = 1; // Reset to first page
+                updateUrl();
+                await loadPost(state);
+                showClearFilter(false);
+    
+                // Close the dropdown after making a selection
+                isDropdownOpen = false;
+                expandIcon.classList.remove("rotate-180");
+                filtersMenu.classList.add("hidden");
+                filtersMenu.classList.remove("flex");
+            });
+            
+            filtersMenu.appendChild(btn);
+        });
+        
+        // Set initial button text if a category is already selected on page load
+        const initialActiveCat = CATEGORIES.find(c => c.ltId == getCategoryId(state.category));
+        if (initialActiveCat) {
+            filtersBtnText.textContent = initialActiveCat.categoryName;
+        }
+    }
+
+    // 4. Update the active styling for items inside the dropdown
+    function updateActiveFilter() {
+        Array.from(filtersMenu.children).forEach(function (btn) {
+            var active = Number(btn.dataset.id) === Number(state.category);
+            btn.setAttribute("aria-pressed", active);
+            
+            // Toggle active styling for the dropdown items
+            btn.classList.toggle("bg-accent/10", active);
+            btn.classList.toggle("text-accent", active);
+            btn.classList.toggle("font-bold", active);
+            
+            // Toggle inactive styling
+            btn.classList.toggle("text-foreground", !active);
+        });
+        
+        // Ensure the main button text stays synced (e.g., if filters are cleared elsewhere)
+        const activeCat = CATEGORIES.find(c => Number(c.ltId) === Number(state.category));
+        filtersBtnText.textContent = activeCat ? activeCat.categoryName : "All Categories";
+    }
+    
+    
+        function domParser(content){
+            return new DOMParser().parseFromString(content, "text/html").body.textContent;
+        }
+        
+        function renderCardMarkup(p) {
+        const liked = likedSet.has(p.id);
+        const likeCount = p.likes + (liked ? 1 : 0);
+    
+        // 1. Check for a real image
+        let coverImageUrl = 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original';
+        let attachedFilesCount = 0;
+    
+        if (p.media && Array.isArray(p.media)) {
+            attachedFilesCount = p.media.length;
+            const firstImage = p.media.find(m => m.mimeType && m.mimeType.startsWith('image/'));
+            
+            if (firstImage) {
+                coverImageUrl = `${siteHostAddress || ''}/${firstImage.storagePath}`;
+            }
+        }
+    
+        // 2. Build conditional image markup
+        // If no image is found, we inject a subtle gradient top border instead of a giant placeholder
+        const imageBlock = coverImageUrl
+            ? `<a href="${siteHostAddress}/blog/post/${p.slug}" class="block overflow-hidden shrink-0 border-b border-border" aria-label="Read: ${domParser(p.title)}"> 
+                   <div class="aspect-[16/10] overflow-hidden">
+                       <img src="${coverImageUrl}" alt="${p.title}" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
+                   </div>
+               </a>`
+            : `<div class="h-1.5 w-full bg-gradient-to-r from-accent to-accent-soft shrink-0"></div>`; 
+    
+        // 3. Return the fully responsive card
+        return `
+            <article class="group animate-fade-up flex flex-col h-full overflow-hidden rounded-2xl border border-border bg-surface transition hover:shadow-lg hover:shadow-black/5">
+    
+                ${imageBlock}
+    
+                <!-- Card Body (flex-1 pushes the footer to the bottom) -->
+                <div class="flex flex-1 flex-col p-6">
+                    
+                    <div class="mb-4">
+                        <span class="inline-block rounded-full bg-accent-soft px-3 py-1 text-xs font-semibold text-accent-hover">
+                            ${getCategoryName(p.category)}
+                        </span>
+                    </div>
+    
+                    <a href="${siteHostAddress}/blog/post/${p.slug}" class="flex flex-col flex-1">
+                        <h2 class="clamp-2 font-serif text-xl font-bold leading-snug tracking-tight text-foreground transition group-hover:text-accent">
+                            ${domParser(p.title)}
+                        </h2>
+                        
+                        <p class="clamp-3 mt-3 text-sm leading-relaxed text-muted">
+                            ${domParser(p.excerpt)}
+                        </p>
+                    </a>
+    
+                    <!-- Card Footer -->
+                    <div class="mt-6 flex items-center justify-between border-t border-border pt-4 text-xs font-medium text-muted">
+                        <time datetime="${p.date}">
+                            ${formatDate(p.date)}
+                        </time>
+    
+                        <div class="flex items-center gap-4">
+                            <button type="button" data-like="${p.id}" aria-pressed="${liked}" aria-label="Like this post" class="flex items-center gap-1.5 transition hover:text-accent ${liked ? "text-accent" : ""}">
+                                <span class="like-icon">${heartIcon(liked)}</span>
+                                <span class="like-count font-semibold">${formatCount(likeCount)}</span>
+                            </button>
+    
+                            <span class="flex items-center gap-1.5" aria-label="${p.views} views">
+                                ${EYE_ICON}
+                                <span class="font-semibold">${formatCount(p.views)}</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        `;
+    }
+    
+    // function renderCardMarkup(p){
+        
+    //     const liked = likedSet.has(p.id);
+    //     const likeCount = p.likes + (liked ? 1 : 0);
+    //     let coverImageUrl = 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original';
+    //     let attachedFilesCount = 0;
+
+    //     // Assuming your backend returns the nested media array as 'additionalMedia'
+    //     if (p.media && Array.isArray(p.media)) {
+    //         attachedFilesCount = p.media.length;
+            
+    //         // Find the very first media item that is an image
+    //         const firstImage = p.media.find(m => m.mimeType && m.mimeType.startsWith('image/'));
+            
+    //         if (firstImage) {
+    //             // Make sure 'siteHostAddress' is defined globally in your script, or use a relative path
+    //             coverImageUrl = `${siteHostAddress || ''}/${firstImage.storagePath}`;
+                
+    //         }
+    //     }
+        
+        
+    //     return `
+    //         <article class="group animate-fade-up overflow-hidden rounded-2xl border border-border bg-surface transition hover:shadow-lg hover:shadow-black/5">
+    
+    //             <a href="${siteHostAddress}/blog/post/${p.slug}" class="block overflow-hidden" aria-label="Read: ${domParser(p.title)}"> 
+    //                 <div class="aspect-[16/10] overflow-hidden">
+    //                     <img src="${coverImageUrl}" alt="${p.title}" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
+    //                 </div>
+    //             </a>
+    
+    //             <div class="p-5">
+    
+    //                 <span class="inline-block rounded-full bg-accent-soft px-3 py-1 text-xs font-semibold text-accent-hover">
+    //                     ${getCategoryName(p.category)}
+    //                 </span>
+    
+    //                 <a href="${siteHostAddress}/blog/post/${p.slug}">
+    //                     <h2 class="clamp-2 mt-3 font-serif text-xl font-semibold leading-snug tracking-tight text-foreground transition group-hover:text-accent">
+    //                         ${domParser(p.title)}
+    //                     </h2>
+    //                 </a>
+    
+    //                 <p class="clamp-2 mt-2 text-sm leading-relaxed text-muted">
+    //                     ${domParser(p.excerpt)}
+    //                 </p>
+    
+    //                 <div class="mt-5 flex items-center justify-between border-t border-border pt-4 text-sm text-muted">
+    
+    //                     <time datetime="${p.date}">
+    //                         ${formatDate(p.date)}
+    //                     </time>
+    
+    //                     <div class="flex items-center gap-4">
+    
+    //                         <button
+    //                             type="button"
+    //                             data-like="${p.id}"
+    //                             aria-pressed="${liked}"
+    //                             aria-label="Like this post"
+    //                             class="flex items-center gap-1.5 transition hover:text-accent ${liked ? "text-accent" : ""}">
+    
+    //                             <span class="like-icon">
+    //                                 ${heartIcon(liked)}
+    //                             </span>
+    
+    //                             <span class="like-count font-medium">
+    //                                 ${formatCount(likeCount)}
+    //                             </span>
+    
+    //                         </button>
+    
+    //                         <span class="flex items-center gap-1.5"
+    //                               aria-label="${p.views} views">
+    
+    //                             ${EYE_ICON}
+    
+    //                             <span class="font-medium">
+    //                                 ${formatCount(p.views)}
+    //                             </span>
+    
+    //                         </span>
+    //                     </div>
+    //                 </div>
+    
+    //             </div>
+    
+    //         </article>
+    //     `;
+    // }
+
+    function renderPage() {
+        
+        if(POSTS.length === 0){
+            noResults.innerHTML = errorMsg('No posts match your search. Try a different term or category.');  
+            noResults.classList.remove("hidden");
+            postGrid.innerHTML = "";
+            paginationEl.innerHTML = "";
+            paginationInfo.textContent = "";
+            return;
+        }
+        noResults.classList.add("hidden");
+        const pageCount = Math.ceil(state.totalItems / state.limit);
+    
+        // Ensure current page is within valid range
+        state.page = Math.min(state.page, pageCount);
+        state.page = Math.max(state.page, 1);
+    
+        const start = (state.page - 1) * state.limit;
+        const end = start + state.limit;
+        
+        // Build HTML once
+        const html = POSTS
+            .map(renderCardMarkup)
+            .join("");
+    
+        postGrid.innerHTML = html;
+        
+        const firstItem = state.totalItems ? start + 1 : 0;
+        const lastItem = Math.min(end, state.totalItems);
+        // Showing x-y of z
+        paginationInfo.textContent =
+            firstItem === lastItem
+                ? `Showing ${firstItem} of ${state.totalItems} posts`
+                : `Showing ${firstItem}-${lastItem} of ${state.totalItems} posts`;
+
+    
+        renderPagination(pageCount);
+    }
+
+    
+    
+    function getVisiblePages(pageCount) {
+        const pages = [1];
+    
+        for (let page = state.page - PAGE_WINDOW; page <= state.page + PAGE_WINDOW; page++) {
+            if (page > 1 && page < pageCount) {
+                pages.push(page);
+            }
+        }
+    
+        if (pageCount > 1) {
+            pages.push(pageCount);
+        }
+    
+        return [...new Set(pages)].sort((a, b) => a - b);
+    }
+    
+    function paginationButton({label, page, disabled = false, active = false, ariaLabel}) {
+        const classes = [
+                "pagination-btn",
+                active && "is-active",
+                disabled && "is-disabled"
+            ].filter(Boolean)
+            .join(" ");
+    
+        return `
+            <button
+                type="button"
+                data-page="${page}"
+                class="${classes}"
+                aria-label="${ariaLabel}"
+                aria-disabled="${disabled}"
+                ${disabled ? "disabled" : ""}
+                ${active ? 'aria-current="page"' : ""}>
+                ${label}
+            </button>
+        `;
+    }
+
+    function renderPagination(pageCount) {
+        
+        if (pageCount <= 1) {
+            paginationEl.innerHTML = "";
+            paginationInfo.textContent = "";
+            return;
+        }
+
+        const pages = getVisiblePages(pageCount);
+        const html = [];
+        
+
+        
+        html.push(
+            paginationButton({
+                label: "First",
+                page: 1,
+                disabled: state.page === 1,
+                ariaLabel: "Go to first page"
+            })
+        );
+        
+        html.push(
+            paginationButton({
+                label: PREV_ICON,
+                page: state.page - 1,
+                disabled: state.page === 1,
+                ariaLabel: "Go to previous page"
+            })
+        );
+    
+        pages.forEach((page, index) => {
+            if (index > 0 && page - pages[index - 1] > 1) {
+                html.push(
+                    '<span class="px-2 text-sm text-muted" aria-hidden="true">...</span>'
+                );
+            }
+    
+            html.push(
+                paginationButton({
+                    label: String(page).padStart(2, "0"),
+                    page,
+                    active: page === state.page,
+                    ariaLabel: `Go to page ${page}`
+                })
+            );
+        });
+
+        html.push(
+            paginationButton({
+                label: NEXT_ICON,
+                page: state.page + 1,
+                disabled: state.page === pageCount,
+                ariaLabel: "Go to next page"
+            })
+        );
+        
+        html.push(
+            paginationButton({
+                label: "Last",
+                page: pageCount,
+                disabled: state.page === pageCount,
+                ariaLabel: "Go to last page"
+            })
+        );
+    
+        paginationEl.innerHTML = html.join("");
+    }
+
+    async function renderPopularPosts() {
+        if (!popularEl) {
+            return;
+        }
+        popularEl.innerHTML = compactSkeletonLoader();
+        try {
+    
+            const response = await fetch(
+                `${BASE_URL}/blogs/posts/widget?limit=6&type=popular`,
+                {
+                    headers: {
+                        Accept: "application/json"
+                    }
+                }
+            );
+    
+            if (!response.ok) {
+                throw new Error(`Error, popular post not found`);
+            }
+    
+            const result = await response.json();
+            const { responseData, responseResult, responseCategory } = result;
+            if(responseCategory == 200){
+                 popularPosts = Array.isArray(responseData) ? responseData: [];
+                 popularEl.innerHTML = popularPosts
+                    .map(compactPostMarkup)
+                    .join("");
+            }else{
+                 throw new Error(`${responseResult}`);
+                 popularEl.innerHTML= errorMsgWidget();
+            }
+
+        } catch (error) {
+            console.error(error);
+            popularEl.innerHTML= errorMsgWidget();
+        }
+        
+            
+            
+    }
+    
+    function compactPostMarkup(post) {
+        let coverImageUrl = 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original';
+        if (post.media && Array.isArray(post.media)) {
+            const firstImage = post.media.find(m => m.mimeType && m.mimeType.startsWith('image/'));
+            
+            if (firstImage) {
+                coverImageUrl = `${siteHostAddress || ''}/${firstImage.storagePath}`;
+            }
+        }
+
+        const readTime = Math.max(4, Math.round(post.views / 1200));
+        return `
+           <a href="${siteHostAddress}/blog/post/${post.slug}" class="compact-post group flex gap-3">
+              <img src="${coverImageUrl}" alt="${post.title}" loading="lazy" class="h-full w-24 shrink-0 rounded-lg object-cover" />
+            
+              <span class="w-full min-w-0">
+                <span class="text-muted flex items-center justify-between gap-3 text-xs">
+                  <span class="text-accent font-semibold"> ${getCategoryName(post.category)} </span>
+            
+                  <span> ${readTime} min read </span>
+                </span>
+            
+                <span class="clamp-2 text-foreground group-hover:text-accent mt-1 block font-serif text-base leading-snug font-semibold transition-colors"> ${post.title} </span>
+                
+                <span class="text-muted mt-1 flex items-center gap-2 text-xs">
+                  <span class="flex items-center"> ${heartIcon(true)} </span>
+            
+                  <span> ${formatCount(post.likes)} appreciations </span>
+                </span>
+            
+                <span class="text-muted mt-1 block text-xs"> ${formatDate(post.date)} ${post.author ? ` • ${post.author}` : ""} </span>
+              </span>
+            </a>
+        `;
+    }
+    
+    searchEl.addEventListener("input", ({ target }) => {
+        clearTimeout(debounceTimer);
+    
+        const value = target.value.trim();
+    
+        debounceTimer = setTimeout(async () => {
+            if (value === state.q) {
+                return;
+            }
+    
+            state.q = value;
+            state.page = 1; // Reset to first page when searching
+            updateUrl();
+            await loadPost(state);
+            showClearFilter(false);
+        }, 300);
+    });
+    
+    sortPosts.addEventListener("change", async ({ target }) => {
+    
+        const value = target.value.trim();
+        if (value === state.sort) return;
+        state.sort = value;
+        state.page = 1; // Reset to first page when searching
+        updateUrl();
+        await loadPost(state);
+        showClearFilter(false);
+    })
+    
+    paginationEl.addEventListener("click", async (event) => {
+        const button = event.target.closest("[data-page]");
+    
+        if (!button || button.disabled) {
+            return;
+        }
+    
+        const page = Number(button.dataset.page);
+    
+        // Prevent unnecessary re-render
+        if (page === state.page) {
+            return;
+        }
+        state.page = Number(page);
+        updateUrl();
+        
+        
+        await loadPost(state);
+        
+    
+        filtersEl?.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    });
+
+
+    function initPost(){
+        renderFiltersByCategory();
+        renderPage();
+    }
+
+    function updateUrl() {
+        const params = new URLSearchParams();
+        // console.log(state.category);
+        // Category
+        if (state.category && state.category !== 1) {
+            params.set(
+                "category",
+                getCategoryName(state.category).toLowerCase()
+            );
+        }
+    
+        // Search
+        if (state.q?.trim()) {
+            params.set("q", state.q.trim());
+        }
+    
+        // Page (omit page 1)
+        if (state.page > 1) {
+            params.set("page", state.page);
+        }
+    
+        // Sort
+        if (state.sort && state.sort !== "latest") {
+            params.set("sort", state.sort);
+        }
+    
+        const query = params.toString();
+    
+        const newUrl = query
+            ? `${location.pathname}?${query}`
+            : location.pathname;
+    
+        history.pushState(state, "", newUrl);
+    }
+    
+    
+    let controller;
+    
+    async function loadPost(state, onLoad = false) {
+        paginationInfo.textContent = "";
+    
+        controller?.abort();
+        controller = new AbortController();
+        let category = getCategoryId(state.category);
+        
+        if(!onLoad){
+            postGrid.innerHTML = "";
+            noResults.classList.toggle("hidden", false);
+            noResults.innerHTML = skeletonLoader(state.limit);
+        }
+        
+        try {
+    
+            const response = await fetch(
+                `${BASE_URL}/blogs/filter/posts?page=${encodeURIComponent(state.page)}&limit=${encodeURIComponent(state.limit)}&q=${encodeURIComponent(state.q)}&category=${encodeURIComponent(category)}&sort=${encodeURIComponent(state.sort)}`,
+                {
+                    headers: {
+                        Accept: "application/json"
+                    },
+                    signal: controller.signal
+                }
+            );
+    
+            if (!response.ok) {
+                throw new Error(`Error, post not found`);
+            }
+    
+            const result = await response.json();
+            const { responseData, responseResult, responseCategory } = result;
+            if(responseCategory == 200){
+                 POSTS = Array.isArray(responseData.data) ? responseData.data : [];
+                 state.totalItems = responseData.pagination.totalItems;
+                 if(!onLoad){
+                    renderPage();
+                 }
+            }else{
+                noResults.innerHTML = errorMsg();
+                noResults.classList.toggle("hidden", false);
+                 throw new Error(`${responseResult}`);
+                //  Swal.fire('Notice!!!', `${responseResult}`, 'warning')
+            }
+
+        } catch (error) {
+            console.error(error);
+        }
+    
+    }
+
+    async function onLoadPost(){
+        postGrid.innerHTML = "";
+        noResults.classList.toggle("hidden", false);
+        noResults.innerHTML = skeletonLoader(state.limit);
+        try{
+            
+                const categoryData = await fetch(`${BASE_URL}/blogs/filter/categories?status=isActive`, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+
+                    }
+                })
+                
+            const categoryRecord = await categoryData.json();
+            
+             CATEGORIES = [...CATEGORIES, ...categoryRecord.responseData] || [];
+             await loadPost(state, true);
+             await renderPopularPosts();
+             initPost();
+             
+        }catch(error){
+             noResults.innerHTML = errorMsg();
+             noResults.classList.toggle("hidden", false);
+
+        }
+    }
+    
+     
+    onLoadPost();
+
+
+
+
+    
+</script>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      

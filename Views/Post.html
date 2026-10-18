@@ -1,0 +1,1469 @@
+<style>
+    <?php  ltImport('MdBlog','styles.css')  ?>
+    .mains{
+        background-color: #f1f5f9  !important;
+    }
+        /* Markdown / Code Styling to match your screenshots */
+    .prose pre {
+        padding: 1.25rem;
+        border-radius: 0.5rem;
+        overflow-x: auto;
+        margin: 1rem 0;
+        font-family: monospace;
+        font-size: 0.875rem;
+    }
+    
+    /* Hide scrollbar for Chrome, Safari, and Opera */
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    
+    /* Hide scrollbar for IE, Edge */
+    .hide-scrollbar {
+      -ms-overflow-style: none; /* IE and Edge */
+    }
+    
+    /* Hide scrollbar for Firefox */
+    .hide-scrollbar {
+      scrollbar-width: none; /* Firefox */
+    }
+    
+    
+</style>
+   <!--<div class="container md:mx-auto my-4 w-full px-2 md:my-14 max-w-7xl" id="root">-->
+   <div class="container mx-auto my-4 w-full px-5 md:my-14 lg:px-8" id="root">
+    <main>
+        
+        <!-- Back Button -->
+        <a href="<?= ltSiteUrl() ?>/blog" class="text-muted hover:text-accent mb-12 inline-flex items-center gap-2 text-sm font-medium transition-colors">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+            Back to all posts
+        </a>
+          
+        <!-- 1. THE SKELETON CONTAINER -->
+        <div id="post-skeleton" class="animate-pulse lg:grid lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-8 w-full">
+            
+            <!-- Article Skeleton (Hero image removed, typography emphasized) -->
+            <article class="w-full min-w-0">
+                <div class="h-6 w-24 rounded-full bg-gray-300 dark:bg-gray-700 mb-6"></div>
+                <div class="space-y-4">
+                    <div class="h-12 w-full rounded-lg bg-gray-300 dark:bg-gray-700"></div>
+                    <div class="h-12 w-3/4 rounded-lg bg-gray-300 dark:bg-gray-700"></div>
+                </div>
+                
+                <div class="mt-8 flex gap-4 border-b border-border pb-8">
+                    <div class="h-14 w-14 rounded-full bg-gray-300 dark:bg-gray-700"></div>
+                    <div class="mr-auto space-y-3 pt-1">
+                        <div class="h-4 w-32 rounded bg-gray-300 dark:bg-gray-700"></div>
+                        <div class="h-3 w-24 rounded bg-gray-300 dark:bg-gray-700"></div>
+                    </div>
+                </div>
+                
+                <div class="mt-10 space-y-5">
+                    <div class="h-4 w-full rounded bg-gray-300 dark:bg-gray-700"></div>
+                    <div class="h-4 w-11/12 rounded bg-gray-300 dark:bg-gray-700"></div>
+                    <div class="h-4 w-full rounded bg-gray-300 dark:bg-gray-700"></div>
+                    <div class="mt-8 h-4 w-3/4 rounded bg-gray-300 dark:bg-gray-700"></div>
+                </div>
+            </article>
+        
+            <!-- Sidebar Skeleton -->
+            <aside class="mt-12 hidden lg:mt-0 lg:block">
+                <div class="space-y-12">
+                    <!-- TOC Skeleton -->
+                    <div>
+                        <div class="mb-5 h-3 w-32 rounded bg-gray-300 dark:bg-gray-700"></div>
+                        <div class="space-y-4">
+                            <div class="h-3 w-3/4 rounded bg-gray-300 dark:bg-gray-700"></div>
+                            <div class="h-3 w-2/3 rounded bg-gray-300 dark:bg-gray-700"></div>
+                            <div class="h-3 w-5/6 rounded bg-gray-300 dark:bg-gray-700"></div>
+                        </div>
+                    </div>
+                    <!-- Related Posts Skeleton -->
+                    <div>
+                        <div class="mb-5 h-3 w-32 rounded bg-gray-300 dark:bg-gray-700"></div>
+                        <div class="space-y-5">
+                            <div class="flex gap-3">
+                                <div class="h-16 w-24 shrink-0 rounded-lg bg-gray-300 dark:bg-gray-700"></div>
+                                <div class="w-full space-y-2 py-1">
+                                    <div class="h-3 w-full rounded bg-gray-300 dark:bg-gray-700"></div>
+                                    <div class="h-3 w-2/3 rounded bg-gray-300 dark:bg-gray-700"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+          
+        <!-- 2. THE ACTUAL POST CONTENT -->
+        <div id="actual-post-content" class="lg:grid lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-8" style="display:none">
+            
+            <!-- Article Column -->
+                <article class="w-full min-w-0 max-w-5xl">
+                
+                <!-- Typography Header -->
+                <header class="mb-4">
+                    <span id="a-category" class="bg-accent-soft text-accent hover:bg-accent hover:text-white transition-colors inline-block rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-wider mb-6"></span>
+                
+                    <h1 id="a-title" class="font-serif text-3xl leading-tight font-extrabold tracking-tight text-balance text-foreground sm:text-4xl md:text-5xl lg:text-6xl mb-4"></h1>
+                    <!-- Author + Meta -->
+                    <div class="border-border flex flex-wrap items-center gap-4 border-b pb-8">
+                        <img src="" alt="" class="h-14 w-14 rounded-full object-cover shadow-sm bg-surface" id="authorImageHolder" />
+                        <div class="mr-auto">
+                            <p class="text-foreground text-lg font-bold" id="authorName">Elena Marsh</p>
+                            <p class="text-muted text-sm font-medium mt-0.5"><span id="a-date"></span> · <span id="a-read">6 min read</span></p>
+                        </div>
+                        <div class="text-muted flex items-center gap-4 text-sm font-medium">
+                            <span id="a-views-wrap" class="flex items-center gap-1.5 bg-surface px-3 py-1.5 rounded-full border border-border">
+                                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                                <span id="a-views"></span>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+        
+               <!-- Post Body -->
+                <div id="a-body" class="w-full post-body prose prose-sm dark:prose-invert max-w-none overflow-hidden prose-blockquote:border-l-4 prose-blockquote:border-accent prose-blockquote:pl-6 prose-blockquote:font-serif prose-blockquote:text-2xl prose-blockquote:italic prose-a:text-accent hover:prose-a:text-accent-hover space-y-0 [&_iframe]:w-full [&_iframe]:aspect-video [&_iframe]:rounded-xl"></div>
+                <!-- Media Gallery (Smart Grid injected here) -->
+                <div id="postMediaGallery" class="mt-16 border-t border-border pt-10 hidden">
+                    <h3 class="mb-6 font-serif text-2xl font-semibold tracking-tight text-foreground">Attached Media</h3>
+                    <div id="mediaGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                        <!-- JS will inject dynamic media cards here -->
+                    </div>
+                </div>
+
+                <!-- Action Bar -->
+                <div class="border-border mt-16 flex flex-wrap items-center gap-3 border-y py-5">
+                    <!-- 1. The Trigger Button (The Anchor) -->
+                    <!-- Wrapper Container (Crucial for positioning) -->
+                    <div class="relative inline-block" id="reaction-container">
+                        
+                        <!-- The Trigger Button -->
+                        <button id="reaction-trigger" type="button" aria-expanded="false" class="border-border bg-surface text-foreground hover:border-accent hover:text-accent flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-semibold transition-all">
+                            <span id="reaction-icon" aria-hidden="true">
+                                 <i class="far fa-face-smile"></i> <!-- Default Icon -->
+                            </span>
+                            <span id="reaction-label">React</span>
+                            <span id="reaction-count" class="text-muted ml-1"></span>
+                        </button>
+                    
+                        <!-- The Popover Menu (Positioned absolutely above the button) -->
+                        <!-- hidden by default, bottom-[calc(100%+12px)] pushes it right above the button -->
+                    <div id="reaction-popover" class="hidden absolute bottom-[calc(100%+12px)] left-0 sm:left-1/2 sm:-translate-x-1/2 z-50 w-[280px] rounded-2xl border border-border bg-surface p-4 shadow-xl transition-all duration-200 opacity-0 translate-y-2 origin-bottom-left sm:origin-bottom">
+                           <p class="text-muted mb-3 text-xs font-semibold tracking-widest uppercase text-center">Choose one reaction</p>
+                            
+                            <!-- Reaction Grid -->
+                            <div id="reaction-options" class="grid grid-cols-4 gap-2">
+
+                            </div>
+                            
+                            <!-- The little triangle pointer at the bottom -->
+                            
+                            <div class="absolute -bottom-2 left-8 sm:left-1/2 sm:-translate-x-1/2 border-8 border-transparent border-t-border"></div>
+                            <div class="absolute -bottom-[7px] left-8 sm:left-1/2 sm:-translate-x-1/2 border-8 border-transparent border-t-surface"></div>
+                        </div>
+                    </div>
+            
+                    <button id="share-btn" type="button" class="border-border bg-surface text-foreground hover:border-accent hover:text-accent flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-semibold transition-all">
+                        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="18" cy="5" r="3" />
+                            <circle cx="6" cy="12" r="3" />
+                            <circle cx="18" cy="19" r="3" />
+                            <path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4" />
+                        </svg>
+                        Share
+                    </button>
+            
+                    <button id="report-btn" type="button" class="text-muted hover:text-red-500 ml-auto flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors">
+                        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
+                            <line x1="4" y1="22" x2="4" y2="15" />
+                        </svg>
+                        Report
+                    </button>
+                </div>
+        
+                <!-- Comments -->
+                <section aria-labelledby="comments-h" class="mt-16">
+                    <h2 id="comments-h" class="font-serif text-2xl font-semibold tracking-tight text-foreground">Comments (<span id="comment-count">0</span>)</h2>
+            
+                    <!-- New comment -->
+                    <form id="comment-form" class="mt-6">
+                        <label for="comment-input" class="sr-only">Add a comment</label>
+                        <textarea id="comment-input" rows="3" placeholder="Share your thoughts…" class="border-border bg-surface text-foreground placeholder:text-muted focus:border-accent w-full rounded-2xl border p-4 text-base focus:outline-none focus:ring-4 focus:ring-accent/10 transition-all"></textarea>
+                        <div class="mt-3 flex justify-end">
+                            <button type="submit" class="bg-accent hover:bg-accent-hover rounded-full px-6 py-2.5 text-sm font-bold text-white transition-colors shadow-sm">Post comment</button>
+                        </div>
+                    </form>
+            
+                    <div id="comment-list" class="mt-10 space-y-8 h-[32rem] overflow-y-auto hide-scrollbar"></div>
+                </section>
+            </article>
+        
+            <!-- Sidebar (Desktop only) -->
+            <aside class="mt-12 hidden lg:mt-0 lg:block">
+                <div class="sticky top-24 space-y-10">
+                    
+                    <!-- IN THIS ARTICLE (Table of Contents) -->
+                    <div class="bg-surface border border-border rounded-2xl p-6 shadow-sm">
+                        <h2 class="text-muted mb-4 text-xs font-bold tracking-widest uppercase">In this article</h2>
+                        <ul id="tableOfContents" class="space-y-3 text-sm text-foreground font-medium">
+                            <!-- JS Navigation injected here -->
+                        </ul>
+                    </div>
+
+                    <!-- Related Stories -->
+                    <div>
+                        <h2 class="text-muted mb-5 text-xs font-bold tracking-widest uppercase">Related stories</h2>
+                        <div id="related" class="flex flex-col gap-5"></div>
+                    </div>
+                    
+                    <!-- Popular Posts -->
+                    <div class="border-t border-border pt-8">
+                        <h2 class="text-muted mb-5 text-xs font-bold tracking-widest uppercase">Popular posts</h2>
+                        <div id="post-popular" class="flex flex-col gap-5"></div>
+                    </div>
+                    
+                    <!-- Tags -->
+                    <div class="border-t border-border pt-8">
+                        <h2 class="text-muted mb-4 text-xs font-bold tracking-widest uppercase">Tags</h2>
+                        <div id="tags" class="flex flex-wrap gap-2"></div>
+                    </div>
+
+                </div>
+            </aside>
+            
+        </div>
+    </main>
+        
+    <div id="toast" role="status" aria-live="polite" class="bg-foreground text-background pointer-events-none fixed bottom-6 left-1/2 z-50 -translate-x-1/2 translate-y-4 rounded-full px-5 py-3 text-sm font-medium opacity-0 transition-all duration-300"></div>
+</div>
+    
+     <!--Full-Screen Lightbox Overlay -->
+    <div id="mediaLightbox" class="fixed inset-0 z-[110] hidden items-center justify-center bg-black/90 p-4 opacity-0 backdrop-blur-sm transition-opacity duration-300 flex">
+        
+         <!--Close Button -->
+        <button id="btnCloseLightbox" class="absolute right-6 top-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-md transition-colors hover:bg-white/25 focus:outline-none">
+            <i class="fas fa-times text-xl"></i>
+        </button>
+    
+         <!--Content Container -->
+        <div id="lightboxContent" class="relative flex h-full w-full max-w-6xl scale-95 items-center justify-center transition-transform duration-300">
+             <!--JS will dynamically inject the <img> or <video> tag right here -->
+        </div>
+    </div>
+
+    <!-- Report Post Modal -->
+    <div id="reportModal" class="fixed inset-0 z-[120] hidden items-center justify-center bg-black/60 p-4 backdrop-blur-sm transition-opacity duration-300 opacity-0 flex">
+        
+        <!-- Modal Content Box -->
+        <div class="relative w-full max-w-md scale-95 transform overflow-hidden rounded-2xl bg-surface shadow-2xl transition-transform duration-300 border border-border" id="reportModalContent">
+            
+            <!-- Header -->
+            <div class="flex items-center justify-between border-b border-border px-6 py-4 bg-surface">
+                <h3 class="font-serif text-xl font-bold text-foreground">Report Post</h3>
+                <button type="button" class="close-report text-muted hover:text-foreground transition-colors focus:outline-none">
+                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+            </div>
+            
+            <!-- Body -->
+            <form id="reportForm" class="px-6 py-5 bg-surface">
+                <p class="mb-5 text-sm font-medium text-muted">Why are you reporting this post? Your report is anonymous.</p>
+                
+                <!-- Radio Options -->
+                <div class="space-y-4 mb-6">
+                    <label class="flex items-start gap-3 cursor-pointer group">
+                        <input type="radio" name="reportReason" value="spam" class="mt-0.5 h-4 w-4 text-red-600 bg-transparent border-gray-300 focus:ring-red-500" required>
+                        <span class="text-sm font-semibold text-foreground group-hover:text-red-600 transition-colors">Spam or misleading</span>
+                    </label>
+                    <label class="flex items-start gap-3 cursor-pointer group">
+                        <input type="radio" name="reportReason" value="harassment" class="mt-0.5 h-4 w-4 text-red-600 bg-transparent border-gray-300 focus:ring-red-500">
+                        <span class="text-sm font-semibold text-foreground group-hover:text-red-600 transition-colors">Harassment or bullying</span>
+                    </label>
+                    <label class="flex items-start gap-3 cursor-pointer group">
+                        <input type="radio" name="reportReason" value="hate_speech" class="mt-0.5 h-4 w-4 text-red-600 bg-transparent border-gray-300 focus:ring-red-500">
+                        <span class="text-sm font-semibold text-foreground group-hover:text-red-600 transition-colors">Hate speech or graphic content</span>
+                    </label>
+                    <label class="flex items-start gap-3 cursor-pointer group">
+                        <input type="radio" name="reportReason" value="copyright" class="mt-0.5 h-4 w-4 text-red-600 bg-transparent border-gray-300 focus:ring-red-500">
+                        <span class="text-sm font-semibold text-foreground group-hover:text-red-600 transition-colors">Copyright violation</span>
+                    </label>
+                    <label class="flex items-start gap-3 cursor-pointer group">
+                        <input type="radio" name="reportReason" value="other" class="mt-0.5 h-4 w-4 text-red-600 bg-transparent border-gray-300 focus:ring-red-500">
+                        <span class="text-sm font-semibold text-foreground group-hover:text-red-600 transition-colors">Other</span>
+                    </label>
+                </div>
+                
+                <!-- Optional Comments -->
+                <div class="mb-2">
+                    <label for="reportComments" class="block text-xs font-bold uppercase tracking-widest text-muted mb-2">Additional details (Optional)</label>
+                    <textarea id="reportComments" rows="3" class="w-full rounded-xl border border-border bg-transparent p-3 text-sm text-foreground focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/20 transition-all placeholder:text-muted" placeholder="Provide more context to help us investigate..."></textarea>
+                </div>
+                
+                <!-- Footer Actions -->
+                <div class="mt-8 flex justify-end gap-3 border-t border-border pt-5">
+                    <button type="button" class="close-report rounded-full px-5 py-2.5 text-sm font-medium text-muted hover:text-foreground hover:bg-gray-100 transition-colors">Cancel</button>
+                    <button type="submit" class="rounded-full bg-red-600 px-6 py-2.5 text-sm font-bold text-white hover:bg-red-700 transition-colors shadow-sm min-w-[120px] flex items-center justify-center">Submit Report</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+<!--</main>-->
+      
+<!--editor parser-->
+<script src="https://cdn.jsdelivr.net/npm/editorjs-html@3.4.0/build/edjsHTML.browser.js"></script>
+<script>
+<?php  ltImport('MdBlog','Tailwind-config.js') ?>
+<?php  ltImport('MdBlog','Script.js') ?>
+
+
+document.addEventListener('DOMContentLoaded', async function(){
+// (() => {
+  "use strict";
+  
+let POST = [];
+let CATEGORIES = [];
+
+
+// ============================================
+// Helper functions
+// ============================================
+
+    
+function getCategoryName(catId){
+    if(typeof catId == 'string') return catId;
+    let cat = CATEGORIES.find(c => Number(c.ltId) === Number(catId)).categoryName;
+    return cat;
+}
+
+function decodeHtml(html) {
+    if (!html) return '';
+    const txt = document.createElement('textarea');
+    txt.innerHTML = formatMarkdownImages(domParser(html));
+    return txt.value;
+}
+
+function domParser(content){
+    return new DOMParser().parseFromString(content, "text/html").body.textContent;
+}
+
+function formatCodeBlocks(text) {
+    return text.replace(/'''([\s\S]*?)'''|```([\s\S]*?)```/g, (match, g1, g2) => {
+        const codeContent = (g1 || g2 || "").trim();
+        return `
+            <div class="bg-gray-900 rounded-lg">
+                <pre class="text-green-400 font-mono text-xs overflow-x-auto">
+                    <code>${codeContent}</code>
+                </pre>
+            </div>`;
+    });
+}
+
+
+function formatMarkdownImages(text) {
+    return text.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (match, altText, filename) => {
+
+        // const basePath = '/packages/modules/MdDocs/Media/';
+        const basePath = `${siteHostAddress}/packagers/modules/MdDocs/Media/`;
+        const fullPath = filename.startsWith('http') || filename.startsWith('/') 
+            ? filename 
+            : basePath + filename;
+
+        return `
+            <div class="my-4 flex justify-center markdown-image-wrapper">
+                <img src="${fullPath}" alt="${altText}" 
+                     class="max-w-full h-auto rounded-lg shadow-md border border-gray-200">
+            </div>
+        `;
+    });
+}
+
+  /* ---------- resolve post ---------- */
+//   const params = new URLSearchParams(window.location.search);
+//   const id = params.get("id") || POSTS[0].slug;
+//   const slug = params.get("slug");
+  const SLUG = "<?= $_GET['slug'] ?>";
+
+  /* ---------- helpers ---------- */
+   const dateFormatter = new Intl.DateTimeFormat(undefined, {
+        month: "short",
+        day: "numeric",
+        year: "numeric"
+    });
+  
+   function formatDate(iso) {
+        if (!iso) return "";
+    
+        // const date = new Date(`${iso}T00:00:00`);
+        const date = new Date(iso.replace(" ", "T"));
+    
+        return Number.isNaN(date.getTime())
+            ? ""
+            : dateFormatter.format(date);
+    }
+    
+    
+  const formatCount = (n) =>
+    n >= 1000 ? `${(n / 1000).toFixed(1).replace(/\.0$/, "")}k` : String(n);
+
+  const heartIcon = (filled) => `
+    <svg class="h-4 w-4 transition ${filled ? "fill-accent text-accent" : "fill-none"}" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/>
+    </svg>
+  `;
+
+  const toast = (msg) => {
+    const t = document.getElementById("toast");
+    if (!t) return;
+    t.textContent = msg;
+    t.style.opacity = "1";
+    t.style.transform = "translate(-50%, 0)";
+    clearTimeout(t._timer);
+    t._timer = setTimeout(() => {
+      t.style.opacity = "0";
+      t.style.transform = "translate(-50%, 1rem)";
+    }, 2200);
+  };
+
+  /* ---------- populate post ---------- */
+  
+    function renderPost(post) {
+        // 1. Populate Core Metadata using exact HTML IDs
+        document.getElementById('a-title').textContent = domParser(post.title) || 'Untitled Post';
+        document.getElementById('a-category').textContent = post.category;
+        document.getElementById('authorName').textContent = post.authorName || 'Unknown';
+        document.getElementById('a-date').textContent = formatDate(post.date);
+        
+        // Fallback for reading time if not saved in DB
+        const readingTime = post.readingTime || Math.max(1, Math.ceil((post.content || '').split(' ').length / 200));
+        document.getElementById('a-read').textContent = `${readingTime} min read`;
+    
+        // Views (if you track them)
+        document.getElementById('a-views').textContent = post.views || '0';
+    
+        // Set Author Avatar
+        const authorAvatar = document.getElementById('authorImageHolder');
+        authorAvatar.src = post.authorAvatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(post.authorName || 'Teejay')}&background=random`;
+    
+        // 2. Inject Main Content
+        const postBody = document.getElementById('a-body');
+        postBody.innerHTML = post.content || '<p>No content available.</p>';
+    
+        // 3. Render Attached Media (Gallery)
+        renderMediaGallery(post.media);
+    
+        // 4. Auto-Generate Table of Contents
+        generateTableOfContents();
+    }
+
+    function generateTableOfContents() {
+        const postBody = document.getElementById('a-body');
+        const tocContainer = document.getElementById('tableOfContents');
+        
+        // Find all H2 and H3 tags inside the main article
+        const headings = postBody.querySelectorAll('h2, h3');
+        tocContainer.innerHTML = '';
+    
+        if (headings.length === 0) {
+            // Hide the whole "In this article" block if no headings exist
+            tocContainer.parentElement.classList.add('hidden');
+            return;
+        }
+    
+        tocContainer.parentElement.classList.remove('hidden');
+    
+        headings.forEach((heading, index) => {
+            // Auto-generate safe anchor IDs if they are missing
+            if (!heading.id) {
+                heading.id = `toc-${index}-${heading.textContent.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+            }
+    
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            
+            a.href = `#${heading.id}`;
+            a.textContent = heading.textContent;
+            a.className = 'hover:text-accent transition-colors block';
+            
+            // Indent H3 tags slightly to show hierarchy
+            if (heading.tagName.toLowerCase() === 'h3') {
+                li.classList.add('pl-4', 'text-muted');
+            }
+    
+            // Smooth scroll behavior
+            a.addEventListener('click', (e) => {
+                e.preventDefault();
+                heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                history.pushState(null, null, `#${heading.id}`);
+            });
+    
+            li.appendChild(a);
+            tocContainer.appendChild(li);
+        });
+    }
+
+    function openLightbox(url, type) {
+        const lightbox = document.getElementById('mediaLightbox');
+        const contentDiv = document.getElementById('lightboxContent');
+        
+        // 1. Lock the background scrolling so the user can't scroll the article while viewing media
+        document.body.style.overflow = 'hidden';
+    
+        // 2. Clear out any previous media
+        contentDiv.innerHTML = '';
+    
+        // 3. Inject the exact media type requested
+        if (type === 'image') {
+            contentDiv.innerHTML = `<img src="${url}" class="max-h-[90vh] max-w-full rounded-lg object-contain shadow-2xl" alt="Gallery View" />`;
+        } 
+        else if (type === 'video') {
+            contentDiv.innerHTML = `
+                <video controls autoplay class="max-h-[90vh] w-full max-w-4xl rounded-lg bg-black shadow-2xl outline-none">
+                    <source src="${url}">
+                    Your browser does not support the video tag.
+                </video>
+            `;
+        }
+    
+        // 4. Reveal the lightbox and trigger the fade-in / scale-up animation
+        lightbox.classList.remove('hidden');
+        
+        // requestAnimationFrame ensures the 'hidden' class is fully removed before starting the transition
+        requestAnimationFrame(() => {
+            lightbox.classList.remove('opacity-0');
+            contentDiv.classList.remove('scale-95');
+            contentDiv.classList.add('scale-100');
+        });
+    }
+
+    function renderMediaGallery(mediaArray) {
+        const galleryContainer = document.getElementById('postMediaGallery');
+        const mediaGrid = document.getElementById('mediaGrid');
+        
+        if (!mediaArray || mediaArray.length === 0) {
+            galleryContainer.classList.add('hidden');
+            return;
+        }
+    
+        galleryContainer.classList.remove('hidden');
+        mediaGrid.innerHTML = '';
+    
+        mediaArray.forEach((media, index) => {
+            const fullUrl = `${siteHostAddress}/${media.storagePath}`; // Adjust based on your API structure
+            const fileExt = media.originalName.split('.').pop().toLowerCase();
+            
+            let cardHTML = '';
+    // onclick="openLightbox('${fullUrl}', 'image')
+            // Handle Images
+            if (media.mimeType.startsWith('image/')) {
+                cardHTML = `
+                    <div id="lightBox" class="group relative aspect-square w-full cursor-pointer overflow-hidden rounded-xl bg-gray-100 shadow-sm" data-url="${fullUrl}" data-type="image">
+                        <img src="${fullUrl}" alt="${media.originalName}" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                        <div class="absolute inset-0 bg-black/0 transition-colors group-hover:bg-black/20"></div>
+                        <i class="fas fa-expand absolute right-3 top-3 text-white opacity-0 drop-shadow-md transition-opacity group-hover:opacity-100"></i>
+                    </div>
+                `;
+            } 
+            
+            // Handle Videos
+            else if (media.mimeType.startsWith('video/')) {
+                cardHTML = `
+                    <div id="lightBox" class="group relative aspect-square w-full cursor-pointer overflow-hidden rounded-xl bg-gray-900 shadow-sm" data-url="${fullUrl}" data-type="video">
+                        <!-- You can use a video element as a silent, unplayable thumbnail -->
+                        <video src="${fullUrl}#t=1" class="h-full w-full object-cover opacity-60"></video>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-md transition-transform group-hover:scale-110 group-hover:bg-blue-600">
+                                <i class="fas fa-play ml-1"></i>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } 
+            
+            // Handle Audio
+            else if (media.mimeType.startsWith('audio/')) {
+                cardHTML = `
+                    <div class="col-span-full sm:col-span-2 md:col-span-3 flex items-center justify-between rounded-xl border border-gray-200 bg-gray-50 p-4 shadow-sm">
+                        <div class="flex items-center gap-3 overflow-hidden">
+                            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-purple-100 text-purple-600">
+                                <i class="fas fa-music"></i>
+                            </div>
+                            <span class="truncate text-sm font-medium text-gray-700">${media.originalName}</span>
+                        </div>
+                        <audio controls class="h-10 w-48 md:w-64" preload="metadata">
+                            <source src="${fullUrl}" type="${media.mimeType}">
+                        </audio>
+                    </div>
+                `;
+            } 
+            
+            // Handle PDFs and standard Documents
+            else {
+                cardHTML = `
+                    <a href="${fullUrl}" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center justify-center rounded-xl border border-gray-200 bg-white p-6 text-center shadow-sm transition hover:border-blue-500 hover:bg-blue-50">
+                        <i class="fas fa-file-pdf mb-3 text-4xl text-red-500 transition-transform group-hover:-translate-y-1"></i>
+                        <span class="line-clamp-2 text-sm font-medium text-gray-700 group-hover:text-blue-700">${media.originalName}</span>
+                        <span class="mt-2 text-xs text-gray-400 border border-gray-200 px-2 py-1 rounded">Download PDF</span>
+                    </a>
+                `;
+            }
+    
+            // Parse HTML and append to grid
+            mediaGrid.insertAdjacentHTML('beforeend', cardHTML);
+        });
+        
+        document.addEventListener('click', function(e){
+            let el  = e.target.closest('#lightBox');
+            if(!el) return;
+            let fullUrl = el.dataset.url;
+            let type = el.dataset.type;
+            openLightbox(fullUrl, type);
+        })
+        
+    }
+
+    /**
+     * Closes the lightbox and cleans up the DOM
+     */
+    document.addEventListener('click', (e)=>{
+        let btn = e.target.closest('#btnCloseLightbox');
+        if(!btn) return;
+        closeLightbox();
+    }); 
+     
+    function closeLightbox() {
+        const lightbox = document.getElementById('mediaLightbox');
+        const contentDiv = document.getElementById('lightboxContent');
+        
+        // 1. Trigger the fade-out / scale-down animation
+        lightbox.classList.add('opacity-0');
+        contentDiv.classList.remove('scale-100');
+        contentDiv.classList.add('scale-95');
+        
+        // 2. Wait for the CSS transition (300ms) to finish, then hide and clean up
+        setTimeout(() => {
+            lightbox.classList.add('hidden');
+            contentDiv.innerHTML = ''; // CRITICAL: This stops the video element from playing audio in the background
+            document.body.style.overflow = 'auto'; // Unlock background scrolling
+        }, 300);
+    }
+
+    // Allow the user to click anywhere on the dark background to close the lightbox
+    document.getElementById('mediaLightbox').addEventListener('click', (e) => {
+        // Only close if they clicked the background container itself, not the video/image inside it
+        if (e.target.id === 'mediaLightbox' || e.target.id === 'lightboxContent') {
+            closeLightbox();
+        }
+    });
+
+
+  /* ---------- reaction popover ---------- */
+        const trigger = document.getElementById('reaction-trigger');
+        const popover = document.getElementById('reaction-popover');
+        
+        // Toggle the popover when clicking the button
+        trigger?.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent the document click listener below from firing immediately
+            
+            const isHidden = popover.classList.contains('hidden');
+            
+            if (isHidden) {
+                // Open it
+                popover.classList.remove('hidden');
+                trigger.setAttribute('aria-expanded', 'true');
+                // Small delay to allow CSS transitions to trigger
+                requestAnimationFrame(() => {
+                    popover.classList.remove('opacity-0', 'translate-y-2');
+                });
+            } else {
+                closeReactionPopover();
+            }
+        });
+    
+        // Function to close the popover with animation
+        function closeReactionPopover() {
+            popover.classList.add('opacity-0', 'translate-y-2');
+            trigger.setAttribute('aria-expanded', 'false');
+            
+            // Wait for transition before hiding completely
+            setTimeout(() => {
+                popover.classList.add('hidden');
+            }, 200); 
+        }
+    
+        // Close the popover if the user clicks anywhere else on the page
+        document.addEventListener('click', (e) => {
+            if (popover && !popover.classList.contains('hidden') && !popover.contains(e.target)) {
+                closeReactionPopover();
+            }
+        });
+        
+        const reactions = [
+            { type: "like", emoji: "👍", label: "Like" },
+            { type: "love", emoji: "❤️", label: "Love" },
+            { type: "laugh", emoji: "😂", label: "Haha" },
+            { type: "wow", emoji: "😮", label: "Wow" },
+            { type: "sad", emoji: "😢", label: "Sad" },
+            { type: "angry", emoji: "😡", label: "Angry" },
+            { type: "celebrate", emoji: "🎉", label: "Celebrate" },
+            { type: "dislike", emoji: "👎", label: "Dislike" }
+        ];
+
+        
+        const reactionOptions = document.querySelector("#reaction-options");
+        
+        reactionOptions.innerHTML = reactions.map(reaction => `
+            <button class="reaction-option hover:bg-gray-100 p-2 rounded-lg text-xl transition-transform hover:scale-110" data-reaction="${reaction.type}" aria-label="${reaction.label}" title="${reaction.label}">
+             <span aria-hidden="true">${reaction.emoji}</span>
+            </button>
+        `).join("");
+        
+        reactionOptions.addEventListener("click", async (event) => {
+            const button = event.target.closest(".reaction-option");
+            if (!button) return;
+        
+            const reactionType = button.dataset.reaction;
+            
+            // 1. Find the full reaction object from your array to get the emoji and label
+            const selectedReaction = reactions.find(r => r.type === reactionType);
+            
+            // 2. Update the main trigger button UI instantly (Optimistic UI)
+            const triggerIcon = document.getElementById("reaction-icon");
+            const triggerLabel = document.getElementById("reaction-label");
+            const triggerBtn = document.getElementById("reaction-trigger");
+            
+            triggerIcon.innerHTML = selectedReaction.emoji;
+            triggerLabel.textContent = selectedReaction.label;
+            triggerBtn.classList.add("text-accent", "border-accent"); // Highlight the button
+        
+            // 3. Close the popover (assuming you are using the Tailwind absolute positioning method)
+            const popover = document.getElementById('reaction-popover');
+            popover.classList.add('opacity-0', 'translate-y-2');
+            setTimeout(() => popover.classList.add('hidden'), 200);
+            
+            // 4. Send to your PHP backend
+            try {
+                const response = await fetch(`${BASE_URL}/blogs/posts/react`, {
+                    method: 'POST',
+                    headers: { 
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json' 
+                    },
+                    body: JSON.stringify({ 
+                        postSlug: SLUG, // Assuming SLUG is defined globally on the post page
+                        reaction: reactionType 
+                    })
+                });
+        
+                const { responseCategory, responseResult } = await response.json();
+        
+                if (responseCategory != '200') {
+                    console.error("Failed to save reaction:", responseResult);
+                    // Optional: Revert UI if it fails
+                }
+            } catch (error) {
+                console.error("Network error saving reaction:", error);
+            }
+        });
+        
+        function initializeReactionUI(userReactionString) {
+        // If the database returned NULL (the user hasn't reacted), do nothing
+            if (!userReactionString) return;
+        
+            // 1. Find the matching reaction from the array
+            const previousReaction = reactions.find(r => r.type === userReactionString);
+            
+            if (previousReaction) {
+                // 2. Target the UI elements
+                const triggerIcon = document.getElementById("reaction-icon");
+                const triggerLabel = document.getElementById("reaction-label");
+                const triggerBtn = document.getElementById("reaction-trigger");
+        
+                // 3. Apply the saved emoji, label, and colors
+                triggerIcon.innerHTML = previousReaction.emoji;
+                triggerLabel.textContent = previousReaction.label;
+                triggerBtn.classList.add("text-accent", "border-accent");
+            }
+        }
+//   /* ---------- Views ---------- */
+    async function updateViews(){
+        try {
+            const response = await fetch(`${BASE_URL}/blogs/posts/view-update`, {
+                method: 'POST',
+                headers: { 'Accept': 'application/json' },
+                body: JSON.stringify({ 
+                    slug: SLUG
+                })
+            });
+            const {responseCategory} = await response.json();
+            if(responseCategory){
+              let viewsCount = document.getElementById('a-views');
+              let count = parseInt(viewsCount.textContent);
+              if(count < 1){
+                  viewsCount.textContent = 1;
+              }else{
+                  viewsCount.textContent = count + 1;
+              }
+            }
+        } catch (error) {
+            console.error('Views update failed:', error);
+        } 
+
+    }
+    
+    
+//   /* ---------- share ---------- */
+    document.getElementById("share-btn")?.addEventListener("click", async () => {
+        if (navigator.share) {
+          try {
+            await navigator.share({ title: POST.title, url: window.location.href });
+          } catch (err) {
+            console.error("Error sharing:", err);
+          }
+        } else if (navigator.clipboard) {
+          try {
+            await navigator.clipboard.writeText(window.location.href);
+            toast("Link copied to clipboard");
+          } catch (err) {
+            toast("Copy this page URL to share");
+          }
+        } else {
+          toast("Copy this page URL to share");
+        }
+    });
+
+//   /* ---------- report ---------- */
+    const reportModal = document.getElementById('reportModal');
+    const reportModalContent = document.getElementById('reportModalContent');
+    const reportBtn = document.getElementById('report-btn'); // The report button in your action bar
+    const closeBtns = document.querySelectorAll('.close-report');
+    const reportForm = document.getElementById('reportForm');
+    
+    // 1. Open Modal Logic
+    reportBtn?.addEventListener('click', () => {
+        reportModal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Lock background scrolling
+        
+        // requestAnimationFrame forces the browser to wait a split second before applying opacity, triggering the CSS transition
+        requestAnimationFrame(() => {
+            reportModal.classList.remove('opacity-0');
+            reportModalContent.classList.remove('scale-95');
+            reportModalContent.classList.add('scale-100');
+        });
+    });
+
+    // 2. Close Modal Logic
+    const closeReportModal = () => {
+        reportModal.classList.add('opacity-0');
+        reportModalContent.classList.remove('scale-100');
+        reportModalContent.classList.add('scale-95');
+        
+        // Wait for CSS animation to finish (300ms) before hiding
+        setTimeout(() => {
+            reportModal.classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Unlock scrolling
+            reportForm.reset(); // Wipe form fields clean
+        }, 300);
+    };
+
+    // Close when clicking the 'Cancel' or 'X' buttons
+    closeBtns.forEach(btn => btn.addEventListener('click', closeReportModal));
+
+    // Close when clicking the dark background outside the modal
+    reportModal?.addEventListener('click', (e) => {
+        if (e.target === reportModal) closeReportModal();
+    });
+
+    // 3. Handle Form Submission
+    reportForm?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const submitBtn = reportForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        const loader = "<div class='w-4 h-4 rounded-full border-2 border-white border-t-transparent animate-spin mx-auto'></div>";
+        
+        // Gather data
+        const reason = reportForm.querySelector('input[name="reportReason"]:checked')?.value;
+        const comments = document.getElementById('reportComments').value.trim();
+        
+        if (!reason) return;
+        
+        // Set loading state
+        submitBtn.innerHTML = loader;
+        submitBtn.disabled = true;
+        
+        try {
+            const response = await fetch(`${BASE_URL}/blogs/reports/create`, {
+                method: 'POST',
+                 headers: { 'Accept': 'application/json' },
+                body: JSON.stringify({ 
+                    postSlug: SLUG, 
+                    reason: reason, 
+                    comments: comments 
+                })
+            });
+            const { responseResult, responseCategory } = await response.json();
+            
+            if (responseCategory == '200') {
+                closeReportModal();
+                Swal.fire({
+                    title: 'Report Received',
+                    text: 'Thank you for keeping the community safe. Our moderation team will review this post.',
+                    icon: 'success',
+                    confirmButtonColor: '#2B6CB0' // Brand blue
+                });
+            } else {
+                Swal.fire('Oops!', 'Something went wrong submitting your report.', 'warning');
+            }
+            
+        } catch (error) {
+            console.error('Report submission failed:', error);
+            Swal.fire('Network Error', 'Please check your connection and try again.', 'error');
+        } finally {
+            // Restore button
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+
+
+
+
+//   /* ---------- comments (threaded, collapsible) ---------- */
+
+    const commentNode = (c, depth) => {
+        const wrap = document.createElement("div");
+        wrap.className = depth > 0 ? "reply-thread pl-4 border-l border-border mt-4" : "mt-6";
+        const loader = "<div class='w-4 h-4 rounded-full border border-blue border-t-transparent animate-spin'></div>";
+        
+        // Ensure replies array exists
+        const replies = c.replies || [];
+        const hasReplies = replies.length > 0;
+        
+               // Helper to get 1 or 2 initials from a name
+        const getInitials = (name) => {
+            if (!name) return 'U';
+            const parts = name.trim().split(' ');
+            return parts.length > 1 
+                ? (parts[0][0] + parts[1][0]).toUpperCase() 
+                : parts[0].substring(0, 2).toUpperCase();
+        };
+        
+        // Map database fields
+        const authorName = c.author || 'Unknown User';
+        const initials = getInitials(authorName);
+        const timeFormatted = timeAgo(c.createdAt); // Assuming formatTime is available globally
+        const likeCount = parseInt(c.likes) || 0;
+        
+        wrap.innerHTML = `
+          <div class="flex gap-4">
+            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent-soft text-sm font-bold text-accent-hover shadow-sm">
+                ${initials}
+            </div>
+            <div class="min-w-0 flex-1">
+              <div class="flex items-center gap-2">
+                <span class="font-semibold text-foreground text-sm">${authorName}</span>
+                <span class="text-[11px] font-medium text-muted">${timeFormatted}</span>
+              </div>
+              <p class="mt-1.5 text-sm leading-relaxed text-foreground">${c.body}</p>
+              
+              <div class="mt-2.5 flex items-center gap-4 text-xs font-medium text-muted">
+                <button type="button" class="like-comment flex items-center gap-1.5 hover:text-accent transition-colors" data-id="${c.lt_id}">
+                  <span class="like-icon">${heartIcon(false)}</span>
+                  <span class="like-count-display">${likeCount}</span>
+                </button>
+                <button type="button" class="reply-btn hover:text-accent transition-colors">Reply</button>
+                ${hasReplies ? `<button type="button" class="toggle-replies text-accent hover:text-accent-hover transition-colors">Show <span class="font-bold reply-count"> ${replies.length} </span> replies</button>` : ""}
+              </div>
+              
+              <div class="reply-box mt-3 hidden"></div>
+              <div class="children space-y-2 mt-2"></div>
+            </div>
+          </div>
+        `;
+        
+        const childrenEl = wrap.querySelector(".children");
+        if (hasReplies) {
+          replies.forEach((child) => childrenEl.appendChild(commentNode(child, depth + 1)));
+          childrenEl.classList.add("hidden");
+        }
+        
+        // --- EVENT: Like Comment ---
+        const likeBtn = wrap.querySelector(".like-comment");
+        const likeDisplay = likeBtn.querySelector(".like-count-display");
+        const iconContainer = likeBtn.querySelector(".like-icon");
+        
+        let isLiked = c.isLikedByUser || false; 
+        let currentLikeCount = parseInt(c.likes) || 0;
+        iconContainer.innerHTML = heartIcon(isLiked);
+        likeBtn.addEventListener("click", async () => {
+            // 1. Store the previous state in case the fetch fails
+            const previousState = isLiked;
+            const previousCount = currentLikeCount;
+        
+            // 2. Optimistic UI Update (Instant feedback)
+
+            isLiked = !isLiked;
+            currentLikeCount = isLiked ? currentLikeCount + 1 : currentLikeCount - 1;
+            
+            likeDisplay.textContent = currentLikeCount;
+            likeBtn.classList.toggle("text-accent", isLiked);
+            iconContainer.innerHTML = heartIcon(isLiked);
+
+            // 3. Send the request to the server
+            try {
+                const response = await fetch(`${BASE_URL}/blogs/comments/like`, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                    },
+                    body: JSON.stringify({ commentId: c.ltId })
+                });
+        
+                const { responseCategory } = await response.json();
+        
+                // 4. If it failed on the server, revert the UI
+                if (responseCategory != '200') {
+                    throw new Error('Server rejected the like');
+                }
+        
+            } catch (error) {
+                console.error("Failed to toggle like:", error);
+                
+                // Revert to previous state
+                isLiked = previousState;
+                currentLikeCount = previousCount;
+                
+                likeDisplay.textContent = currentLikeCount;
+                likeBtn.classList.toggle("text-accent", isLiked);
+                iconContainer.innerHTML = heartIcon(isLiked);
+            }
+        });
+        
+        // --- EVENT: Toggle Replies ---
+        if (hasReplies) {
+          const toggle = wrap.querySelector(".toggle-replies");
+          toggle.addEventListener("click", () => {
+            const isHidden = childrenEl.classList.toggle("hidden");
+            toggle.textContent = `${isHidden ? "Show" : "Hide"} ${replies.length} replies`;
+            
+          });
+        }
+        
+        // --- EVENT: Reply Form ---
+        const replyBtn = wrap.querySelector(".reply-btn");
+        const replyBox = wrap.querySelector(".reply-box");
+        let styleAuthorName = `<span class="text-blue-500 hover:text-blue-600">@${authorName}</span>`;
+        replyBtn.addEventListener("click", () => {
+            
+            
+            document.querySelectorAll(".reply-box").forEach(box => {
+                if(box !== replyBox){
+                    box.classList.add("hidden");
+                    const textBox = replyBox?.querySelector("textarea");
+                    if(textBox) textBox.value = "";
+                }
+            })
+            
+          if (!replyBox.dataset.built) {
+               
+            replyBox.innerHTML = `
+              <div class="flex flex-col gap-2 rounded-xl border border-border bg-surface p-2 focus-within:border-accent focus-within:ring-1 focus-within:ring-accent transition-all">
+               <div class="p-1 text-sm text-muted">Replying to ${styleAuthorName}</div>
+                  <textarea rows="2" class="w-full resize-none bg-transparent p-2 text-sm text-foreground focus:outline-none placeholder:text-muted" placeholder="Write a reply…"></textarea>
+                  <div class="flex justify-end gap-2 pr-1 pb-1">
+                    <button type="button" class="cancel-reply rounded-full px-4 py-1.5 text-xs font-medium text-muted hover:text-foreground transition-colors">Cancel</button>
+                    <button type="button" class="send-reply rounded-full bg-accent px-4 py-1.5 text-xs font-semibold text-white hover:bg-accent-hover transition-colors shadow-sm">Reply</button>
+                  </div>
+              </div>
+            `;
+            replyBox.dataset.built = "1";
+
+            replyBox.querySelector(".cancel-reply").addEventListener("click", () => {
+                replyBox.classList.add("hidden");
+                replyBox.querySelector("textarea").value = "";
+            });
+
+            replyBox.querySelector(".send-reply").addEventListener("click", async (e) => {
+              let btn = e.target;
+              btn.innerHTML = loader;
+              const textBox = replyBox.querySelector("textarea");
+              const val = textBox.value.trim();
+              if (!val) return;
+                
+                try{
+                    const response = await fetch(`${BASE_URL}/blogs/comments/create`, {
+                        method: 'POST',
+                        headers: { 'Accept': 'application/json' },
+                        body: JSON.stringify({
+                            postSlug: c.postSlug,
+                            body: val,
+                            parentId: c.ltId
+                        })
+                    });
+                  const {responseResult, responseData, responseCategory} = await response.json();
+                   if(responseCategory == '200'){
+                         // 2. Mocking the server response for the UI update
+                          const newReply = {
+                            ...responseData,
+                            likes: 0,
+                            replies: [],
+                          };
+                          // 3. Inject directly into DOM without reloading
+                          c.replies = c.replies || [];
+                          c.replies.push(newReply);
+                          childrenEl.classList.remove("hidden");
+                          childrenEl.appendChild(commentNode(newReply, depth + 1));
+                          
+                          // 4. Cleanup
+                          textBox.value = "";
+                          replyBox.classList.add("hidden");
+                          
+                          // 5. Update master counter
+                          const commentCount = document.getElementById('comment-count');
+                          commentCount.textContent = parseInt(commentCount.textContent) + 1;
+                          let repliesCount = wrap.querySelector(".reply-count");
+
+                                if (!repliesCount) {
+                                    // 1. Target the action bar (specifically, next to the Reply button)
+                                    const replyBtnInBar = wrap.querySelector(".reply-btn");
+                                    
+                                    // 2. Create the element properly so we can attach an event listener
+                                    const toggleBtn = document.createElement("button");
+                                    toggleBtn.type = "button";
+                                    toggleBtn.className = "toggle-replies text-accent hover:text-accent-hover transition-colors";
+                                    
+                                    // Since we just added a reply, the thread is currently visible, so default text is "Hide"
+                                    toggleBtn.innerHTML = `Hide <span class="font-bold reply-count">1</span> reply`;
+                                    
+                                    // 3. Attach the toggle logic to this brand new button
+                                    toggleBtn.addEventListener("click", () => {
+                                        const isHidden = childrenEl.classList.toggle("hidden");
+                                        const currentCount = wrap.querySelector(".reply-count").textContent;
+                                        toggleBtn.innerHTML = `${isHidden ? "Show" : "Hide"} <span class="font-bold reply-count">${currentCount}</span> replies`;
+                                    });
+                                    
+                                    // 4. Inject it into the action bar
+                                    replyBtnInBar.insertAdjacentElement('afterend', toggleBtn);
+                                } else {
+                                    // If it already exists, just increment the number
+                                    repliesCount.textContent = parseInt(repliesCount.textContent) + 1;
+                                }
+                   }else{
+                       Swal.fire('Oops!!!', `Failed to post reply: ${responseResult}`, 'warning');
+                       console.log("failed to post reply");
+                   }
+                }catch(err){
+                    console.log(err);
+                }finally{
+                    btn.innerHTML = 'Reply';
+                }
+              
+            });
+          }
+          replyBox.classList.toggle("hidden");
+        });
+        
+        return wrap;
+    };
+
+    function renderComments(commentsArray) {
+        const commentList = document.getElementById('comment-list');
+        const commentCount = document.getElementById('comment-count');
+        
+        // 1. Update count recursively
+        const countAll = (items) => items.reduce((acc, c) => acc + 1 + countAll(c.replies || []), 0);
+        commentCount.textContent = countAll(commentsArray);
+        commentList.innerHTML = '';
+    
+        if (!commentsArray || commentsArray.length === 0) {
+            commentList.innerHTML = '<p class="text-gray-500 text-sm italic">No comments yet. Be the first to share your thoughts!</p>';
+            return;
+        }
+    
+        
+        // Build the initial tree
+        commentsArray.forEach((c) => commentList.appendChild(commentNode(c, 0)));
+    }
+    
+    document.getElementById("comment-form")?.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        
+        // 1. Correctly target the button inside the form
+        const form = e.target;
+        const btn = form.querySelector('button[type="submit"]');
+        const originalBtnText = btn.innerHTML; // Save "Post comment" text
+        
+        const loader = "<div class='w-4 h-4 rounded-full border-2 border-white border-t-transparent animate-spin mx-auto'></div>";
+        btn.innerHTML = loader;
+        btn.disabled = true; // Prevent double submissions
+        
+        const input = document.getElementById("comment-input");
+        const val = input.value.trim();
+        
+        if (!val) {
+            btn.innerHTML = originalBtnText;
+            btn.disabled = false;
+            return;
+        }
+        
+        // 2. Send the data to PHP backend
+        try {
+            const response = await fetch(`${BASE_URL}/blogs/comments/create`, {
+                method: 'POST',
+                headers: { 
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json' 
+                },
+                body: JSON.stringify({
+                    postSlug: SLUG, 
+                    body: val,
+                    parentId: null // Explicitly top-level
+                })
+            });
+    
+            const { responseResult, responseData, responseCategory } = await response.json();
+    
+            if (responseCategory == '200') {
+                // 3. Clear the input field
+                input.value = '';
+                
+                // 4. Construct the new comment for the UI
+                const newComment = {
+                    ...responseData,
+                    likes: 0,
+                    replies: []
+                };
+                
+                const commentList = document.getElementById('comment-list');
+                const commentCount = document.getElementById('comment-count');
+                
+                // Remove the "No comments yet" placeholder if it's the first comment
+                const emptyState = commentList.querySelector('p.italic');
+                if (emptyState) emptyState.remove();
+                
+                // 5. Inject at the very top of the list
+                commentList.insertBefore(commentNode(newComment, 0), commentList.firstChild);
+                
+                // 6. Update master count
+                commentCount.textContent = parseInt(commentCount.textContent) + 1;
+                
+                // Optional: Toast notification
+                // Swal.fire('Success', 'Comment posted!', 'success');
+                
+            } else {
+                Swal.fire('Oops!!!', `Failed to post comment: ${responseResult}`, 'warning');
+            }
+        } catch (error) {
+            console.error('Error posting comment:', error);
+            Swal.fire('Error', 'A network error occurred while posting.', 'error');
+        } finally {
+            // Restore button state
+            btn.innerHTML = originalBtnText;
+            btn.disabled = false;
+        }
+    });
+
+    function compactPostMarkup(post) {
+        const readingTime = post.readingTime || Math.max(1, Math.ceil((post.content || '').split(' ').length / 200));
+    
+        // 1. Safely extract the image or provide a fallback placeholder
+        let coverImageUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(post.title)}&background=f3f4f6&color=9ca3af&size=150`;
+        if (post.media && Array.isArray(post.media)) {
+            const firstImage = post.media.find(m => m.mimeType && m.mimeType.startsWith('image/'));
+            if (firstImage) {
+                coverImageUrl = `${siteHostAddress || ''}/${firstImage.storagePath}`;
+            }
+        }
+    
+        return `
+            <a href="${siteHostAddress}/blog/post/${post.slug}" class="group flex items-start gap-4 transition-all mb-6 last:mb-0">
+                <!-- Thumbnail -->
+                <div class="h-20 w-24 shrink-0 overflow-hidden rounded-lg border border-border bg-surface shadow-sm">
+                    <img src="${coverImageUrl}" alt="${post.title}" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                </div>
+    
+                <!-- Content -->
+                <div class="flex min-w-0 flex-1 flex-col py-0.5">
+                    <div class="mb-1 flex items-center justify-between gap-2 text-[10px] font-bold uppercase tracking-wider text-muted">
+                        <span class="text-accent">${getCategoryName(post.category)}</span>
+                        <span>${readingTime} min read</span>
+                    </div>
+    
+                    <h4 class="clamp-2 text-sm font-semibold leading-snug text-foreground transition-colors group-hover:text-accent">
+                        ${domParser(post.title)}
+                    </h4>
+    
+                    <div class="mt-2 flex items-center gap-3 text-[11px] font-medium text-muted">
+                        <span class="flex items-center gap-1">
+                            ${heartIcon(true)} ${formatCount(post.likes)}
+                        </span>
+                        <span>&bull;</span>
+                        <span>${formatDate(post.date)}</span>
+                    </div>
+                </div>
+            </a>
+        `;
+    }
+    
+    async function fetchSidebarWidget(type, containerId, currentPostId = null, currentPostCategory = null) {
+        const containerEl = document.getElementById(containerId);
+        
+        if (!containerEl) return;
+        
+        // Show skeleton loader
+        containerEl.innerHTML = typeof compactSkeletonLoader === 'function' 
+            ? compactSkeletonLoader() 
+            : '<div class="animate-pulse h-20 bg-surface rounded-lg mb-4"></div>';
+    
+        try {
+            // Construct the URL dynamically
+            let url = `${BASE_URL}/blogs/posts/widget?limit=3&type=${type}`;
+            if (type === 'related' && currentPostId) {
+                url += `&postId=${currentPostId}&categoryId=${currentPostCategory || ''}`;
+            }
+    
+            const response = await fetch(url, {
+                headers: { Accept: "application/json" }
+            });
+    
+            if (!response.ok) {
+                throw new Error(`Error: API returned status ${response.status}`);
+            }
+    
+            const { responseData, responseResult, responseCategory } = await response.json();
+    
+            if (responseCategory == '200') {
+                const posts = Array.isArray(responseData) ? responseData : [];
+                
+                if (posts.length === 0) {
+                    containerEl.innerHTML = `<p class="text-xs italic text-muted">No ${type} posts available.</p>`;
+                    return;
+                }
+    
+                // Render the compact posts
+                containerEl.innerHTML = posts.map(compactPostMarkup).join("");
+                
+            } else {
+                // Throwing the error here safely sends execution to the catch block
+                throw new Error(responseResult || 'Failed to fetch widget data');
+            }
+    
+        } catch (error) {
+            console.error(`Sidebar Widget Error (${type}):`, error);
+            
+            // Ensure errorMsgWidget exists before calling it, otherwise use a fallback
+            containerEl.innerHTML = `<p class="text-xs text-red-500 p-4 bg-red-50/50 rounded-lg">Unable to load ${type} posts.</p>`; 
+        }
+    }
+
+        async function onLoadPost(slug){
+
+            const skeleton = document.getElementById("post-skeleton");
+            const actualContent = document.getElementById("actual-post-content");
+            
+            if(!slug){
+                swal.fire({
+                  title: 'Missing Slug',
+                  text: 'Redirecting you to the blog list...',
+                  icon: 'info',
+                  timer: 3000,
+                  showConfirmButton: false
+                }).then(() => {
+                  window.location.href = `${siteHostAddress}/blog`;
+                });
+                return;
+            }
+            
+            try{
+                const [response, categoryData] = await Promise.all([
+                        fetch(`${BASE_URL}/blogs/posts/${encodeURIComponent(slug)}/slug`, {
+                            method: 'GET',
+                            headers: {
+                                'Accept': 'application/json'
+        
+                            }
+                        }),
+                        fetch(`${BASE_URL}/blogs/filter/categories?status=isActive`, {
+                            method: 'GET',
+                            headers: {
+                                'Accept': 'application/json'
+        
+                            }
+                        })
+                    
+                    ]) 
+                const categoryRecord = await categoryData.json();
+                
+                const postData = await response.json();
+                //  alert(JSON.stringify(categoryRecord));
+                const { responseData, responseResult, responseCategory } = postData;
+                
+                 CATEGORIES = [...CATEGORIES, ...categoryRecord.responseData] || [];
+                 
+                 if(responseCategory == 200){
+                     POST = responseData ?? [];
+                    //  renderPost();
+                    renderPost(POST);
+                    renderComments(POST.comments);
+                     skeleton.style.display = "none";
+                     actualContent.style.display = "grid";
+                     updateViews();
+                     // Load Popular Posts
+                    fetchSidebarWidget('popular', 'post-popular');
+                    // Load Related Stories
+                    fetchSidebarWidget('related', 'related', responseData.ltId, responseData.category_id);
+                    // update user reaction
+                    initializeReactionUI(POST.userReaction);
+                 }else{
+                     swal.fire('Notice!!!', `${responseResult}`, 'warning');
+                    
+                 }
+                 
+            }catch(error){
+                 console.log(error);
+    
+            }
+             
+        }
+         
+        // ();
+
+
+
+    await onLoadPost(SLUG);
+});
+
+    
+</script>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      

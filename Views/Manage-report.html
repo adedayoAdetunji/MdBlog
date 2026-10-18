@@ -1,0 +1,620 @@
+ <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+      <div class="container mx-auto my-4 w-full px-2 md:my-14" id="root">
+        <main class="pt-2 flex-1 p-1 py-2 transition-all duration-300 overflow-y-auto h-full">
+
+          <!-- Breadcrumb + Add -->
+            <div class="mb-1 rounded-xl p-4 bg-white">
+                <div class="flex flex-row items-center justify-between">
+                  <div>
+                    <h1 class="text-xl md:text-2xl font-bold text-gray-800 mb-1">Manage Reports</h1>
+                  </div>
+                </div>
+                <nav class="flex" aria-label="Breadcrumb">
+                  <ol class="inline-flex items-center space-x-3 bg-gray-50 px-4 py-2 rounded-lg shadow-sm text-sm">
+                    <li>
+                      <a href="<?=ltSiteUrl() ?>/LtDashboard" class="flex items-center text-gray-600 hover:text-blue-600 transition-colors duration-200">
+                        <i class="fas fa-home text-gray-400 mr-2"></i>
+                        <span class="font-medium">Dashboard</span>
+                      </a>
+                    </li>
+                    <li class="flex items-center">
+                      <svg class="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path>
+                      </svg>
+                      <a href="#" class="ml-2 text-gray-600 hover:text-blue-600 font-medium transition-colors duration-200">Reports</a>
+                    </li>
+                  </ol>
+                </nav>
+            </div>
+          <!-- Filter Bar -->
+            <div class="bg-white rounded-xl shadow-md p-4 mb-1 hidden" id="filterBar">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                    <div class="flex flex-1 flex-col md:flex-row md:items-center gap-2">
+                        <div class="relative w-full md:w-auto">
+                            <input type="search" placeholder="Search..." class="w-full md:w-64 pl-10 pr-4 py-2 bg-gray-100 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" id="searchInput" />
+                            <i class="fas fa-search absolute left-3 top-2.5 text-gray-400"></i>
+                        </div>
+                        <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded-md text-sm font-medium focus:outline-none focus:ring-2 focus:ring-gray-500" id="clearFiltersBtn">Clear</button>
+                    </div>
+                </div>
+            </div>
+
+          <!-- Table -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="p-4 border-b border-gray-200">
+                    <div class="flex flex-row items-center justify-between">
+                        <div class="flex items-center">
+                            <label class="text-sm text-gray-600 mr-2">Show</label>
+                            <select class="bg-gray-100 border border-gray-300 text-gray-700 py-1 px-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" id="entriesPerPageSelect">
+                                <option value="10">10</option>
+                                <option value="20">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                            <button class="flex items-center justify-center w-10 h-10 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 ml-4" id="toggleFiltersBtn">
+                                <i class="fas fa-filter text-gray-600"></i>
+                            </button>
+                        </div>
+                        <div class="flex-1 flex justify-end">
+                          <nav class="inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination" id="paginationNav">
+                            <!-- Pagination will be populated here -->
+                          </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="theme-table-container overflow-x-auto">
+                    <table class="theme-table w-full min-w-[700px] text-sm">
+                        <thead>
+                            <tr class="bg-gray-50 text-left">
+                                
+                                <th class="py-3 px-4 font-medium text-gray-600 border-b border-gray-200 w-16">
+                                  <div class="flex items-center">SN<button class="ml-1 text-gray-400 hover:text-gray-600 focus:outline-none" data-sort="id"><i class="fas fa-sort"></i></button></div>
+                                </th>
+                                <th class="py-3 px-4 font-medium text-gray-600 border-b border-gray-200 w-32">Post Title</th>
+                                <th class="py-3 px-4 font-medium text-gray-600 border-b border-gray-200 w-32">Commented By</th>
+                                <th class="py-3 px-4 font-medium text-gray-600 border-b border-gray-200 w-32">
+                                  Comment
+                                </th>
+                                <th class="py-3 px-4 font-medium text-gray-600 border-b border-gray-200 w-32">Reason</th>
+                                <th class="py-3 px-4 font-medium text-gray-600 border-b border-gray-200 w-32">
+                                  <div class="flex items-center">Status<button class="ml-1 text-gray-400 hover:text-gray-600 focus:outline-none" data-sort="status"><i class="fas fa-sort"></i></button></div>
+                                </th>
+                                 <th class="py-3 px-4 font-medium text-gray-600 border-b border-gray-200 w-32">Date Registered</th>
+                                 <th class="py-3 px-4 font-medium text-gray-600 border-b border-gray-200 w-32">Updated At</th>
+                                <th class="py-3 px-4 font-medium text-gray-600 border-b border-gray-200 w-24 text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                          <!-- Table rows will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-sm text-gray-500 p-2" id="tableInfo">Showing 0 to 0 of 0 entries</div>
+            </div>
+         
+        </main>
+      </div>
+        <div id="update-status-dialog" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/40 p-4">
+          <div class="w-full max-w-sm rounded-xl border border-gray-200 bg-white shadow-xl">
+            <!-- Header -->
+            <div class="flex items-center justify-between border-b border-gray-200 px-4 py-3">
+              <h3 class="text-foreground text-sm font-semibold">Update Status</h3>
+        
+              <button type="button" id="close-status-dialog" class="text-muted hover:bg-surface-hover hover:text-foreground rounded-full p-1.5 transition-colors" aria-label="Close">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+        
+            <!-- Body -->
+            <div class="p-4">
+              <label for="status" class="text-foreground mb-1.5 block text-xs font-medium"> Status </label>
+        
+              <select id="status" class="border-border bg-surface text-foreground focus:border-accent focus:ring-accent w-full rounded-lg border px-3 py-2 text-sm transition outline-none focus:ring-1">
+                <option value="pending">Pending</option>
+                <option value="reviewed">Reviewed</option>
+                <option value="dismissed">Dismissed</option>
+                <option value="action_taken">Action Taken</option>
+              </select>
+            </div> 
+        
+            <!-- Footer -->
+            <div class="border-border flex justify-end gap-2 border-t px-4 py-3">
+              <button type="button" id="cancel-status-dialog" class="text-muted hover:bg-surface-hover hover:text-foreground rounded-lg px-3 py-2 text-xs font-medium transition-colors">Cancel</button>
+        
+            <button type="button" id="save-status" class="rounded-lg bg-green-600 px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-green-700">Update</button>
+            </div>
+          </div>
+        </div>
+
+
+    <!-- Footer -->
+<script src="https://cdn.quilljs.com/1.3.7/quill.js"></script>
+<!--<php  ltImport('MdBlog','Editor.js')  ?>-->
+<script>
+
+
+    // State variables
+    let COMMENTS = [];
+    let search = '';
+    let filters = {status: ''}; 
+    let entriesPerPage = 10;
+    let page = 1;
+    let sort = { key: '', dir: 'asc' };
+    let editId = null;
+    let showFilters = false;
+
+    
+    const elements = {
+
+        title: document.getElementById('drawerTitle'),
+        tableInfo: document.getElementById('tableInfo'),
+        paginationNav: document.getElementById('paginationNav'),
+        filterBar: document.getElementById('filterBar'),
+        tableBody: document.getElementById('tableBody'),
+    }
+    // Filter data based on search
+    function filterData() {
+      return COMMENTS.filter(c => {
+        return (
+            !search 
+            || c.body.toLowerCase().includes(search.toLowerCase())
+            );
+      });
+    }
+
+    
+   function getStatusColor(statusValue, type) {
+      const statusMap = {
+        draft: 'bg-gray-100 text-gray-800',
+        published: 'bg-green-100 text-green-800',
+        scheduled: 'bg-blue-100 text-blue-800',
+        archived: 'bg-red-100 text-red-800'
+      };
+      
+      const iconMap = {
+        draft: 'bg-gray-600',
+        published: 'bg-green-600',
+        scheduled: 'bg-blue-600',
+        archived: 'bg-red-600'
+      }
+    
+      // Return mapped value or fallback
+      if(type == 'statusMap'){
+        return statusMap[statusValue] || 'bg-yellow-100 text-yellow-800';
+          
+      }else if(type == 'iconMap'){
+         return iconMap[statusValue] || 'text-yellow-500';
+      }
+    }
+
+    
+    function domParser(content){
+        let text = new DOMParser().parseFromString(content, "text/html").body.textContent;
+        return text;
+    }
+    
+    function domReParser(newParserContent){
+        let parser = new DOMParser();
+        let finalDoc = parser.parseFromString(newParserContent, "text/html");
+        let cleanText = finalDoc.body.textContent.trim();
+        
+        if (cleanText.length > 0) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+    
+    // Paginate data
+    function paginateData(data) {
+      const start = (page - 1) * entriesPerPage;
+      const end = start + entriesPerPage;
+      return data.slice(start, end);
+    }
+
+    // Update table with current data
+    function updateTable() {
+      const filtered = filterData();
+      const paginated = paginateData(filtered);
+      const total = filtered.length;
+      const totalPages = Math.max(1, Math.ceil(total / entriesPerPage));
+
+      // Update table body
+      elements.tableBody.innerHTML = '';
+      if (paginated.length === 0) {
+        elements.tableBody.innerHTML = '<tr><td colspan="8" class="text-center py-6 text-gray-400">No Comment Found.</td></tr>';
+      } else {
+        paginated.forEach((c, i) => {
+          const tr = document.createElement('tr');
+          tr.className = `hover:bg-blue-50 transition duration-150 cursor-pointer`;
+          tr.innerHTML = `
+            <td class="py-3 px-4 border-b border-gray-200 text-center">${(page - 1) * entriesPerPage + i + 1}</td>
+            <td class="py-3 px-4 border-b border-gray-200">
+                ${c.title}
+            </td>
+            <td class="py-3 px-4 border-b border-gray-200">${c.author}</td>
+            <td class="py-3 px-4 border-b border-gray-200">${c.comments || 'N/A'}</td>
+            <td class="py-3 px-4 border-b border-gray-200">${c.reason || 'N/A'}</td>
+            <td class="py-3 px-4 border-b border-gray-200">
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(c.status, 'statusMap')}" onclick="openStatusDialog(${c.ltId}, '${c.status}')">
+                <span class="w-2 h-2 ${getStatusColor(c.status, 'iconMap')} rounded-full mr-1.5 animate-pulse"></span>
+                ${c.status.charAt(0).toUpperCase() + c.status.slice(1).toLowerCase()}
+              </span>
+            </td>
+            <td class="py-3 px-4 border-b border-gray-200">${formatTime(c.createdAt)}</td>
+            <td class="py-3 px-4 border-b border-gray-200">${formatTime(c.updatedAt)}</td>
+            <td class="py-3 px-4 border-b border-gray-200">
+              <div class="flex justify-center">
+                <button aria-label="View" class="text-green-600 hover:text-amber-700 mx-1 focus:outline-none" data-id="${c.ltId}">
+                  View Post
+                </button>
+                <button aria-label="Delete" class="text-gray-500 hover:text-red-600 mx-1 focus:outline-none" data-id="${c.ltId}">
+                  <i class="fas fa-trash-alt text-xl text-red-400"></i>
+                </button>
+              </div>
+            </td>
+          `;
+          elements.tableBody.appendChild(tr);
+        });
+      }
+
+      // Update pagination
+      updatePagination(total, totalPages);
+
+      // Update table info
+      const start = total === 0 ? 0 : (page - 1) * entriesPerPage + 1;
+      const end = Math.min(page * entriesPerPage, total);
+      elements.tableInfo.textContent = `Showing ${start} to ${end} of ${total} entries`;
+
+      // Add event listeners to table elements
+      addTableEventListeners();
+    }
+    
+    function updatePagination(total, totalPages) {
+      elements.paginationNav.innerHTML = `
+        <button class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 Inactive:opacity-50" id="prevPageBtn" ${page === 1 ? 'Inactive' : ''}>
+          <i class="fas fa-chevron-left text-xs"></i>
+        </button>
+      `;
+    
+      const maxButtons = 5;
+      let startPage, endPage;
+    
+      if (totalPages <= maxButtons) {
+        startPage = 1;
+        endPage = totalPages;
+      } else if (page <= 3) {
+        startPage = 1;
+        endPage = 5;
+      } else if (page >= totalPages - 2) {
+        startPage = totalPages - 4;
+        endPage = totalPages;
+      } else {
+        startPage = page - 2;
+        endPage = page + 2;
+      }
+    
+      for (let i = startPage; i <= endPage; i++) {
+        const btn = document.createElement('button');
+        btn.className = `relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium ${page === i ? 'bg-blue-600 text-white' : 'bg-white text-gray-700 hover:bg-gray-100'}`;
+        btn.textContent = i;
+        btn.Inactive = page === i;
+        btn.addEventListener('click', () => {
+          page = i;
+          updateTable();
+        });
+        elements.paginationNav.appendChild(btn);
+      }
+    
+      const nextBtn = document.createElement('button');
+      nextBtn.className = `relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 Inactive:opacity-50`;
+      nextBtn.id = 'nextPageBtn';
+      nextBtn.innerHTML = '<i class="fas fa-chevron-right text-xs"></i>';
+      nextBtn.Inactive = page === totalPages;
+      nextBtn.addEventListener('click', () => {
+        if (page < totalPages) {
+          page++;
+          updateTable();
+        }
+      });
+      elements.paginationNav.appendChild(nextBtn);
+    
+      document.getElementById('prevPageBtn').addEventListener('click', () => {
+        if (page > 1) {
+          page--;
+          updateTable();
+        }
+      });
+    }
+
+//  <td class="py-3 px-4 border-b border-gray-200">${getSchoolName(c.schoolId)}</td>
+
+    // Add event listeners to table elements
+    function addTableEventListeners() {
+    
+      // Delete buttons
+      document.querySelectorAll('button[aria-label="Delete"]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const ltId = e.currentTarget.getAttribute('data-id');
+          deleteComment(ltId);
+        });
+      });
+      
+      document.querySelectorAll('button[aria-label="View"]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const ltId = e.currentTarget.getAttribute('data-id');
+          const postSlug = COMMENTS.find(c => c.ltId == ltId)?.postSlug;
+          if(!postSlug) return;
+          window.open(`${siteHostAddress}/blog/post/${postSlug}`, '_blank');
+        });
+      });
+      
+      
+    }
+
+    async function handleDelete(ltId) {
+        COMMENTS = COMMENTS.filter(c => +c.ltId !== +ltId);
+        updateTable();
+   
+    }
+    
+
+
+    //// Delete event Listener
+     function deleteComment(ltId){
+        let res = COMMENTS.find(s => s.ltId == ltId);
+
+        Swal.fire({
+            title: 'Notice!',
+            text: `Are you sure you want to delete this report?`,
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, Delete',
+            cancelButtonText: 'No, Cancel'
+        }).then(async result => {
+            if (result.isConfirmed) {
+   
+                try{
+                    
+                     const response = await fetch(`${BASE_URL}/blogs/reports/${ltId}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Authorization': `Bearer ${LW_TOKEN}`,
+                            'Accept': 'application/json'
+    
+                        }
+                    });
+                
+                    const data = await response.json();
+                    
+                    const {responseData, responseResult, responseCategory} = data;
+                    if(responseCategory == '200'){
+                        let msg = `Report Deleted successfully ✌️`;
+                        Swal.fire({
+                            title: 'Success',
+                            text: `${msg}`,
+                            icon: 'success',
+                            toast: true,
+                            position: 'top',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true
+                        }).then(function(){
+                            handleDelete(ltId);
+                        });
+                         
+                    }else{
+                        Swal.fire('Error!!!', `${responseResult}`, 'warning');
+                    }
+                    
+                }catch(error){
+                    Swal.fire('Error!!!', `${error}`, 'warning');
+                }
+            }
+        }); 
+    
+    };
+
+    // Initialize event listeners
+    function initEventListeners() {
+        
+        const dialog = document.getElementById('update-status-dialog');
+        const closeBtn = document.getElementById('close-status-dialog');
+        const cancelBtn = document.getElementById('cancel-status-dialog');
+        const saveBtn = document.getElementById('save-status');
+        const statusSelect = document.getElementById('status');
+        
+        // This variable holds the ID of the item (post, report, etc.) you are updating
+        let currentTargetId = null; 
+    
+        window.openStatusDialog = (id, currentStatus) => {
+            currentTargetId = id;
+            // console.log(id, cuurentStatus);
+            // Pre-select the current status, fallback to pending
+            statusSelect.value = currentStatus || 'pending';
+            
+            // Show the dialog (using flex to maintain your center alignment)
+            dialog.classList.remove('hidden');
+            dialog.classList.add('flex'); 
+        };
+    
+        // --- Close Logic ---
+        const closeDialog = () => {
+            dialog.classList.add('hidden');
+            dialog.classList.remove('flex');
+            currentTargetId = null; // Reset the ID
+        };
+    
+        closeBtn?.addEventListener('click', closeDialog);
+        cancelBtn?.addEventListener('click', closeDialog);
+        
+        // Close if the user clicks the dark background outside the modal
+        dialog?.addEventListener('click', (e) => {
+            if (e.target === dialog) closeDialog();
+        });
+    
+        // --- Submit Logic ---
+        saveBtn?.addEventListener('click', async () => {
+            if (!currentTargetId) return;
+            
+            const newStatus = statusSelect.value;
+            const originalText = saveBtn.innerHTML;
+            
+            // Add a spinning loader
+            saveBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i>';
+            saveBtn.disabled = true;
+    
+            try {
+
+                const response = await fetch(`${BASE_URL}/blogs/reports/update-status`, {
+                    method: 'POST',
+                    headers: {'Authorization': `Bearer ${LW_TOKEN}`, 'Accept': 'application/json' },
+                    body: JSON.stringify({ ltId: currentTargetId, status: newStatus })
+                });
+                const { responseCategory, responseResult } = await response.json();
+                
+                if (responseCategory == '200') {
+                    COMMENTS = COMMENTS.map(c => c.ltId == currentTargetId ? {...c, status: newStatus} : c);
+                    closeDialog();
+                       
+                    updateTable();
+                    Swal.fire({
+                        title: 'Success',
+                        text: 'Status updated successfully.',
+                        icon: 'success',
+                        toast: true,
+                        position: 'top',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true
+                    });
+                } else {
+                    Swal.fire('Error', `Failed to update status: ${responseResult}`, 'error');
+                }
+            } catch (error) {
+                console.error('Update failed:', error);
+                Swal.fire('Network Error', 'Please check your connection.', 'error');
+            } finally {
+                // Restore the button text and state
+                saveBtn.innerHTML = originalText;
+                saveBtn.disabled = false;
+            }
+        });
+  
+
+      // Search
+      document.getElementById('searchInput')?.addEventListener('input', (e) => {
+        search = e.target.value;
+        page = 1;
+        updateTable();
+      });
+
+      // Clear filters
+      document.getElementById('clearFiltersBtn')?.addEventListener('click', () => {
+        search = '';
+        document.getElementById('searchInput').value = '';
+        page = 1;
+        updateTable();
+      });
+
+      // Entries per page
+      document.getElementById('entriesPerPageSelect')?.addEventListener('change', (e) => {
+        entriesPerPage = parseInt(e.target.value);
+        page = 1;
+        updateTable();
+      });
+        
+        
+    }
+    
+    function flattenComments(elements, result = []) {
+        elements.forEach((el) => {
+            // 1. Extract children
+            const replies = el.replies;
+            let { replies: _, ...commentWithoutReplies } = el; 
+            
+            // 3. Add the current item to our result array
+            // commentWithoutReplies = {...commentWithoutReplies, level: level+1};
+            result.push(commentWithoutReplies);
+            
+            // console.log(level);
+            // 4. If children exist, recurse into them
+            if (replies && replies.length > 0) {
+                flattenComments(replies, result);
+            }
+        });
+        
+        return result;
+    }
+    
+    // Initialize the application
+    function init() {
+        
+        async function onLoadPost(){
+              
+            fx_lifetech_button_loader_open();
+            try{
+                
+                const response = await fetch(`${BASE_URL}/blogs/reports`, {
+                            method: 'GET',
+                            headers: {
+                                'Authorization': `Bearer ${LW_TOKEN}`,
+                                'Accept': 'application/json'
+        
+                            }
+                        })
+
+               const commentData = await response.json();
+                 
+                const { responseData, responseResult, responseCategory } = commentData;
+                 
+                 if(responseCategory == 200){
+                     COMMENTS = Array.isArray(responseData) ? flattenComments(responseData) : [];
+        
+                     updateTable();
+                     
+                    //  console.log(COMMENTS);
+                 }else{
+                     Swal.fire('Notice!!!', `${responseResult}`, 'warning')
+                 }
+                 
+                 fx_lifetech_button_loader_close(); 
+            }catch(error){
+                 
+                 console.log(error);
+    
+            }
+             
+         }
+         
+        onLoadPost();    
+        
+        
+      initEventListeners();
+    //   updateTable();
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+    
+    
+    
+  </script>
+  </body>
+      
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      

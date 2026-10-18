@@ -1,0 +1,44 @@
+# Dependencies
+
+node_modules/
+composer.lock
+
+# IDE & Editor
+
+.vscode/
+.idea/
+_.swp
+_.swo
+\*~
+.DS_Store
+
+# Environment
+
+.env
+.env.local
+.env.\*.local
+
+# Logs
+
+\*.log
+logs/
+
+# Temporary files
+
+\*.tmp
+temp/
+tmp/
+
+# Media cache
+
+Media/cache/
+
+# Build artifacts
+
+dist/
+build/
+
+# OS specific
+
+Thumbs.db
+.DS_Store
