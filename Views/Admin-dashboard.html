@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard — MdBlog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                DEFAULT: "#4F46E5",
+                hover: "#4338CA",
+                light: "#EEF2FF",
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  </head>
+  <body class="min-h-screen bg-slate-50 font-sans text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+    <div class="container mx-auto px-4 py-8">
+      <div class="mb-6 flex items-center justify-between">
+        <div>
+          <p class="text-xs font-bold tracking-[0.2em] text-slate-400 uppercase">Overview</p>
+          <h1 class="text-2xl font-black text-slate-900 dark:text-white">Admin Dashboard</h1>
+        </div>
+        <div class="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300">Last 30 Days</div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-extrabold tracking-wider text-slate-400 uppercase">Total Views</span>
+            <span class="rounded-full bg-emerald-50 px-2.5 py-0.5 text-[10px] font-bold text-emerald-600">Active</span>
+          </div>
+          <div class="mt-2 text-3xl font-black text-slate-900 dark:text-white" id="stat-total-views">--</div>
+          <p class="mt-1 text-[11px] text-slate-400">Across all published articles</p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-extrabold tracking-wider text-slate-400 uppercase">Total Articles</span>
+            <span class="bg-primary/10 text-primary rounded-full px-2.5 py-0.5 text-[10px] font-bold">Catalog</span>
+          </div>
+          <div class="mt-2 text-3xl font-black text-slate-900 dark:text-white" id="stat-total-articles">--</div>
+          <p class="mt-1 text-[11px] text-slate-400">Published & drafts combined</p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-extrabold tracking-wider text-slate-400 uppercase">Comments</span>
+            <span class="rounded-full bg-amber-50 px-2.5 py-0.5 text-[10px] font-bold text-amber-600" id="badge-pending-comments">0 Pending</span>
+          </div>
+          <div class="mt-2 text-3xl font-black text-slate-900 dark:text-white" id="stat-total-comments">--</div>
+          <p class="mt-1 text-[11px] text-slate-400">Reader discussions</p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-extrabold tracking-wider text-slate-400 uppercase">Taxonomies</span>
+            <span class="rounded-full bg-indigo-50 px-2.5 py-0.5 text-[10px] font-bold text-indigo-600">Organized</span>
+          </div>
+          <div class="mt-2 text-3xl font-black text-slate-900 dark:text-white" id="stat-total-taxonomies">--</div>
+          <p class="mt-1 text-[11px] text-slate-400">Active categories and tags</p>
+        </div>
+      </div>
+
+      <div class="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-12">
+        <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm lg:col-span-8 dark:border-slate-800 dark:bg-slate-900">
+          <div class="mb-4 flex items-center justify-between">
+            <div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">Publishing & View Activity</h3>
+              <p class="text-xs text-slate-400">Traffic volume across recent publications</p>
+            </div>
+            <span class="rounded-xl border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">Last 30 Days</span>
+          </div>
+          <div id="chart-timeline-container" class="flex min-h-[220px] items-end gap-2 pt-8"></div>
+        </div>
+
+        <div class="flex flex-col justify-between rounded-3xl border border-slate-200 bg-white p-6 shadow-sm lg:col-span-4 dark:border-slate-800 dark:bg-slate-900">
+          <div>
+            <div class="mb-4 flex items-center justify-between">
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">Top Categories</h3>
+              <span class="text-primary text-xs font-bold">By Views</span>
+            </div>
+            <div id="top-categories-list" class="space-y-3">
+              <p class="text-xs text-slate-400">Loading categories...</p>
+            </div>
+          </div>
+
+          <div id="moderation-alert-box" class="mt-6 rounded-2xl border border-slate-100 bg-slate-50 p-4 text-xs dark:border-slate-800 dark:bg-slate-800/60">
+            <div class="flex items-center gap-2 font-bold text-slate-700 dark:text-slate-200"><i class="fa-solid fa-shield-halved text-primary"></i> Moderation Notice</div>
+            <p class="mt-1 text-[11px] text-slate-500 dark:text-slate-400" id="moderation-alert-text">All reports and comments are up to date.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script>
+
+      document.addEventListener("DOMContentLoaded", async () => {
+        const formatNumber = (num) => new Intl.NumberFormat().format(num || 0);
+
+        try {
+          const response = await fetch(
+            `${BASE_URL}/blogs/admin/dashboard-metrics`,
+            {
+              headers: {
+                Accept: "application/json",
+                Authorization: `Bearer ${LW_TOKEN}`,
+              },
+            },
+          );
+
+          const res = await response.json();
+          if (res.responseCategory !== 200) return;
+
+          const { cards, topCategories, trend } = res.responseData;
+
+          document.getElementById("stat-total-views").textContent =
+            formatNumber(cards.totalViews);
+          document.getElementById("stat-total-articles").textContent =
+            formatNumber(cards.totalArticles);
+          document.getElementById("stat-total-comments").textContent =
+            formatNumber(cards.totalComments);
+          document.getElementById("stat-total-taxonomies").textContent =
+            formatNumber(cards.totalTaxonomies);
+
+          const pendingCommentsBadge = document.getElementById(
+            "badge-pending-comments",
+          );
+          if (pendingCommentsBadge) {
+            pendingCommentsBadge.textContent = `${cards.pendingComments} Pending`;
+            if (cards.pendingComments > 0) {
+              pendingCommentsBadge.className =
+                "rounded-full bg-amber-500 text-white px-2.5 py-0.5 text-[10px] font-bold animate-pulse";
+            }
+          }
+
+          const alertText = document.getElementById("moderation-alert-text");
+          if (alertText) {
+            if (cards.pendingReports > 0 || cards.pendingComments > 0) {
+              alertText.innerHTML = `You have <strong class="text-rose-500">${cards.pendingReports} pending report(s)</strong> and <strong class="text-amber-500">${cards.pendingComments} comment(s)</strong> awaiting moderation.`;
+            } else {
+              alertText.textContent =
+                "All queues clear. No pending moderation actions required.";
+            }
+          }
+
+          const catContainer = document.getElementById("top-categories-list");
+          if (catContainer && Array.isArray(topCategories)) {
+            if (topCategories.length === 0) {
+              catContainer.innerHTML =
+                '<p class="text-xs text-slate-400">No categories found.</p>';
+            } else {
+              const maxViews = Math.max(
+                ...topCategories.map((c) => Number(c.viewCount) || 1),
+                1,
+              );
+              catContainer.innerHTML = topCategories
+                .map((cat) => {
+                  const percent = Math.round(
+                    ((Number(cat.viewCount) || 0) / maxViews) * 100,
+                  );
+                  return `
+                <div class="space-y-1">
+                  <div class="flex justify-between text-xs font-semibold">
+                    <span class="text-slate-700 dark:text-slate-300">${cat.name}</span>
+                    <span class="text-slate-400 font-mono text-[11px]">${formatNumber(cat.viewCount)} views</span>
+                  </div>
+                  <div class="h-2 w-full rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+                    <div class="h-full bg-primary rounded-full transition-all duration-500" style="width: ${percent}%"></div>
+                  </div>
+                </div>
+              `;
+                })
+                .join("");
+            }
+          }
+
+          const chartContainer = document.getElementById(
+            "chart-timeline-container",
+          );
+          if (chartContainer && Array.isArray(trend) && trend.length > 0) {
+            const maxViews = Math.max(
+              ...trend.map((t) => Number(t.views) || 1),
+              1,
+            );
+            chartContainer.innerHTML = trend
+              .map((t) => {
+                const height = Math.max(
+                  Math.round(((Number(t.views) || 0) / maxViews) * 100),
+                  10,
+                );
+                return `
+              <div class="flex-1 flex flex-col items-center gap-1 group relative">
+                <div class="w-full bg-slate-100 dark:bg-slate-800 group-hover:bg-primary transition-all rounded-t-lg" style="height: ${height * 1.5}px" title="${t.label}: ${t.views} views"></div>
+                <span class="text-[9px] text-slate-400 truncate w-full text-center">${t.label}</span>
+              </div>
+            `;
+              })
+              .join("");
+          }
+        } catch (err) {
+          console.error("Failed to load dashboard metrics:", err);
+        }
+      });
+    </script>
+  </body>
+</html>

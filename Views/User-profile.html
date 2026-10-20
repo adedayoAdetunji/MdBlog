@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile — MdBlog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                DEFAULT: "#4F46E5",
+                hover: "#4338CA",
+                light: "#EEF2FF",
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <body
+    class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 min-h-screen font-sans"
+  >
+    <main class="container flex-grow mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+      <div
+        class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 shadow-xl overflow-hidden mb-8"
+      >
+        <div
+          class="h-52 sm:h-56 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 relative"
+        >
+          <div class="absolute inset-0 bg-black/15"></div>
+        </div>
+
+        <div
+          class="px-6 sm:px-10 pb-8 relative flex flex-col xl:flex-row justify-between gap-8"
+        >
+          <div class="flex flex-col sm:flex-row gap-6 text-center sm:text-left">
+            <div
+              class="-mt-16 sm:-mt-20 relative group shrink-0 self-center sm:self-start z-10"
+            >
+              <img
+                id="profile-avatar-display"
+                src="https://ui-avatars.com/api/?name=User&background=random"
+                alt="Profile Avatar"
+                class="w-28 h-28 sm:w-36 sm:h-36 rounded-3xl object-cover ring-4 ring-white dark:ring-slate-900 shadow-xl bg-white dark:bg-slate-800"
+              />
+            </div>
+
+            <div class="pt-2 sm:pt-3">
+              <div
+                class="flex items-center gap-3 justify-center sm:justify-start"
+              >
+                <h1
+                  id="profile-name-display"
+                  class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white"
+                >
+                  User
+                </h1>
+                <span
+                  id="profile-role-badge"
+                  class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-indigo-100 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-300"
+                  >Member</span
+                >
+              </div>
+
+              <p
+                id="profile-handle-display"
+                class="text-xs text-slate-500 dark:text-slate-400 font-mono mt-1.5"
+              >
+                @user
+              </p>
+              <p
+                id="profile-bio-display"
+                class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-3 max-w-xl leading-relaxed"
+              >
+                Loading profile…
+              </p>
+
+              <div
+                class="flex flex-wrap items-center gap-4 mt-4 text-xs font-medium text-slate-500 dark:text-slate-400 justify-center sm:justify-start"
+              >
+                <div class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-location-dot opacity-75"></i
+                  ><span id="profile-location-display">—</span>
+                </div>
+                <a
+                  href=""
+                  target="_blank"
+                  class="flex items-center gap-1.5 hover:text-indigo-500 transition-colors"
+                  id="profile-facebook-display"
+                ></a>
+                <a
+                  href=""
+                  target="_blank"
+                  class="flex items-center gap-1.5 hover:text-indigo-500 transition-colors"
+                  id="profile-linkedin-display"
+                ></a>
+                <a
+                  href=""
+                  target="_blank"
+                  class="flex items-center gap-1.5 hover:text-indigo-500 transition-colors"
+                  id="profile-x-display"
+                ></a>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="flex items-center justify-center gap-6 border-t xl:border-t-0 pt-6 xl:pt-4 border-slate-100 dark:border-slate-800/50 shrink-0 self-center xl:self-start xl:mt-2"
+          >
+            <div class="text-center px-2">
+              <span
+                id="stat-posts-count"
+                class="block text-2xl font-black text-slate-900 dark:text-white mb-1"
+                >0</span
+              >
+              <p
+                class="text-[10px] uppercase font-bold text-slate-400 tracking-wider"
+              >
+                Articles
+              </p>
+            </div>
+            <div class="h-10 w-px bg-slate-200 dark:bg-slate-800"></div>
+            <div class="text-center px-2">
+              <span
+                id="stat-comments-count"
+                class="block text-2xl font-black text-slate-900 dark:text-white mb-1"
+                >0</span
+              >
+              <p
+                class="text-[10px] uppercase font-bold text-slate-400 tracking-wider"
+              >
+                Comments
+              </p>
+            </div>
+            <div class="h-10 w-px bg-slate-200 dark:bg-slate-800"></div>
+            <div class="text-center px-2">
+              <span
+                id="stat-bookmarks-count"
+                class="block text-2xl font-black text-slate-900 dark:text-white mb-1"
+                >0</span
+              >
+              <p
+                class="text-[10px] uppercase font-bold text-slate-400 tracking-wider"
+              >
+                Saved
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="flex border-b border-slate-200 dark:border-slate-800 mb-8 overflow-x-auto scrollbar-none"
+      >
+        <button
+          onclick="switchProfileTab('articles')"
+          id="tab-btn-articles"
+          class="profile-tab-btn px-5 py-3 text-xs font-bold border-b-2 border-primary text-primary whitespace-nowrap flex items-center gap-2"
+        >
+          <i class="fa-regular fa-newspaper"></i> My Articles
+        </button>
+        <button
+          onclick="switchProfileTab('comments')"
+          id="tab-btn-comments"
+          class="profile-tab-btn px-5 py-3 text-xs font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white whitespace-nowrap flex items-center gap-2"
+        >
+          <i class="fa-regular fa-comment-dots"></i> My Comments
+        </button>
+        <button
+          onclick="switchProfileTab('bookmarks')"
+          id="tab-btn-bookmarks"
+          class="profile-tab-btn px-5 py-3 text-xs font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white whitespace-nowrap flex items-center gap-2"
+        >
+          <i class="fa-regular fa-bookmark"></i> Bookmarked
+        </button>
+      </div>
+
+      <section id="tab-panel-articles" class="tab-panel">
+        <div class="flex items-center justify-between mb-6">
+          <h3 class="text-base font-bold text-slate-900 dark:text-white">
+            Articles Authored by You
+          </h3>
+        </div>
+        <div
+          id="user-posts-container"
+          class="grid grid-cols-1 sm:grid-cols-2 gap-6"
+        ></div>
+      </section>
+
+      <section id="tab-panel-comments" class="tab-panel hidden">
+        <h3 class="text-base font-bold text-slate-900 dark:text-white mb-6">
+          Your Recent Comments
+        </h3>
+        <div id="user-comments-container" class="space-y-4"></div>
+      </section>
+
+      <section id="tab-panel-bookmarks" class="tab-panel hidden">
+        <h3 class="text-base font-bold text-slate-900 dark:text-white mb-6">
+          Saved Articles for Later
+        </h3>
+        <div
+          id="user-bookmarks-container"
+          class="grid grid-cols-1 sm:grid-cols-2 gap-6"
+        ></div>
+      </section>
+    </main>
+
+    <script>
+        const userDetailsKey = <?= 
+            class_exists('ApiTokenDetails') && method_exists('ApiTokenDetails', 'appId')
+                ? json_encode(ApiTokenDetails::appId().'_userDetails')
+                : json_encode('userDetails');
+        ?>;
+    
+      let storedUser = JSON.parse(localStorage.getItem(userDetailsKey));
+
+      const userId = storedUser.ltId || "0";
+
+      function switchProfileTab(tabName) {
+        document
+          .querySelectorAll(".tab-panel")
+          .forEach((panel) => panel.classList.add("hidden"));
+        document.querySelectorAll(".profile-tab-btn").forEach((btn) => {
+          btn.className =
+            "profile-tab-btn px-5 py-3 text-xs font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white whitespace-nowrap flex items-center gap-2";
+        });
+
+        const panel = document.getElementById(`tab-panel-${tabName}`);
+        const button = document.getElementById(`tab-btn-${tabName}`);
+        if (panel) panel.classList.remove("hidden");
+        if (button)
+          button.className =
+            "profile-tab-btn px-5 py-3 text-xs font-bold border-b-2 border-primary text-primary whitespace-nowrap flex items-center gap-2";
+      }
+
+      function loadUserProfile(user) {
+        document.getElementById("profile-name-display").textContent =
+          user.fullname || user.username || "User";
+        document.getElementById("profile-handle-display").textContent =
+          `@${user.username || "user"} • ${user.email || ""}`;
+        document.getElementById("profile-bio-display").textContent =
+          user.bio || "No bio provided yet.";
+        document.getElementById("profile-location-display").textContent =
+          user.location || "Not specified";
+        document.getElementById("profile-avatar-display").src =
+          user.avatar ||
+          `https://ui-avatars.com/api/?name=${encodeURIComponent(user.fullname || user.username || "User")}&background=random`;
+        document.getElementById("profile-role-badge").textContent =
+          user.role || "Member";
+
+        document.getElementById("profile-facebook-display").href =
+          user.facebook || "#";
+        document.getElementById("profile-facebook-display").textContent =
+          user.facebook ? "Facebook" : "";
+        document.getElementById("profile-linkedin-display").href =
+          user.linkedin || "#";
+        document.getElementById("profile-linkedin-display").textContent =
+          user.linkedin ? "LinkedIn" : "";
+        document.getElementById("profile-x-display").href = user.twitter
+          ? `https://x.com/${user.twitter.replace("@", "")}`
+          : "#";
+        document.getElementById("profile-x-display").textContent = user.twitter
+          ? "X / Twitter"
+          : "";
+
+        document.getElementById("stat-posts-count").textContent = Array.isArray(
+          user.posts,
+        )
+          ? user.posts.length
+          : 0;
+        document.getElementById("stat-comments-count").textContent =
+          Array.isArray(user.comments) ? user.comments.length : 0;
+        document.getElementById("stat-bookmarks-count").textContent =
+          Array.isArray(user.bookmarks) ? user.bookmarks.length : 0;
+
+        const postsContainer = document.getElementById("user-posts-container");
+        postsContainer.innerHTML =
+          Array.isArray(user.posts) && user.posts.length
+            ? user.posts
+                .map(
+                  (post) => `
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+            <div class="text-xs text-primary font-bold uppercase">${post.category || "General"}</div>
+            <h4 class="mt-2 text-lg font-bold text-slate-900 dark:text-white">${post.title || "Untitled Post"}</h4>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400">${post.excerpt || ""}</p>
+          </article>
+        `,
+                )
+                .join("")
+            : '<p class="text-sm text-slate-500">No articles yet.</p>';
+
+        const commentsContainer = document.getElementById(
+          "user-comments-container",
+        );
+        commentsContainer.innerHTML =
+          Array.isArray(user.comments) && user.comments.length
+            ? user.comments
+                .map(
+                  (comment) => `
+          <div class="rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
+            <p class="text-sm text-slate-700 dark:text-slate-200">${comment.body || comment.message || "Comment"}</p>
+          </div>
+        `,
+                )
+                .join("")
+            : '<p class="text-sm text-slate-500">No comments yet.</p>';
+      }
+
+      document.addEventListener("DOMContentLoaded", async () => {
+        // if (!userId || userId === "0") {
+        //   window.location.href = `${siteHostAddress || ""}/MdBlog/Login.html`;
+        //   return;
+        // }
+
+        try {
+          const response = await fetch(
+            `${BASE_URL}/blogs/user/${encodeURIComponent(userId)}/record`,
+            {
+              headers: {
+                Accept: "application/json",
+                Authorization: `Bearer ${LW_TOKEN}`,
+              },
+            },
+          );
+
+          const res = await response.json();
+          if (res.responseCategory === 200 && res.responseData) {
+            loadUserProfile(res.responseData);
+          } else {
+            console.warn("No user profile record available", res);
+          }
+        } catch (err) {
+          console.error("Failed to load user profile:", err);
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -60,15 +60,87 @@
         "sortOrder": 0
     },
     {
-        "ltId": "178725948043681",
+        "ltId": "179242583733056",
+        "packageName": "MdBlog",
+        "menuLevel": 2,
+        "menuName": "Blog.html",
+        "contentName": "Blog.html",
+        "parentMenuId": "178367835091057",
+        "routePath": "\/MdBlog\/Blog",
+        "slug": null,
+        "target": "_blank",
+        "sortOrder": null
+    },
+    {
+        "ltId": "179242691190678",
+        "packageName": "MdBlog",
+        "menuLevel": 2,
+        "menuName": "Manage-comment.html",
+        "contentName": "Manage-comment.html",
+        "parentMenuId": "178367835091057",
+        "routePath": "\/MdBlog\/Manage-comment",
+        "slug": null,
+        "target": "_blank",
+        "sortOrder": null
+    },
+    {
+        "ltId": "179242699399670",
         "packageName": "MdBlog",
         "menuLevel": 2,
         "menuName": "Manage-report.html",
         "contentName": "Manage-report.html",
         "parentMenuId": "178367835091057",
         "routePath": "\/MdBlog\/Manage-report",
-        "slug": "",
+        "slug": null,
         "target": "_blank",
-        "sortOrder": 0
+        "sortOrder": null
+    },
+    {
+        "ltId": "179244560378589",
+        "packageName": "MdBlog",
+        "menuLevel": 2,
+        "menuName": "Admin-dashboard.html",
+        "contentName": "Admin-dashboard.html",
+        "parentMenuId": "178367835091057",
+        "routePath": "\/MdBlog\/Admin-dashboard",
+        "slug": null,
+        "target": "_blank",
+        "sortOrder": null
+    },
+    {
+        "ltId": "179247859923269",
+        "packageName": "MdBlog",
+        "menuLevel": 2,
+        "menuName": "User-profile.html",
+        "contentName": "User-profile.html",
+        "parentMenuId": "178367835091057",
+        "routePath": "\/MdBlog\/User-profile",
+        "slug": null,
+        "target": "_blank",
+        "sortOrder": null
+    },
+    {
+        "ltId": "179248034544173",
+        "packageName": "MdBlog",
+        "menuLevel": 2,
+        "menuName": "Sign-up.html",
+        "contentName": "Sign-up.html",
+        "parentMenuId": "178367835091057",
+        "routePath": "\/MdBlog\/Sign-up",
+        "slug": null,
+        "target": "_blank",
+        "sortOrder": null
+    },
+    {
+        "ltId": "179248046083465",
+        "packageName": "MdBlog",
+        "menuLevel": 2,
+        "menuName": "Sign-in.html",
+        "contentName": "Sign-in.html",
+        "parentMenuId": "178367835091057",
+        "routePath": "\/MdBlog\/Sign-in",
+        "slug": null,
+        "target": "_blank",
+        "sortOrder": null
     }
 ]
