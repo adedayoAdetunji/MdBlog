@@ -220,20 +220,28 @@ class TbBlogPostService
             LIMIT 5
         ";
         $topCategories = $this->sqlConnect->query($catSql)->fetchAll(PDO::FETCH_ASSOC);
-    
-        // 3. Publishing Trend: Posts published per week (past 4 weeks)
+        
         $trendSql = "
-            SELECT 
-                DATE_FORMAT(published_at, '%b %d') AS label,
-                COUNT(lt_id) AS postCount,
-                COALESCE(SUM(view_count), 0) AS views
-            FROM tb_blog_post
-            WHERE status = 'published' 
-              AND published_at >= DATE_SUB(NOW(), INTERVAL 120 DAY)
-            GROUP BY DATE(published_at)
-            ORDER BY published_at ASC
+            SELECT
+                DATE_FORMAT(publish_date, '%b %d') AS label,
+                postCount,
+                views
+            FROM (
+                SELECT
+                    DATE(published_at) AS publish_date,
+                    COUNT(lt_id) AS postCount,
+                    COALESCE(SUM(view_count), 0) AS views
+                FROM tb_blog_post
+                WHERE status = 'published'
+                  AND published_at >= DATE_SUB(NOW(), INTERVAL 120 DAY)
+                GROUP BY DATE(published_at)
+            ) AS daily_metrics
+            ORDER BY publish_date ASC
         ";
-        $trendData = $this->sqlConnect->query($trendSql)->fetchAll(PDO::FETCH_ASSOC);
+        
+        $trendData = $this->sqlConnect
+            ->query($trendSql)
+            ->fetchAll(PDO::FETCH_ASSOC);
     
         $response = [
             'cards' => [
