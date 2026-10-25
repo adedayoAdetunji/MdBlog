@@ -59,11 +59,9 @@ class TbBlogPostController
         $service = new TbBlogPostService();
         $result = $service->store();
         return $result;
-        exit();
     }
 
     public function update(){
-        ob_end_clean();
 
         $request = new LtRequest;
         $ltId = $request->ltId;
@@ -72,24 +70,16 @@ class TbBlogPostController
 
         return $result;
 
-        exit();
     }
 
-    public function toggleActive(){
-        ob_end_clean();
-
-        $request = new LtRequest;
-        $ltId = $request->ltId;
-
+    public function updateStatus(){
         $service = new TbBlogPostService();
-        $result = $service->toggleActive($ltId);
+        $result = $service->updateStatus();
 
         return $result;
-        exit();
     }
 
     public function destroy(){
-        ob_end_clean();
 
         $request = new LtRequest;
         $ltId = $request->ltId;
@@ -99,7 +89,6 @@ class TbBlogPostController
 
         return $result;
 
-        exit();
     }
 }
 

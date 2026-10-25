@@ -43,7 +43,7 @@ class TbBlogTagService
         }
         
         $exist = $this->blogTag->select()->where('tagName','=', $tagName)->get();
-        if(count($exist) > 1){
+        if(count($exist) > 0){
             return LtResponse::json('Tag already exist', 3004, 100);
         }
 

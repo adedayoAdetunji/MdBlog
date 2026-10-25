@@ -73,7 +73,7 @@ class TbBlogUserService
         }
         
         $blogExist = $this->blogModel->select()->where('username','=', $username)->orWhere('email', '=', $email)->get();
-        if(count($blogExist) > 1){
+        if(count($blogExist) > 0){
             return LtResponse::json('User already exist', 3018, 100);
         }
         
@@ -116,26 +116,33 @@ class TbBlogUserService
         return $this->blogModel->responseJson();
     }
     
-    public function signIn(){
+    public function signIn() {
         $this->blogModel->processRequest();
         
-        $emailOrUsername = trim($this->blogModel->email);
-        $password = trim($this->blogModel->password);
-        $loginFrom = "blog_site";
-        $blogExist = $this->blogModel->select()->where('username','=', $emailOrUsername)->orWhere('email', '=', $emailOrUsername)->get();
-        if(count($blogExist) < 1){
-            return LtResponse::json('No User Found, check your login credentials', 3018, 100);
+        // Null coalescing prevents warnings if properties aren't set
+        $emailOrUsername = trim((string) ($this->blogModel->email ?? ''));
+        $password = (string) ($this->blogModel->password ?? '');
+        
+        // 1. Validate identity first (3-char minimum allows short usernames)
+        if ($emailOrUsername === '' || strlen($emailOrUsername) < 3) {
+            return LtResponse::json('email_or_username|required|min:3', 3018, 100);
+        }
+    
+        // 2. Validate password second
+        if ($password === '' || strlen($password) < 8) {
+            return LtResponse::json('password|required|min:8', 3018, 100);
         }
         
-        $authResponse = LtAuth::loginWithAudit($emailOrUsername, $password, $loginFrom); 
-        return $authResponse; 
+        $loginFrom = "blog_site";
         
+        return LtAuth::loginWithAudit($emailOrUsername, $password, $loginFrom);
     }
     
     public function userRecord(){
         $postService = new TbBlogPostService();
         $commentsService = new TbBlogCommentService();
-        $userId = $this->request->userId;
+        $userId = $this->userId;
+        
         $fetchUserRecord = false;
         $userExist = $this->blogModel->select()->where('userId','=', $userId)->get();
         
@@ -184,7 +191,7 @@ class TbBlogUserService
            }
            
            // fetching user comments;
-           $comments = $commentsService->fetchUserComments('178669573835648');
+           $comments = $commentsService->fetchUserComments($userId);
            $commentsArr = $comments;
            
            $user =  [
@@ -209,10 +216,10 @@ class TbBlogUserService
     }
 
     public function update() {
-        $ltId = $this->request->ltId;
+        $ltId = $this->userId;
         $exist = $this->blogModel->select()->where('userId', '=', $ltId)->get();
         if (count($exist) < 1) {
-            return LtResponse::json('User not found', 3004, 100);
+            return LtResponse::json('User not found in blog table', 3004, 100);
         }
 
         $this->blogModel->processRequest(['facebook', 'twitter', 'bio', 'location', 'fullname', 'linkedin']);
@@ -279,55 +286,55 @@ class TbBlogUserService
         return $this->blogModel->responseJson();
     }
 
-    public function changePassword(){
-        $ltId = $this->request->userId;
-        $currentPassword = trim($this->request->currentPassword);
-        $newPassword = trim($this->request->newPassword);
-        $confirmPassword = trim($this->request->confirmPassword);
+    // public function changePassword(){
+    //     $ltId = $this->userId;
+    //     $currentPassword = trim($this->request->currentPassword);
+    //     $newPassword = trim($this->request->newPassword);
+    //     $confirmPassword = trim($this->request->confirmPassword);
         
-        $exist = $this->blogModel->select()->where('userId','=', $ltId)->get();
-        if(count($exist) < 1){
-            return LtResponse::json('User not found', 3004, 100);
-        }
+    //     $exist = $this->blogModel->select()->where('userId','=', $ltId)->get();
+    //     if(count($exist) < 1){
+    //         return LtResponse::json('User not found', 3004, 100);
+    //     }
         
-        $userId = $exist[0]->userId;
+    //     $userId = $exist[0]->userId;
         
-        // 2. Validate input fields
-        if (empty($currentPassword) || empty($newPassword) || empty($confirmPassword)) {
-            return LtResponse::json('All password fields are required.', 3008, 100);
-        }
+    //     // 2. Validate input fields
+    //     if (empty($currentPassword) || empty($newPassword) || empty($confirmPassword)) {
+    //         return LtResponse::json('All password fields are required.', 3008, 100);
+    //     }
     
-        if (strlen($newPassword) < 8) {
-            return LtResponse::json('New password must be at least 8 characters long.', 3008, 100);
-        }
+    //     if (strlen($newPassword) < 8) {
+    //         return LtResponse::json('New password must be at least 8 characters long.', 3008, 100);
+    //     }
     
-        if ($newPassword !== $confirmPassword) {
-            return LtResponse::json('New password and confirmation do not match.', 3008, 100);
-        }
+    //     if ($newPassword !== $confirmPassword) {
+    //         return LtResponse::json('New password and confirmation do not match.', 3008, 100);
+    //     }
     
-        if ($currentPassword === $newPassword) {
-            return LtResponse::json('New password must be different from current password.', 3008, 100);
-        }
+    //     if ($currentPassword === $newPassword) {
+    //         return LtResponse::json('New password must be different from current password.', 3008, 100);
+    //     }
         
-        $auth = json_decode(LtAuth::loginWithId($ltId, $currentPassword));
+    //     $auth = json_decode(LtAuth::loginWithId($ltId, $currentPassword));
         
-        if($auth->responseCategory == 100) return LtResponse::json('Current Password is incorrect', 3008, 100);
+    //     if($auth->responseCategory == 100) return LtResponse::json('Current Password is incorrect', 3008, 100);
 
-        $togetPasswordDetails = LtDdm::createPassword($newPassword);
-        $salt = $togetPasswordDetails->salt;
-        $encrypt = $togetPasswordDetails->hash;
+    //     $togetPasswordDetails = LtDdm::createPassword($newPassword);
+    //     $salt = $togetPasswordDetails->salt;
+    //     $encrypt = $togetPasswordDetails->hash;
 
-        $this->userModel->updatedBy = LtSession::get('ltUid');
-        $this->userModel->password = $encrypt;
-        $this->userModel->salt = $salt;
+    //     $this->userModel->updatedBy = LtSession::get('ltUid');
+    //     $this->userModel->password = $encrypt;
+    //     $this->userModel->salt = $salt;
         
-        $this->userModel->update('ltId', '=', $userId);
-        return $this->userModel->responseJson(); 
-    }
+    //     $this->userModel->update('ltId', '=', $userId);
+    //     return $this->userModel->responseJson(); 
+    // }
     
     public function destroy(){
         
-        $ltId = $this->request->ltId;
+        $ltId =  $this->userId;
         $confirmation = trim($this->request->confirmation ?? '');
         $exist = $this->blogModel->select()->where('userId', '=', $ltId)->get();
         if(count($exist) < 1){
@@ -347,7 +354,7 @@ class TbBlogUserService
             @rmdir($profileDir);
         }
         
-        // $this->blogModel->delete('ltId','=',$ltId);
+        $this->blogModel->delete('userId','=',$ltId);
         return LtResponse::json('Deleted', 201, 200, $exist);
     }
     

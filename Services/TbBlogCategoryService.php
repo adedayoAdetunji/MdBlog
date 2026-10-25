@@ -53,7 +53,7 @@ class TbBlogCategoryService
         }
         
         $exist = $this->blogModel->select()->where('categoryName','=', $categoryName)->get();
-        if(count($exist) > 1){
+        if(count($exist) > 0){
             return LtResponse::json('Category already exist', 3004, 100);
         }
 

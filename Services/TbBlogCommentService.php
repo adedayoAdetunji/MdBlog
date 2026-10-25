@@ -85,9 +85,11 @@ class TbBlogCommentService
         $body = trim($this->request->body);
         $postModel = new TbBlogPost();
         // Fetch post Id
-        $queryPost = $postModel->select('lt_id')->where('slug', '=', $postSlug)->get()[0];
-        $postId = $queryPost->ltId;
-        return $this->userId;
+        $queryPost = $postModel->select('lt_id, comment_count')->where('slug', '=', $postSlug)->get();
+        if (empty($queryPost)) {
+            return LtResponse::json('Post not found', 101, 100);
+        }
+        $postId = $queryPost[0]->ltId;
         $username = $this->getUsername($this->userId);
         
         $this->commentModel->ltId = $this->ltId;
@@ -102,7 +104,16 @@ class TbBlogCommentService
         $this->commentModel->insert();
         $this->commentModel->responseData->postSlug = $postSlug;
         $this->commentModel->responseData->author = $username;
+        
+        if($this->commentModel->responseCategory == 200){
+            //using sql to avoid potential race conditions
+            $sql = "UPDATE tb_blog_post SET comment_count = comment_count + 1 WHERE lt_id = :postId";
+            $stmt = $this->sqlConnect->prepare($sql);
+            $stmt->execute([':postId' => $postId]);
+        }
+
         return $this->commentModel->responseJson();
+
     }
     
     public function fetchPostComments($postId, $userId) {

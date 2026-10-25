@@ -498,88 +498,7 @@ class TbBlogPostService
 
     return LtResponse::json('success', 200, 200, $posts);
 }
-    
-    // public function widget() {
-    //     $request = new LtRequest;
-    //     $limit = $request->limit ?: 12;
-    //     $widgetType = trim($request->type);
-    //     $postId = trim($request->postId);
-    //     $categoryId = trim($request->categoryId);
-    //     // 1. Initialize an empty array to hold our dynamic bindings
-    //     $params = [];
-        
-    //     // 2. Build the query parts and collect parameters based on the widget type
-    //     switch ($widgetType) {
-    //         case 'popular':
-    //             $where = "p.status='published'";
-    //             $order = "p.view_count DESC, p.published_at DESC";
-    //             break;
-        
-    //         case 'latest':
-    //             $where = "p.status='published'";
-    //             $order = "p.published_at DESC";
-    //             break;
-        
-    //         case 'trending':
-    //             $where = "p.status='published' AND p.published_at >= DATE_SUB(NOW(), INTERVAL 7 DAY)";
-    //             $order = "((p.view_count/100) + (p.like_count*5) + (p.comment_count*20)) DESC";
-    //             break;
-        
-    //         case 'related':
-    //             $where = "p.status='published' AND p.category_id = :category AND p.lt_id <> :postId";
-    //             $order = "p.published_at DESC";
-                
-    //             // Add the required parameters to our array
-    //             $params[':category'] = $categoryId;
-    //             $params[':postId'] = $postId;
-    //             break;
-        
-    //         default:
-    //             $where = "p.status='published'";
-    //             $order = "p.published_at DESC";
-    //     }
-        
-    //     // 3. The Main Query
-    //     $sql = "
-    //         SELECT p.lt_id AS ltId, p.title, p.slug, p.excerpt, p.reading_time AS readingTime, p.category_id, c.category_name AS category, p.published_at AS date, p.like_count AS likes, p.view_count AS views, p.author_id, COALESCE(NULLIF(u.fullname, ''), u.username) AS author, 
-    //         u.avatar,  
-    //         FROM tb_blog_post p
-    //         JOIN 
-    //             tb_blog_category c ON p.category_id = c.lt_id
-    //         LEFT JOIN tb_blog_user u ON p.author_id = u.user_id
-    //         WHERE {$where}
-    //         ORDER BY {$order}
-    //         LIMIT :limit
-    //     ";
-        
-    //     $stmtWidget = $this->sqlConnect->prepare($sql);
-        
-    //     // 4. Bind the mandatory parameters
-    //     $stmtWidget->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
-        
-    //     // 5. Dynamically bind any extra parameters collected in the switch statement
-    //     foreach ($params as $placeholder => $value) {
-    //         // PDO handles standard strings/ints well natively
-    //         $stmtWidget->bindValue($placeholder, $value);
-    //     }
-        
-    //     // 6. Execute safely
-    //     $stmtWidget->execute();
-    //     $posts = $stmtWidget->fetchAll(PDO::FETCH_ASSOC);
-        
-    //     $groupedMedia = $this->getPostMedia($posts);
-        
-    //     // 6. Merge the media back into the posts
-    //     foreach ($posts as &$post) {
-    //         $postId = $post['ltId'];
-    //         // Attach the grouped data, or set defaults if no media exists
-    //         $post['media'] = $groupedMedia[$postId]['media'] ?? [];
-    //     }
-        
-    //     if(empty($posts)) return LtResponse::json('No post Found', 101, 100, $posts);
-    //     return LtResponse::json('success', 201, 200, $posts);
-    // }
-    
+
     public function postSlug() {
         $request = new LtRequest;
         $commentsService = new TbBlogCommentService;
@@ -656,7 +575,7 @@ class TbBlogPostService
         
         $title = trim((string)$this->postModel->title);
         $slug = trim((string)$this->postModel->slug);
-        $allowedComment = $this->postModel->allowedComment;
+        $allowedComment = $this->postModel->allowComments;
         $coAuthors = $this->request->coAuthors ?? null;
         $authorId = $this->request->author ?? $this->userId;
 
@@ -738,9 +657,10 @@ class TbBlogPostService
         $this->postModel->coAuthors = $coAuthors;
         $this->postModel->authorId = $authorId;
         $this->postModel->content = $processedContent;
-        $this->postModel->allowedComments = $allowedComment == 'on' ? 1 : 0;
+        $this->postModel->allowComments = $allowedComment == 'on' ? 1 : 0;
         $this->postModel->createdAt = $this->ltNow;
         $this->postModel->updatedAt = $this->ltNow;
+        $this->postModel->publishedAt = $this->ltNow;
         
         $this->postModel->insert();
         
@@ -942,6 +862,36 @@ class TbBlogPostService
         $this->postModel->update('ltId','=',$ltId);
 
         return LtResponse::json('Updated', 201, 200, ['ltId'=>$ltId,'isActive'=>$newVal]);
+    }
+    
+    public function updateStatus() {
+        $ltId = $this->request->ltId ?? null;
+        $newStatus =$this->request->status ?? 'published';
+    
+        if (!$ltId) {
+            return LtResponse::json('Post ID is required', 400, 100);
+        }
+    
+        $allowedStatuses = ['draft', 'pending', 'published', 'private', 'scheduled', 'archived'];
+        $newStatus = strtolower(trim($newStatus));
+    
+        if (!in_array($newStatus, $allowedStatuses, true)) {
+            return LtResponse::json('Invalid status value', 422, 100);
+        }
+    
+        $row = $this->postModel->select()->where('ltId', '=', $ltId)->get();
+        if (count($row) < 1) {
+            return LtResponse::json('Post not found', 3004, 100);
+        }
+    
+        $this->postModel->status = $newStatus;
+        $this->postModel->updatedAt = $this->ltNow;
+        $this->postModel->update('ltId', '=', $ltId);
+    
+        return LtResponse::json('Post status updated', 201, 200, [
+            'ltId' => $ltId,
+            'status' => $newStatus
+        ]);
     }
 
     public function destroy($ltId) {

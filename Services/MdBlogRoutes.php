@@ -28,8 +28,8 @@ LtRoute::get('/blogs/posts/{slug}/slug','MdBlog@TbBlogPostController@postSlug')-
 
 LtRoute::get('/blogs/posts','MdBlog@TbBlogPostController@index')->name('admin-blog-post.index');
 LtRoute::post('/blogs/posts','MdBlog@TbBlogPostController@store')->name('admin-blog-post.store');
-LtRoute::patch('/blogs/posts/{ltId}','MdBlog@TbBlogPostController@update')->name('admin-blog-post.update');
-LtRoute::patch('/blogs/posts/{ltId}/toggle-active','MdBlog@TbBlogPostController@toggleActive')->name('admin-blog-post.toggle_active');
+LtRoute::patch('/blogs/posts','MdBlog@TbBlogPostController@update')->name('admin-blog-post.update');
+LtRoute::patch('/blogs/posts/update-status','MdBlog@TbBlogPostController@updateStatus')->name('admin-blog-post.update-status');
 LtRoute::delete('/blogs/posts/{ltId}','MdBlog@TbBlogPostController@destroy')->name('admin-blog-post.delete');
 LtRoute::post('/blogs/posts/view-update','MdBlog@TbBlogPostController@viewsUpdate')->name('admin-blog-post.views-update');
 
@@ -58,8 +58,7 @@ LtRoute::delete('/blogs/settings/{ltId}','MdBlog@TbBlogSettingController@destroy
 /* ===== POST (tb_blog_user) ===== */
 LtRoute::post('/blogs/auth/signup','MdBlog@TbBlogUserController@signup')->name('admin-blog-post.sign-up');
 LtRoute::post('/blogs/auth/signin','MdBlog@TbBlogUserController@signin')->name('admin-blog-post.sign-in');
-LtRoute::get('/blogs/user/{userId}/record','MdBlog@TbBlogUserController@userRecord')->name('admin-blog-post.user-record');
+LtRoute::get('/blogs/user/record','MdBlog@TbBlogUserController@userRecord')->name('admin-blog-post.user-record');
 LtRoute::post('/blogs/user/update','MdBlog@TbBlogUserController@update')->name('admin-blog-post.user-update');
 LtRoute::post('/blogs/user/change-password','MdBlog@TbBlogUserController@changePassword')->name('admin-blog-post.change-passowrd');
-LtRoute::delete('/blogs/user/{ltId}','MdBlog@TbBlogUserController@deleteUser')->name('admin-blog-post.delete-user');
-LtRoute::delete('/blogs/user/{ltId}','MdBlog@TbBlogUserController@deleteUser')->name('admin-blog-post.delete-user');
+LtRoute::delete('/blogs/user','MdBlog@TbBlogUserController@deleteUser')->name('admin-blog-post.delete-user');

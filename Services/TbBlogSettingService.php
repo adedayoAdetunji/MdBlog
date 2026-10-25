@@ -43,14 +43,14 @@ class TbBlogSettingService
     public function store(){
         $this->blogModel->processRequest();
         
-        $settingKey = trim($this->blogModel->settingName);
+        $settingKey = trim($this->blogModel->settingKey);
         $settingValue = trim($this->blogModel->settingValue);
         if($settingKey === '' && $settingValue === ''){
             return LtResponse::json('Setting key and value is required', 3004, 100);
         }
         
         $exist = $this->blogModel->select()->where('settingKey','=', $settingKey)->get();
-        if(count($exist) > 1){
+        if(count($exist) > 0){
             return LtResponse::json('Setting already exist', 3004, 100);
         }
 
