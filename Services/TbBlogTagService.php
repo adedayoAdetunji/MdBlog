@@ -39,12 +39,12 @@ class TbBlogTagService
         
         $tagName = trim((string)$this->blogTag->tagName);
         if($tagName === ''){
-            return LtResponse::json('Tag name and code is required', 3004, 100);
+            return LtResponse::json('Tag name and code is required', 4104, 100);
         }
         
         $exist = $this->blogTag->select()->where('tagName','=', $tagName)->get();
         if(count($exist) > 0){
-            return LtResponse::json('Tag already exist', 3004, 100);
+            return LtResponse::json('Tag already exist', 4105, 100);
         }
 
         $this->blogTag->ltId = $this->ltId;
@@ -60,7 +60,7 @@ class TbBlogTagService
         $ltId= $this->request->ltId;
         $exist = $this->blogTag->select()->where('ltId','=', $ltId)->get();
         if(count($exist) < 1){
-            return LtResponse::json('Tag not found', 3004, 100);
+            return LtResponse::json('Tag not found', 4106, 100);
         }
         
         $this->blogTag->processRequest();
@@ -74,7 +74,7 @@ class TbBlogTagService
     public function toggleActive($ltId){
         $row = $this->blogTag->select()->where('ltId','=',$ltId)->get();
         if(count($row) < 1){
-            return LtResponse::json('Tag not found', 3004, 100);
+            return LtResponse::json('Tag not found', 4107, 100);
         }
 
         $current = $row[0]->status;
@@ -84,17 +84,17 @@ class TbBlogTagService
         $this->blogTag->updatedAt = $this->ltNow;
         $this->blogTag->update('ltId','=',$ltId);
 
-        return LtResponse::json('Updated', 201, 200, ['ltId'=>$ltId,'isActive'=>$newVal]);
+        return LtResponse::json('Updated', 4108, 200, ['ltId'=>$ltId,'isActive'=>$newVal]);
     }
 
     public function destroy($ltId){
         $exist = $this->blogTag->select()->where('ltId','=',$ltId)->get();
         if(count($exist) < 1){
-            return LtResponse::json('Tag not found', 3004, 100);
+            return LtResponse::json('Tag not found', 4109, 100);
         }
 
         $this->blogTag->delete('ltId','=',$ltId);
-        return LtResponse::json('Deleted', 201, 200);
+        return LtResponse::json('Deleted', 4110, 200);
     }
 }
 

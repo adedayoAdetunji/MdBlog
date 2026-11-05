@@ -12,7 +12,7 @@ class TbBlogTagController
     public function index(){
         $service = new TbBlogTagService();
         $rows = $service->index();
-        return LtResponse::json('success', 201, 200, $rows);
+        return LtResponse::json('success', 4130, 200, $rows);
     }
 
     public function store(){

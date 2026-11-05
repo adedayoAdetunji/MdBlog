@@ -66,12 +66,12 @@ class TbBlogCommentService
         
         // If no comments, return an empty array early
         if (empty($flatComments)) {
-             return LtResponse::json('No Comments Found', 101, 100);
+             return LtResponse::json('No Comments Found', 4057, 100);
         }
         
         // Pass the flat array to the tree builder and return the nested result
         $comments =  $this->buildTree($flatComments);
-        return LtResponse::json('success', 201, 200, $comments);
+        return LtResponse::json('success', 4058, 200, $comments);
     }
     
     function getUsername($userId){
@@ -87,7 +87,7 @@ class TbBlogCommentService
         // Fetch post Id
         $queryPost = $postModel->select('lt_id, comment_count')->where('slug', '=', $postSlug)->get();
         if (empty($queryPost)) {
-            return LtResponse::json('Post not found', 101, 100);
+            return LtResponse::json('Post not found', 4059, 100);
         }
         $postId = $queryPost[0]->ltId;
         $username = $this->getUsername($this->userId);
@@ -264,11 +264,11 @@ class TbBlogCommentService
             }
     
             $this->sqlConnect->commit();
-            return LtResponse::json('success', 201, 200, $action);
+            return LtResponse::json('success', 4060, 200, $action);
 
         } catch (Exception $e) {
             $this->sqlConnect->rollBack();
-            return LtResponse::json('success', 201, 200, 'Database error occurred');
+            return LtResponse::json('success', 4061, 200, 'Database error occurred');
         }
     }
     
@@ -277,7 +277,7 @@ class TbBlogCommentService
         // 1. Check if post exists
         $exist = $this->commentModel->select()->where('ltId', '=', $ltId)->get();
         if (count($exist) < 1) {
-            return LtResponse::json('Comment not found', 3004, 100);
+            return LtResponse::json('Comment not found', 4062, 100);
         }
         
         $this->commentModel->delete('ltId','=',$ltId);
@@ -291,7 +291,7 @@ class TbBlogCommentService
         
         $exist = $this->commentModel->select()->where('ltId', '=', $ltId)->get();
         if (count($exist) < 1) {
-            return LtResponse::json('Comment not found', 3004, 100);
+            return LtResponse::json('Comment not found', 4063, 100);
         }
 
         $this->commentModel->status = $status;

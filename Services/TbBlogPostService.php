@@ -82,7 +82,7 @@ class TbBlogPostService
             'children' => $categories
         ];
     
-        return LtResponse::json('fetched', 201, 200, $menu);
+        return LtResponse::json('fetched', 4065, 200, $menu);
     }
     
 
@@ -108,7 +108,7 @@ class TbBlogPostService
         
         $posts = $query->get();
         if(empty($posts)){
-            return LtResponse::json('No Post found', 101, 100);
+            return LtResponse::json('No Post found', 4066, 100);
         }
         
         $groupedMedia = $this->getPostMedia($posts);
@@ -119,7 +119,7 @@ class TbBlogPostService
             $post->media = $groupedMedia[$postId]['media'] ?? [];
         }
         
-        return LtResponse::json('success', 201, 200, $posts);
+        return LtResponse::json('success', 4067, 200, $posts);
         
     }
     
@@ -128,7 +128,7 @@ class TbBlogPostService
         
         $posts = $query->get();
         if(empty($posts)){
-            return LtResponse::json('No Post found', 101, 100);
+            return LtResponse::json('No Post found', 4068, 100);
         }
         
         $groupedMedia = $this->getPostMedia($posts);
@@ -139,7 +139,7 @@ class TbBlogPostService
             $post->media = $groupedMedia[$postId]['media'] ?? [];
         }
         
-        return LtResponse::json('success', 201, 200, $posts);
+        return LtResponse::json('success', 4069, 200, $posts);
     }
     
     private function getPostMedia($posts){
@@ -256,7 +256,7 @@ class TbBlogPostService
             'trend'         => $trendData
         ];
     
-        return LtResponse::json('Dashboard metrics retrieved', 200, 200, $response);
+        return LtResponse::json('Dashboard metrics retrieved', 4070, 200, $response);
     }
     
     
@@ -384,10 +384,10 @@ class TbBlogPostService
     ];
 
     if (empty($posts)) {
-        return LtResponse::json('No posts found matching criteria', 200, 200, $payload);
+        return LtResponse::json('No posts found matching criteria', 4071, 200, $payload);
     }
 
-    return LtResponse::json('Posts retrieved successfully', 200, 200, $payload);
+    return LtResponse::json('Posts retrieved successfully', 4072, 200, $payload);
 }
     
     // Popular post
@@ -484,7 +484,7 @@ class TbBlogPostService
     }
 
     if (empty($posts)) {
-        return LtResponse::json('No posts found', 200, 200, []);
+        return LtResponse::json('No posts found', 4073, 200, []);
     }
 
     // 4. Attach Media
@@ -496,7 +496,7 @@ class TbBlogPostService
     }
     unset($post);
 
-    return LtResponse::json('success', 200, 200, $posts);
+    return LtResponse::json('success', 4074, 200, $posts);
 }
 
     public function postSlug() {
@@ -505,7 +505,7 @@ class TbBlogPostService
         $slug = trim($request->slug ?? '');
     
         if (empty($slug)) {
-            return LtResponse::json('Slug parameter is required', 101, 100);
+            return LtResponse::json('Slug parameter is required', 4075, 100);
         }
         
         $sql = "
@@ -551,7 +551,7 @@ class TbBlogPostService
         $post = $stmtSlug->fetch(PDO::FETCH_ASSOC);
     
         if (!$post) {
-            return LtResponse::json('No post found', 101, 100);
+            return LtResponse::json('No post found', 4076, 100);
         }
     
         $postId = $post['ltId'];
@@ -565,7 +565,7 @@ class TbBlogPostService
         $post['comments'] = $commentsService->fetchPostComments($postId, $this->userId ?? 0) ?? [];
     
         // 3. Return clean JSON response
-        return LtResponse::json('success', 200, 200, $post);
+        return LtResponse::json('success', 4077, 200, $post);
     }
     
     
@@ -587,13 +587,13 @@ class TbBlogPostService
          
         // 1. Validation
         if ($title === '') {
-            return LtResponse::json('Post Title is required', 3004, 100);
+            return LtResponse::json('Post Title is required', 4078, 100);
         }
         
         // FIX: Check if count is greater than 0 (meaning it already exists)
         $exist = $this->postModel->select()->where('slug','=', $slug)->get();
         if (count($exist) > 0) {
-            return LtResponse::json('Post already exists', 3004, 100);
+            return LtResponse::json('Post already exists', 4079, 100);
         }
          
         // 3. Process Additional Media
@@ -707,7 +707,7 @@ class TbBlogPostService
         // 1. Fetch existing post & validate
         $exist = $this->postModel->select()->where('ltId','=', $postId)->get();
         if(count($exist) < 1){
-            return LtResponse::json('Post not found', 3004, 100);
+            return LtResponse::json('Post not found', 4080, 100);
         }
         
         // Capture the old content for your cleanup function later
@@ -718,7 +718,7 @@ class TbBlogPostService
         // 2. Define all required variables safely
         $title = trim((string)$this->postModel->title);
         if ($title === '') {
-            return LtResponse::json('Post Title is required', 3004, 100);
+            return LtResponse::json('Post Title is required', 4081, 100);
         }
         
         $processedContent = $this->processContentBeforeSave($this->postModel->content, $postId);
@@ -851,7 +851,7 @@ class TbBlogPostService
     public function toggleActive($ltId){
         $row = $this->postModel->select()->where('ltId','=',$ltId)->get();
         if(count($row) < 1){
-            return LtResponse::json('Category not found', 3004, 100);
+            return LtResponse::json('Category not found', 4082, 100);
         }
 
         $current = $row[0]->status;
@@ -861,7 +861,7 @@ class TbBlogPostService
         $this->postModel->updatedAt = $this->ltNow;
         $this->postModel->update('ltId','=',$ltId);
 
-        return LtResponse::json('Updated', 201, 200, ['ltId'=>$ltId,'isActive'=>$newVal]);
+        return LtResponse::json('Updated', 4083, 200, ['ltId'=>$ltId,'isActive'=>$newVal]);
     }
     
     public function updateStatus() {
@@ -869,26 +869,26 @@ class TbBlogPostService
         $newStatus =$this->request->status ?? 'published';
     
         if (!$ltId) {
-            return LtResponse::json('Post ID is required', 400, 100);
+            return LtResponse::json('Post ID is required', 4084, 100);
         }
     
         $allowedStatuses = ['draft', 'pending', 'published', 'private', 'scheduled', 'archived'];
         $newStatus = strtolower(trim($newStatus));
     
         if (!in_array($newStatus, $allowedStatuses, true)) {
-            return LtResponse::json('Invalid status value', 422, 100);
+            return LtResponse::json('Invalid status value', 4085, 100);
         }
     
         $row = $this->postModel->select()->where('ltId', '=', $ltId)->get();
         if (count($row) < 1) {
-            return LtResponse::json('Post not found', 3004, 100);
+            return LtResponse::json('Post not found', 4086, 100);
         }
     
         $this->postModel->status = $newStatus;
         $this->postModel->updatedAt = $this->ltNow;
         $this->postModel->update('ltId', '=', $ltId);
     
-        return LtResponse::json('Post status updated', 201, 200, [
+        return LtResponse::json('Post status updated', 4087, 200, [
             'ltId' => $ltId,
             'status' => $newStatus
         ]);
@@ -898,7 +898,7 @@ class TbBlogPostService
         // 1. Check if post exists
         $exist = $this->postModel->select()->where('ltId', '=', $ltId)->get();
         if (count($exist) < 1) {
-            return LtResponse::json('Post not found', 3004, 100);
+            return LtResponse::json('Post not found', 4088, 100);
         }
     
         // 2. Define the main directory path
@@ -922,7 +922,7 @@ class TbBlogPostService
             $this->cleanupUnusedImages($oldContentFromDB, '');
         }
     
-        return LtResponse::json('Deleted successfully', 201, 200);
+        return LtResponse::json('Deleted successfully', 4089, 200);
     }
     
     /**
@@ -1086,7 +1086,7 @@ class TbBlogPostService
         
         $exist = $this->postModel->select()->where('slug','=', $slug)->get();
         if(count($exist) < 1){
-            return LtResponse::json('Post not found', 3004, 100);
+            return LtResponse::json('Post not found', 4090, 100);
         }
         $postId = $exist[0]->ltId;
         $viewCount = $exist[0]->viewCount;
@@ -1104,7 +1104,7 @@ class TbBlogPostService
         
         $exist = $this->postModel->select()->where('slug','=', $postSlug)->get();
         if(count($exist) < 1){
-            return LtResponse::json('Post not found', 3004, 100);
+            return LtResponse::json('Post not found', 4091, 100);
         }
         
         $postId = $exist[0]->ltId;
@@ -1123,7 +1123,7 @@ class TbBlogPostService
             ':reaction_type' => $reactionType
         ]);
         
-        return LtResponse::json('Reaction recorded successfully', 201, 200);
+        return LtResponse::json('Reaction recorded successfully', 4092, 200);
     }
     
 }

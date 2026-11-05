@@ -88,10 +88,10 @@ class TbBlogReportService{
        
         // If no comments, return an empty array early
         if (empty($reports)) {
-             return LtResponse::json('No Reports Found', 101, 100);
+             return LtResponse::json('No Reports Found', 4093, 100);
         }
         
-        return LtResponse::json('success', 201, 200, $reports);
+        return LtResponse::json('success', 4094, 200, $reports);
     }
     
     public function destroy() {
@@ -99,7 +99,7 @@ class TbBlogReportService{
         // 1. Check if post exists
         $exist = $this->reportModel->select()->where('ltId', '=', $ltId)->get();
         if (count($exist) < 1) {
-            return LtResponse::json('Report not found', 3004, 100);
+            return LtResponse::json('Report not found', 4095, 100);
         }
         
         $this->reportModel->delete('ltId','=',$ltId);
@@ -113,7 +113,7 @@ class TbBlogReportService{
         
         $exist = $this->reportModel->select()->where('ltId', '=', $ltId)->get();
         if (count($exist) < 1) {
-            return LtResponse::json('Report not found', 3004, 100);
+            return LtResponse::json('Report not found', 4096, 100);
         }
 
         $this->reportModel->status = $status;

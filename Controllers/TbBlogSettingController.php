@@ -12,13 +12,13 @@ class TbBlogSettingController
     public function index(){
         $service = new TbBlogSettingService();
         $rows = $service->index();
-        return LtResponse::json('success', 201, 200, $rows);
+        return LtResponse::json('success', 4128, 200, $rows);
     }
     
     public function selectFilter(){
         $service = new TbBlogSettingService();
         $rows = $service->selectFilter();
-        return LtResponse::json('success', 201, 200, $rows);
+        return LtResponse::json('success', 4129, 200, $rows);
     }
 
     public function store(){

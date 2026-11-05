@@ -12,7 +12,7 @@ class TbBlogUserController
     public function index(){
         $service = new TbBlogUserService();
         $rows = $service->index();
-        return LtResponse::json('success', 201, 200, $rows);
+        return LtResponse::json('success', 4131, 200, $rows);
     }
     
 

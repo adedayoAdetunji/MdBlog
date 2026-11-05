@@ -55,26 +55,26 @@ class TbBlogUserService
         $formName = 'blogUserForm';
         
         if ($password !== $confirmPass) {
-            return LtResponse::json('Passwords do not match!', 3014, 100);
+            return LtResponse::json('Passwords do not match!', 4111, 100);
         }
         
         if (empty($username) || empty($email)) {
-            return LtResponse::json('Username or Email must not be empty', 3015, 100);
+            return LtResponse::json('Username or Email must not be empty', 4112, 100);
         }
     
         if (strlen($password) < 8) {
-            return LtResponse::json('Password must be at least 8 characters!', 3016, 100);
+            return LtResponse::json('Password must be at least 8 characters!', 4113, 100);
         }
         
         $registrationExist = $this->userModel->select()->where('username', '=', $username)->orWhere('email', '=', $email)->get();
             
         if(count($registrationExist) > 0){
-            return  LtResponse::json('User record already exist', 3017, 100); 
+            return  LtResponse::json('User record already exist', 4114, 100); 
         }
         
         $blogExist = $this->blogModel->select()->where('username','=', $username)->orWhere('email', '=', $email)->get();
         if(count($blogExist) > 0){
-            return LtResponse::json('User already exist', 3018, 100);
+            return LtResponse::json('User already exist', 4115, 100);
         }
         
         $getformRoleData = LtAuth::getFormRole($formName);
@@ -99,7 +99,7 @@ class TbBlogUserService
         $this->userModel->insert();
         
         if($this->userModel->responseCategory != 200){
-            return LtResponse::json('Failed to register user', 3019, 100);
+            return LtResponse::json('Failed to register user', 4116, 100);
         }
         
         
@@ -125,12 +125,12 @@ class TbBlogUserService
         
         // 1. Validate identity first (3-char minimum allows short usernames)
         if ($emailOrUsername === '' || strlen($emailOrUsername) < 3) {
-            return LtResponse::json('email_or_username|required|min:3', 3018, 100);
+            return LtResponse::json('email_or_username|required|min:3', 4117, 100);
         }
     
         // 2. Validate password second
         if ($password === '' || strlen($password) < 8) {
-            return LtResponse::json('password|required|min:8', 3018, 100);
+            return LtResponse::json('password|required|min:8', 4118, 100);
         }
         
         $loginFrom = "blog_site";
@@ -151,7 +151,7 @@ class TbBlogUserService
             $registrationExist = $this->userModel->select()->where('ltId','=', $userId)->get();
             
             if(count($registrationExist) < 1){
-                return  LtResponse::json('No User Record Found', 3018, 100); 
+                return  LtResponse::json('No User Record Found', 4119, 100); 
             }else{
                 $username = $registrationExist[0]->username;
                 $email = $registrationExist[0]->email;
@@ -167,7 +167,7 @@ class TbBlogUserService
                 $this->blogModel->insert();
                 
                 if($this->blogModel->responseCategory != 200){
-                    return LtResponse::json('Failed to update user', 3019, 100);
+                    return LtResponse::json('Failed to update user', 4120, 100);
                 }else{
                   $fetchUserRecord = true;  
                 }
@@ -210,7 +210,7 @@ class TbBlogUserService
                        'comments' => $commentsArr
                     ];
                     
-            return LtResponse::json('Success', 3004, 200, $user);
+            return LtResponse::json('Success', 4121, 200, $user);
         }
         
     }
@@ -219,7 +219,7 @@ class TbBlogUserService
         $ltId = $this->userId;
         $exist = $this->blogModel->select()->where('userId', '=', $ltId)->get();
         if (count($exist) < 1) {
-            return LtResponse::json('User not found in blog table', 3004, 100);
+            return LtResponse::json('User not found in blog table', 4122, 100);
         }
 
         $this->blogModel->processRequest(['facebook', 'twitter', 'bio', 'location', 'fullname', 'linkedin']);
@@ -338,14 +338,14 @@ class TbBlogUserService
         $confirmation = trim($this->request->confirmation ?? '');
         $exist = $this->blogModel->select()->where('userId', '=', $ltId)->get();
         if(count($exist) < 1){
-            return LtResponse::json('User not found', 3004, 100);
+            return LtResponse::json('User not found', 4123, 100);
         }
         $expectedKeyword = $exist[0]->username;
         $userId = $exist[0]->ltId;
         
         // Reject if validation affirmation doesn't match
         if ($confirmation !== $expectedKeyword && $confirmation !== 'DELETE') {
-            return LtResponse::json('Invalid confirmation text. Deletion rejected.', 422, 100);
+            return LtResponse::json('Invalid confirmation text. Deletion rejected.', 4124, 100);
         }
             // Clean up profile storage directory
         $profileDir = "storage/uploads/blogs/profile_{$userId}";
@@ -355,7 +355,7 @@ class TbBlogUserService
         }
         
         $this->blogModel->delete('userId','=',$ltId);
-        return LtResponse::json('Deleted', 201, 200, $exist);
+        return LtResponse::json('Deleted', 4125, 200, $exist);
     }
     
 }

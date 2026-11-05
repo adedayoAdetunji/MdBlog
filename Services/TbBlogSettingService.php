@@ -46,12 +46,12 @@ class TbBlogSettingService
         $settingKey = trim($this->blogModel->settingKey);
         $settingValue = trim($this->blogModel->settingValue);
         if($settingKey === '' && $settingValue === ''){
-            return LtResponse::json('Setting key and value is required', 3004, 100);
+            return LtResponse::json('Setting key and value is required', 4097, 100);
         }
         
         $exist = $this->blogModel->select()->where('settingKey','=', $settingKey)->get();
         if(count($exist) > 0){
-            return LtResponse::json('Setting already exist', 3004, 100);
+            return LtResponse::json('Setting already exist', 4098, 100);
         }
 
         $this->blogModel->ltId = $this->ltId;
@@ -66,7 +66,7 @@ class TbBlogSettingService
     public function update($ltId){
         $exist = $this->blogModel->select()->where('ltId','=', $ltId)->get();
         if(count($exist) < 1){
-            return LtResponse::json('Setting not found', 3004, 100);
+            return LtResponse::json('Setting not found', 4099, 100);
         }
         
         $this->blogModel->processRequest();
@@ -80,7 +80,7 @@ class TbBlogSettingService
     public function toggleActive($ltId){
         $row = $this->blogModel->select()->where('ltId','=',$ltId)->get();
         if(count($row) < 1){
-            return LtResponse::json('Setting not found', 3004, 100);
+            return LtResponse::json('Setting not found', 4100, 100);
         }
 
         $current = $row[0]->status;
@@ -90,17 +90,17 @@ class TbBlogSettingService
         $this->blogModel->updatedAt = $this->ltNow;
         $this->blogModel->update('ltId','=',$ltId);
 
-        return LtResponse::json('Updated', 201, 200, ['ltId'=>$ltId,'isActive'=>$newVal]);
+        return LtResponse::json('Updated', 4101, 200, ['ltId'=>$ltId,'isActive'=>$newVal]);
     }
 
     public function destroy($ltId){
         $exist = $this->blogModel->select()->where('ltId','=',$ltId)->get();
         if(count($exist) < 1){
-            return LtResponse::json('Setting not found', 3004, 100);
+            return LtResponse::json('Setting not found', 4102, 100);
         }
 
         $this->blogModel->delete('ltId','=',$ltId);
-        return LtResponse::json('Deleted', 201, 200);
+        return LtResponse::json('Deleted', 4103, 200);
     }
     
     

@@ -42,7 +42,7 @@ class TbBlogMediaService
         $exist = $this->blogMediaModel->select()->where('originalName','=', $originalName)->andWhere('postId', '=', $postId)->get();
         
         if(count($exist) > 0){
-            return  LtResponse::json("Media {$originalName} record already exist", 3503, 100); 
+            return  LtResponse::json("Media {$originalName} record already exist", 4064, 100); 
         }
     
        

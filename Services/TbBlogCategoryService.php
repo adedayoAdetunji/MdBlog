@@ -49,12 +49,12 @@ class TbBlogCategoryService
         
         $categoryName = trim((string)$this->blogModel->categoryName);
         if($categoryName === ''){
-            return LtResponse::json('Category name and code is required', 3004, 100);
+            return LtResponse::json('Category name and code is required', 4050, 100);
         }
         
         $exist = $this->blogModel->select()->where('categoryName','=', $categoryName)->get();
         if(count($exist) > 0){
-            return LtResponse::json('Category already exist', 3004, 100);
+            return LtResponse::json('Category already exist', 4051, 100);
         }
 
         $this->blogModel->ltId = $this->ltId;
@@ -69,7 +69,7 @@ class TbBlogCategoryService
     public function update($ltId){
         $exist = $this->blogModel->select()->where('ltId','=', $ltId)->get();
         if(count($exist) < 1){
-            return LtResponse::json('Category not found', 3004, 100);
+            return LtResponse::json('Category not found', 4052, 100);
         }
         
         $this->blogModel->processRequest();
@@ -83,7 +83,7 @@ class TbBlogCategoryService
     public function toggleActive($ltId){
         $row = $this->blogModel->select()->where('ltId','=',$ltId)->get();
         if(count($row) < 1){
-            return LtResponse::json('Category not found', 3004, 100);
+            return LtResponse::json('Category not found', 4053, 100);
         }
 
         $current = $row[0]->status;
@@ -93,17 +93,17 @@ class TbBlogCategoryService
         $this->blogModel->updatedAt = $this->ltNow;
         $this->blogModel->update('ltId','=',$ltId);
 
-        return LtResponse::json('Updated', 201, 200, ['ltId'=>$ltId,'isActive'=>$newVal]);
+        return LtResponse::json('Updated', 4054, 200, ['ltId'=>$ltId,'isActive'=>$newVal]);
     }
 
     public function destroy($ltId){
         $exist = $this->blogModel->select()->where('ltId','=',$ltId)->get();
         if(count($exist) < 1){
-            return LtResponse::json('Category not found', 3004, 100);
+            return LtResponse::json('Category not found', 4055, 100);
         }
 
         $this->blogModel->delete('ltId','=',$ltId);
-        return LtResponse::json('Deleted', 201, 200);
+        return LtResponse::json('Deleted', 4056, 200);
     }
 }
 
