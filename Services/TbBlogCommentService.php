@@ -285,6 +285,19 @@ class TbBlogCommentService
         return $this->commentModel->responseJson();
     }
     
+    public function toUseLater() {
+        $ltId = $this->request->ltId;
+        // 1. Check if post exists
+        $exist = $this->commentModel->select()->where('ltId', '=', $ltId)->get();
+        if (count($exist) < 1) {
+            return LtResponse::json('Comment not found', 4062, 100);
+        }
+        
+        $this->commentModel->delete('ltId','=',$ltId);
+    
+        return $this->commentModel->responseJson();
+    }
+    
     public function update(){
         $ltId = $this->request->ltId;
         $status = $this->request->status;
