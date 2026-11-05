@@ -13,9 +13,12 @@
         "routeResponse": "",
         "routeUpdateStatus": 0,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 08:18:15",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 1,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178369936235139",
@@ -31,9 +34,12 @@
         "routeResponse": "{\n    &amp;quot;responseResult&amp;quot;: &amp;quot;Registration successful&amp;quot;,\n    &amp;quot;responseCode&amp;quot;: &amp;quot;2006&amp;quot;,\n    &amp;quot;responseCategory&amp;quot;: &amp;quot;200&amp;quot;,\n    &amp;quot;responseData&amp;quot;: {\n        &amp;quot;ltId&amp;quot;: &amp;quot;179096350529836&amp;quot;,\n        &amp;quot;categoryName&amp;quot;: &amp;quot;Artificial Intelligence&amp;quot;,\n        &amp;quot;categoryDescription&amp;quot;: &amp;quot;Articles on LLMs, neural networks, and machine learning&amp;quot;,\n        &amp;quot;showOnMenu&amp;quot;: 1,\n        &amp;quot;createdAt&amp;quot;: &amp;quot;2026-10-04 00:15:00&amp;quot;,\n        &amp;quot;updatedAt&amp;quot;: &amp;quot;2026-10-04 00:15:00&amp;quot;\n    }\n}",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178369936241315",
@@ -49,9 +55,12 @@
         "routeResponse": "{\n    &amp;quot;responseResult&amp;quot;: &amp;quot;Updated&amp;quot;,\n    &amp;quot;responseCode&amp;quot;: 201,\n    &amp;quot;responseCategory&amp;quot;: 200,\n    &amp;quot;responseData&amp;quot;: {\n        &amp;quot;ltId&amp;quot;: &amp;quot;179096350529836&amp;quot;,\n        &amp;quot;isActive&amp;quot;: &amp;quot;isNotActive&amp;quot;\n    }\n}",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178369936247339",
@@ -67,9 +76,12 @@
         "routeResponse": "{\n    &amp;quot;responseResult&amp;quot;: &amp;quot;Record Updated&amp;quot;,\n    &amp;quot;responseCode&amp;quot;: &amp;quot;2006&amp;quot;,\n    &amp;quot;responseCategory&amp;quot;: &amp;quot;200&amp;quot;,\n    &amp;quot;responseData&amp;quot;: {\n        &amp;quot;ltId&amp;quot;: &amp;quot;179096350529836&amp;quot;,\n        &amp;quot;categoryName&amp;quot;: &amp;quot;AI &amp;amp; Machine Learning&amp;quot;,\n        &amp;quot;categoryDescription&amp;quot;: &amp;quot;Deep dives into modern neural networks and AI models&amp;quot;,\n        &amp;quot;showOnMenu&amp;quot;: 1,\n        &amp;quot;updatedAt&amp;quot;: &amp;quot;2026-10-04 00:18:22&amp;quot;\n    }\n}",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178369936251585",
@@ -85,9 +97,12 @@
         "routeResponse": "{\n    &amp;quot;responseResult&amp;quot;: &amp;quot;Deleted&amp;quot;,\n    &amp;quot;responseCode&amp;quot;: 201,\n    &amp;quot;responseCategory&amp;quot;: 200\n}",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178369936287451",
@@ -103,9 +118,12 @@
         "routeResponse": "{\n    &amp;quot;responseResult&amp;quot;: &amp;quot;success&amp;quot;,\n    &amp;quot;responseCode&amp;quot;: 201,\n    &amp;quot;responseCategory&amp;quot;: 200,\n    &amp;quot;responseData&amp;quot;: [\n        {\n            &amp;quot;ltId&amp;quot;: 172600000012345,\n            &amp;quot;categoryName&amp;quot;: &amp;quot;Technology&amp;quot;,\n            &amp;quot;categoryDescription&amp;quot;: &amp;quot;Articles on emerging technologies, gadgets, and innovations.&amp;quot;,\n            &amp;quot;status&amp;quot;: &amp;quot;isActive&amp;quot;,\n            &amp;quot;showOnMenu&amp;quot;: 1,\n            &amp;quot;createdBy&amp;quot;: null,\n            &amp;quot;updatedBy&amp;quot;: null,\n            &amp;quot;createdAt&amp;quot;: &amp;quot;2026-07-10 11:28:48&amp;quot;,\n            &amp;quot;updatedAt&amp;quot;: &amp;quot;2026-07-13 15:24:05&amp;quot;\n        }\n    ]\n}",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178371055382975",
@@ -121,9 +139,12 @@
         "routeResponse": "",
         "routeUpdateStatus": 0,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 08:18:15",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 1,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178371798931657",
@@ -139,9 +160,12 @@
         "routeResponse": "{\n    &amp;quot;responseResult&amp;quot;: &amp;quot;Updated&amp;quot;,\n    &amp;quot;responseCode&amp;quot;: 201,\n    &amp;quot;responseCategory&amp;quot;: 200,\n    &amp;quot;responseData&amp;quot;: {\n        &amp;quot;ltId&amp;quot;: &amp;quot;182600000012358&amp;quot;,\n        &amp;quot;isActive&amp;quot;: &amp;quot;isNotActive&amp;quot;\n    }\n}",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178371798957635",
@@ -157,9 +181,12 @@
         "routeResponse": "{\n    &amp;quot;responseResult&amp;quot;: &amp;quot;Record Updated&amp;quot;,\n    &amp;quot;responseCode&amp;quot;: &amp;quot;2006&amp;quot;,\n    &amp;quot;responseCategory&amp;quot;: &amp;quot;200&amp;quot;,\n    &amp;quot;responseData&amp;quot;: {\n        &amp;quot;ltId&amp;quot;: &amp;quot;182600000012358&amp;quot;,\n        &amp;quot;tagName&amp;quot;: &amp;quot;ReactJS&amp;quot;,\n        &amp;quot;tagSlug&amp;quot;: &amp;quot;reactjs&amp;quot;,\n        &amp;quot;tagDescription&amp;quot;: &amp;quot;Component-based web architecture&amp;quot;,\n        &amp;quot;tagColor&amp;quot;: &amp;quot;#00d8ff&amp;quot;,\n        &amp;quot;updatedAt&amp;quot;: &amp;quot;2026-10-04 00:22:00&amp;quot;\n    }\n}",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178371798974844",
@@ -175,9 +202,12 @@
         "routeResponse": "{\n    &amp;quot;responseResult&amp;quot;: &amp;quot;success&amp;quot;,\n    &amp;quot;responseCode&amp;quot;: 201,\n    &amp;quot;responseCategory&amp;quot;: 200,\n    &amp;quot;responseData&amp;quot;: [\n        {\n            &amp;quot;ltId&amp;quot;: 182600000012357,\n            &amp;quot;tagName&amp;quot;: &amp;quot;PHP&amp;quot;,\n            &amp;quot;tagSlug&amp;quot;: &amp;quot;php&amp;quot;,\n            &amp;quot;tagDescription&amp;quot;: &amp;quot;PHP server-side scripting language&amp;quot;,\n            &amp;quot;tagColor&amp;quot;: &amp;quot;#777bb4&amp;quot;,\n            &amp;quot;status&amp;quot;: &amp;quot;isActive&amp;quot;,\n            &amp;quot;createdBy&amp;quot;: null,\n            &amp;quot;updatedBy&amp;quot;: null,\n            &amp;quot;createdAt&amp;quot;: &amp;quot;2026-08-01 10:00:00&amp;quot;,\n            &amp;quot;updatedAt&amp;quot;: &amp;quot;2026-08-01 10:00:00&amp;quot;\n        }\n    ]\n}",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178371798981357",
@@ -193,9 +223,12 @@
         "routeResponse": "{\n    &amp;quot;responseResult&amp;quot;: &amp;quot;Registration successful&amp;quot;,\n    &amp;quot;responseCode&amp;quot;: &amp;quot;2006&amp;quot;,\n    &amp;quot;responseCategory&amp;quot;: &amp;quot;200&amp;quot;,\n    &amp;quot;responseData&amp;quot;: {\n        &amp;quot;ltId&amp;quot;: &amp;quot;182600000012358&amp;quot;,\n        &amp;quot;tagName&amp;quot;: &amp;quot;React&amp;quot;,\n        &amp;quot;tagSlug&amp;quot;: &amp;quot;react&amp;quot;,\n        &amp;quot;tagDescription&amp;quot;: &amp;quot;Frontend user interface library&amp;quot;,\n        &amp;quot;tagColor&amp;quot;: &amp;quot;#61dafb&amp;quot;,\n        &amp;quot;createdAt&amp;quot;: &amp;quot;2026-10-04 00:20:00&amp;quot;,\n        &amp;quot;updatedAt&amp;quot;: &amp;quot;2026-10-04 00:20:00&amp;quot;\n    }\n}",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178371798986761",
@@ -211,9 +244,12 @@
         "routeResponse": "{\n    &amp;quot;responseResult&amp;quot;: &amp;quot;Deleted&amp;quot;,\n    &amp;quot;responseCode&amp;quot;: 201,\n    &amp;quot;responseCategory&amp;quot;: 200\n}",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178389306854675",
@@ -229,9 +265,12 @@
         "routeResponse": "",
         "routeUpdateStatus": 0,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 08:18:15",
+        "c81e728d9d4c2f": 1,
+        "accbc87e4b5ce2": 1,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178389335117241",
@@ -247,9 +286,12 @@
         "routeResponse": "{\n    &amp;quot;responseResult&amp;quot;: &amp;quot;Deleted&amp;quot;,\n    &amp;quot;responseCode&amp;quot;: 201,\n    &amp;quot;responseCategory&amp;quot;: 200\n}",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178389335123083",
@@ -265,9 +307,12 @@
         "routeResponse": "",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178389335189726",
@@ -283,9 +328,12 @@
         "routeResponse": "{\n    &amp;quot;responseResult&amp;quot;: &amp;quot;success&amp;quot;,\n    &amp;quot;responseCode&amp;quot;: &amp;quot;2006&amp;quot;,\n    &amp;quot;responseCategory&amp;quot;: &amp;quot;200&amp;quot;,\n    &amp;quot;responseData&amp;quot;: {\n        &amp;quot;ltId&amp;quot;: &amp;quot;179098765432100&amp;quot;,\n        &amp;quot;title&amp;quot;: &amp;quot;Building Scalable Microservices&amp;quot;,\n        &amp;quot;slug&amp;quot;: &amp;quot;building-scalable-microservices&amp;quot;,\n        &amp;quot;status&amp;quot;: &amp;quot;published&amp;quot;,\n        &amp;quot;createdAt&amp;quot;: &amp;quot;2026-10-04 00:25:00&amp;quot;,\n        &amp;quot;updatedAt&amp;quot;: &amp;quot;2026-10-04 00:25:00&amp;quot;\n    }\n}",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178389335194285",
@@ -301,9 +349,12 @@
         "routeResponse": "{\n    &amp;quot;responseResult&amp;quot;: &amp;quot;Registration successful&amp;quot;,\n    &amp;quot;responseCode&amp;quot;: &amp;quot;2006&amp;quot;,\n    &amp;quot;responseCategory&amp;quot;: &amp;quot;200&amp;quot;,\n    &amp;quot;responseData&amp;quot;: {\n        &amp;quot;ltId&amp;quot;: &amp;quot;179098765432100&amp;quot;,\n        &amp;quot;title&amp;quot;: &amp;quot;Building Scalable Microservices&amp;quot;,\n        &amp;quot;slug&amp;quot;: &amp;quot;building-scalable-microservices&amp;quot;,\n        &amp;quot;status&amp;quot;: &amp;quot;published&amp;quot;,\n        &amp;quot;createdAt&amp;quot;: &amp;quot;2026-10-04 00:25:00&amp;quot;,\n        &amp;quot;updatedAt&amp;quot;: &amp;quot;2026-10-04 00:25:00&amp;quot;\n    }\n}",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178389335195821",
@@ -319,9 +370,12 @@
         "routeResponse": "",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178395207728192",
@@ -337,9 +391,12 @@
         "routeResponse": "{\n    &amp;quot;responseResult&amp;quot;: &amp;quot;success&amp;quot;,\n    &amp;quot;responseCode&amp;quot;: 201,\n    &amp;quot;responseCategory&amp;quot;: 200,\n    &amp;quot;responseData&amp;quot;: [\n        {\n            &amp;quot;ltId&amp;quot;: 172600000012345,\n            &amp;quot;categoryName&amp;quot;: &amp;quot;Technology&amp;quot;\n        },\n        {\n            &amp;quot;ltId&amp;quot;: 172600000012346,\n            &amp;quot;categoryName&amp;quot;: &amp;quot;Design&amp;quot;\n        }\n    ]\n}",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178395210193488",
@@ -355,9 +412,12 @@
         "routeResponse": "{\n    &amp;quot;responseResult&amp;quot;: &amp;quot;Posts retrieved successfully&amp;quot;,\n    &amp;quot;responseCode&amp;quot;: 200,\n    &amp;quot;responseCategory&amp;quot;: 200,\n    &amp;quot;responseData&amp;quot;: {\n        &amp;quot;data&amp;quot;: [\n            {\n                &amp;quot;ltId&amp;quot;: &amp;quot;179080640120321&amp;quot;,\n                &amp;quot;title&amp;quot;: &amp;quot;Getting Started with Modern Web Architecture&amp;quot;,\n                &amp;quot;slug&amp;quot;: &amp;quot;getting-started-with-modern-web-architecture&amp;quot;,\n                &amp;quot;excerpt&amp;quot;: &amp;quot;A deep dive into decoupled full-stack design patterns.&amp;quot;,\n                &amp;quot;readingTime&amp;quot;: 5,\n                &amp;quot;categoryId&amp;quot;: &amp;quot;172600000012345&amp;quot;,\n                &amp;quot;category&amp;quot;: &amp;quot;Technology&amp;quot;,\n                &amp;quot;date&amp;quot;: &amp;quot;2026-09-20 14:00:00&amp;quot;,\n                &amp;quot;likes&amp;quot;: 42,\n                &amp;quot;views&amp;quot;: 1280,\n                &amp;quot;authorId&amp;quot;: &amp;quot;179092647320871&amp;quot;,\n                &amp;quot;author&amp;quot;: &amp;quot;John Doe&amp;quot;,\n                &amp;quot;avatar&amp;quot;: &amp;quot;storage\/uploads\/blogs\/profile_179092647320871\/avatar_67001.webp&amp;quot;,\n                &amp;quot;isFeatured&amp;quot;: 1,\n                &amp;quot;media&amp;quot;: [\n                    {\n                        &amp;quot;postId&amp;quot;: &amp;quot;179080640120321&amp;quot;,\n                        &amp;quot;mediaCategory&amp;quot;: &amp;quot;gallery&amp;quot;,\n                        &amp;quot;mediaId&amp;quot;: &amp;quot;179080777123456&amp;quot;,\n                        &amp;quot;originalName&amp;quot;: &amp;quot;cover.jpg&amp;quot;,\n                        &amp;quot;mimeType&amp;quot;: &amp;quot;image\/jpeg&amp;quot;,\n                        &amp;quot;fileSize&amp;quot;: 184320,\n                        &amp;quot;storagePath&amp;quot;: &amp;quot;storage\/uploads\/blogs\/post_179080640120321\/media_67001.jpg&amp;quot;,\n                        &amp;quot;altText&amp;quot;: &amp;quot;Article Banner&amp;quot;,\n                        &amp;quot;filename&amp;quot;: &amp;quot;media_67001.jpg&amp;quot;\n                    }\n                ]\n            }\n        ],\n        &amp;quot;pagination&amp;quot;: {\n            &amp;quot;totalItems&amp;quot;: 1,\n            &amp;quot;totalPages&amp;quot;: 1,\n            &amp;quot;currentPage&amp;quot;: 1,\n            &amp;quot;itemsPerPage&amp;quot;: 12,\n            &amp;quot;hasMore&amp;quot;: false\n        }\n    }\n}",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178524978315922",
@@ -373,9 +433,12 @@
         "routeResponse": "{\n    &amp;quot;responseResult&amp;quot;: &amp;quot;success&amp;quot;,\n    &amp;quot;responseCode&amp;quot;: 200,\n    &amp;quot;responseCategory&amp;quot;: 200,\n    &amp;quot;responseData&amp;quot;: [\n        {\n            &amp;quot;ltId&amp;quot;: &amp;quot;179080640120321&amp;quot;,\n            &amp;quot;title&amp;quot;: &amp;quot;Getting Started with Modern Web Architecture&amp;quot;,\n            &amp;quot;slug&amp;quot;: &amp;quot;getting-started-with-modern-web-architecture&amp;quot;,\n            &amp;quot;excerpt&amp;quot;: &amp;quot;A deep dive into decoupled full-stack design patterns.&amp;quot;,\n            &amp;quot;readingTime&amp;quot;: 5,\n            &amp;quot;category&amp;quot;: &amp;quot;Technology&amp;quot;,\n            &amp;quot;likes&amp;quot;: 42,\n            &amp;quot;views&amp;quot;: 1280,\n            &amp;quot;author&amp;quot;: &amp;quot;John Doe&amp;quot;\n        }\n    ]\n}",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178526142256541",
@@ -391,9 +454,12 @@
         "routeResponse": "{\n    &amp;quot;responseResult&amp;quot;: &amp;quot;success&amp;quot;,\n    &amp;quot;responseCode&amp;quot;: 200,\n    &amp;quot;responseCategory&amp;quot;: 200,\n    &amp;quot;responseData&amp;quot;: {\n        &amp;quot;ltId&amp;quot;: &amp;quot;179080640120321&amp;quot;,\n        &amp;quot;title&amp;quot;: &amp;quot;Getting Started with Modern Web Architecture&amp;quot;,\n        &amp;quot;slug&amp;quot;: &amp;quot;getting-started-with-modern-web-architecture&amp;quot;,\n        &amp;quot;excerpt&amp;quot;: &amp;quot;A deep dive into decoupled full-stack design patterns.&amp;quot;,\n        &amp;quot;content&amp;quot;: &amp;quot;&amp;lt;p&amp;gt;Full markdown\/HTML article content...&amp;lt;\/p&amp;gt;&amp;quot;,\n        &amp;quot;readingTime&amp;quot;: 5,\n        &amp;quot;categoryId&amp;quot;: &amp;quot;172600000012345&amp;quot;,\n        &amp;quot;category&amp;quot;: &amp;quot;Technology&amp;quot;,\n        &amp;quot;date&amp;quot;: &amp;quot;2026-09-20 14:00:00&amp;quot;,\n        &amp;quot;likes&amp;quot;: 42,\n        &amp;quot;views&amp;quot;: 1280,\n        &amp;quot;author&amp;quot;: &amp;quot;John Doe&amp;quot;,\n        &amp;quot;avatar&amp;quot;: &amp;quot;storage\/uploads\/blogs\/profile_179092647320871\/avatar_67001.webp&amp;quot;,\n        &amp;quot;linkedin&amp;quot;: &amp;quot;https:\/\/linkedin.com\/in\/johndoe&amp;quot;,\n        &amp;quot;twitter&amp;quot;: &amp;quot;johndoe&amp;quot;,\n        &amp;quot;userReaction&amp;quot;: &amp;quot;like&amp;quot;,\n        &amp;quot;media&amp;quot;: [],\n        &amp;quot;comments&amp;quot;: []\n    }\n}",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178611558797372",
@@ -409,9 +475,12 @@
         "routeResponse": "",
         "routeUpdateStatus": 0,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 08:18:15",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 1,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178635762593876",
@@ -427,9 +496,12 @@
         "routeResponse": "{\n    &amp;quot;responseResult&amp;quot;: &amp;quot;Registration successful&amp;quot;,\n    &amp;quot;responseCode&amp;quot;: &amp;quot;2006&amp;quot;,\n    &amp;quot;responseCategory&amp;quot;: &amp;quot;200&amp;quot;,\n    &amp;quot;responseData&amp;quot;: {\n        &amp;quot;ltId&amp;quot;: &amp;quot;179092866565530&amp;quot;,\n        &amp;quot;postSlug&amp;quot;: &amp;quot;getting-started-with-modern-web-architecture&amp;quot;,\n        &amp;quot;body&amp;quot;: &amp;quot;Thank you for the clear explanations!&amp;quot;,\n        &amp;quot;author&amp;quot;: &amp;quot;Alice Walker&amp;quot;\n    }\n}",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178698289190532",
@@ -445,9 +517,12 @@
         "routeResponse": "",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178698600224484",
@@ -463,9 +538,12 @@
         "routeResponse": "",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178708715499938",
@@ -481,9 +559,12 @@
         "routeResponse": "{\n    &amp;quot;responseResult&amp;quot;: &amp;quot;success&amp;quot;,\n    &amp;quot;responseCode&amp;quot;: 201,\n    &amp;quot;responseCategory&amp;quot;: 200,\n    &amp;quot;responseData&amp;quot;: &amp;quot;liked&amp;quot; \/\/ or &amp;quot;unliked&amp;quot;\n}",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178712763758652",
@@ -499,9 +580,12 @@
         "routeResponse": "",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178715814292586",
@@ -517,9 +601,12 @@
         "routeResponse": "{\n    &amp;quot;responseResult&amp;quot;: &amp;quot;success&amp;quot;,\n    &amp;quot;responseCode&amp;quot;: 201,\n    &amp;quot;responseCategory&amp;quot;: 200,\n    &amp;quot;responseData&amp;quot;: [\n        {\n            &amp;quot;ltId&amp;quot;: &amp;quot;179092866565526&amp;quot;,\n            &amp;quot;postId&amp;quot;: &amp;quot;179080640120321&amp;quot;,\n            &amp;quot;body&amp;quot;: &amp;quot;Insightful read!&amp;quot;,\n            &amp;quot;status&amp;quot;: &amp;quot;approved&amp;quot;,\n            &amp;quot;likes&amp;quot;: 5,\n            &amp;quot;commentedBy&amp;quot;: &amp;quot;Alice Walker&amp;quot;,\n            &amp;quot;postAuthor&amp;quot;: &amp;quot;John Doe&amp;quot;,\n            &amp;quot;replies&amp;quot;: [\n                {\n                    &amp;quot;ltId&amp;quot;: &amp;quot;179092866565527&amp;quot;,\n                    &amp;quot;parentId&amp;quot;: &amp;quot;179092866565526&amp;quot;,\n                    &amp;quot;body&amp;quot;: &amp;quot;Thank you, Alice!&amp;quot;,\n                    &amp;quot;status&amp;quot;: &amp;quot;approved&amp;quot;,\n                    &amp;quot;commentedBy&amp;quot;: &amp;quot;John Doe&amp;quot;,\n                    &amp;quot;replies&amp;quot;: []\n                }\n            ]\n        }\n    ]\n}",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178716186184052",
@@ -535,9 +622,12 @@
         "routeResponse": "",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178724896557016",
@@ -553,9 +643,12 @@
         "routeResponse": "",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178726073212784",
@@ -571,9 +664,12 @@
         "routeResponse": "",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178726083564798",
@@ -589,9 +685,12 @@
         "routeResponse": "",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178726083570862",
@@ -607,9 +706,12 @@
         "routeResponse": "{\n    &amp;quot;ltId&amp;quot;: &amp;quot;179061877176644&amp;quot;,\n    &amp;quot;status&amp;quot;: &amp;quot;reviewed&amp;quot; \/\/ &amp;#039;pending&amp;#039;, &amp;#039;reviewed&amp;#039;, &amp;#039;dismissed&amp;#039;, &amp;#039;action_taken&amp;#039;\n}",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178906051928771",
@@ -625,9 +727,12 @@
         "routeResponse": "",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178906051948480",
@@ -643,9 +748,12 @@
         "routeResponse": "",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178906051954826",
@@ -661,9 +769,12 @@
         "routeResponse": "{&amp;quot;settingValue&amp;quot;: &amp;quot;15&amp;quot;}",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178906051965569",
@@ -679,9 +790,12 @@
         "routeResponse": "",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178906051969281",
@@ -697,9 +811,12 @@
         "routeResponse": "",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "179072046734963",
@@ -715,9 +832,12 @@
         "routeResponse": "{\n    &amp;quot;responseResult&amp;quot;: &amp;quot;Registration successful&amp;quot;,\n    &amp;quot;responseCode&amp;quot;: &amp;quot;2006&amp;quot;,\n    &amp;quot;responseCategory&amp;quot;: &amp;quot;200&amp;quot;,\n    &amp;quot;responseData&amp;quot;: {\n        &amp;quot;ltId&amp;quot;: &amp;quot;179092647320875&amp;quot;,\n        &amp;quot;username&amp;quot;: &amp;quot;sarahconnor&amp;quot;,\n        &amp;quot;email&amp;quot;: &amp;quot;sarah@example.com&amp;quot;,\n        &amp;quot;fullname&amp;quot;: &amp;quot;Sarah Connor&amp;quot;\n    }\n}",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "179072046796966",
@@ -733,9 +853,12 @@
         "routeResponse": "",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "179076391193144",
@@ -751,9 +874,12 @@
         "routeResponse": "{\n    &amp;quot;responseResult&amp;quot;: &amp;quot;Success&amp;quot;,\n    &amp;quot;responseCode&amp;quot;: 3004,\n    &amp;quot;responseCategory&amp;quot;: 200,\n    &amp;quot;responseData&amp;quot;: {\n        &amp;quot;ltId&amp;quot;: &amp;quot;179092647320871&amp;quot;,\n        &amp;quot;username&amp;quot;: &amp;quot;johndoe&amp;quot;,\n        &amp;quot;email&amp;quot;: &amp;quot;john@example.com&amp;quot;,\n        &amp;quot;fullname&amp;quot;: &amp;quot;John Doe&amp;quot;,\n        &amp;quot;avatar&amp;quot;: &amp;quot;storage\/uploads\/blogs\/profile_179092647320871\/avatar_67001.webp&amp;quot;,\n        &amp;quot;bio&amp;quot;: &amp;quot;Lead Software Architect&amp;quot;,\n        &amp;quot;location&amp;quot;: &amp;quot;San Francisco, CA&amp;quot;,\n        &amp;quot;posts&amp;quot;: [ ... ],\n        &amp;quot;comments&amp;quot;: [ ... ]\n    }\n}",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "179084015670697",
@@ -769,9 +895,12 @@
         "routeResponse": "",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "179084673655171",
@@ -787,9 +916,12 @@
         "routeResponse": "{\n    &amp;quot;userId&amp;quot;: &amp;quot;179092647320871&amp;quot;,\n    &amp;quot;currentPassword&amp;quot;: &amp;quot;OldPassword123!&amp;quot;,\n    &amp;quot;newPassword&amp;quot;: &amp;quot;NewPassword2026!&amp;quot;,\n    &amp;quot;confirmPassword&amp;quot;: &amp;quot;NewPassword2026!&amp;quot;\n}",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "179085258846873",
@@ -805,9 +937,12 @@
         "routeResponse": "{&amp;quot;confirmation&amp;quot;: &amp;quot;johndoe&amp;quot;}",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "179087343126387",
@@ -823,9 +958,12 @@
         "routeResponse": "{\n    &amp;quot;responseResult&amp;quot;: &amp;quot;fetched&amp;quot;,\n    &amp;quot;responseCode&amp;quot;: 201,\n    &amp;quot;responseCategory&amp;quot;: 200,\n    &amp;quot;responseData&amp;quot;: {\n        &amp;quot;title&amp;quot;: &amp;quot;Blog&amp;quot;,\n        &amp;quot;ltId&amp;quot;: 172600000099999,\n        &amp;quot;children&amp;quot;: [\n            {\n                &amp;quot;ltId&amp;quot;: 172600000012345,\n                &amp;quot;title&amp;quot;: &amp;quot;Technology&amp;quot;,\n                &amp;quot;children&amp;quot;: [\n                    {\n                        &amp;quot;title&amp;quot;: &amp;quot;Building Scalable Microservices&amp;quot;,\n                        &amp;quot;ltId&amp;quot;: 179098765432100\n                    }\n                ]\n            }\n        ]\n    }\n}",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "179121268167557",
@@ -841,9 +979,12 @@
         "routeResponse": "",
         "routeUpdateStatus": 1,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 00:38:29",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 0,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "179242583789435",
@@ -859,9 +1000,12 @@
         "routeResponse": "",
         "routeUpdateStatus": 0,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 08:18:15",
+        "c81e728d9d4c2f": 1,
+        "accbc87e4b5ce2": 1,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "179242691176270",
@@ -877,9 +1021,12 @@
         "routeResponse": "",
         "routeUpdateStatus": 0,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 08:18:15",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 1,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "179242699388459",
@@ -895,9 +1042,12 @@
         "routeResponse": "",
         "routeUpdateStatus": 0,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 08:18:15",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 1,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "179244560359529",
@@ -913,9 +1063,12 @@
         "routeResponse": "",
         "routeUpdateStatus": 0,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 08:18:15",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 1,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "179247859920776",
@@ -931,9 +1084,12 @@
         "routeResponse": "",
         "routeUpdateStatus": 0,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 08:18:15",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 1,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "179248034555352",
@@ -949,9 +1105,12 @@
         "routeResponse": "",
         "routeUpdateStatus": 0,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 08:18:15",
+        "c81e728d9d4c2f": 1,
+        "accbc87e4b5ce2": 1,
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "179248046032758",
@@ -967,8 +1126,11 @@
         "routeResponse": "",
         "routeUpdateStatus": 0,
         "apiToAllowRouters": "",
+        "createdFrom": "lifepage",
         "description": "",
-        "themeLayout": null,
-        "themeLayoutPackage": null
+        "updatedAt": "2026-11-05 08:18:15",
+        "c81e728d9d4c2f": 1,
+        "accbc87e4b5ce2": 1,
+        "ri3wqzb4sc1v": 0
     }
 ]
