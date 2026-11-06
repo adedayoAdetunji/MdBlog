@@ -37,6 +37,9 @@ class TbBlogReportService{
         $reportsReason = trim($this->request->reason);
         $comments = trim($this->request->comments);
         $postModel = new TbBlogPost();
+        
+        if(!$this->userId) return LtResponse::json('Unable to submit report: Only authorized user is allowed', 4098, 200);
+        
         // Fetch post Id
         $queryPost = $postModel->select('lt_id')->where('slug', '=', $postSlug)->get()[0];
         $postId = $queryPost->ltId;

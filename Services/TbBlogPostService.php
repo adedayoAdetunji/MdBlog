@@ -1102,6 +1102,8 @@ class TbBlogPostService
         $reactionType = trim($request->reaction);
         $currentUserId = $this->userId;
         
+        if(!$currentUserId) return LtResponse::json('Unable To react to this post: Only authorize user is allowed', 4132, 200);
+        
         $exist = $this->postModel->select()->where('slug','=', $postSlug)->get();
         if(count($exist) < 1){
             return LtResponse::json('Post not found', 4091, 100);

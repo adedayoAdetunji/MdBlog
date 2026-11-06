@@ -84,6 +84,8 @@ class TbBlogCommentService
         $parentId = trim($this->request->parentId);
         $body = trim($this->request->body);
         $postModel = new TbBlogPost();
+        
+        if(!$this->userId)return LtResponse::json('Unable to post comment: Only authorized user is allowed', 4192, 200);
         // Fetch post Id
         $queryPost = $postModel->select('lt_id, comment_count')->where('slug', '=', $postSlug)->get();
         if (empty($queryPost)) {
@@ -102,10 +104,10 @@ class TbBlogCommentService
         $this->commentModel->updatedAt = $this->ltNow;
         
         $this->commentModel->insert();
-        $this->commentModel->responseData->postSlug = $postSlug;
-        $this->commentModel->responseData->author = $username;
         
         if($this->commentModel->responseCategory == 200){
+            $this->commentModel->responseData->postSlug = $postSlug;
+            $this->commentModel->responseData->author = $username;
             //using sql to avoid potential race conditions
             $sql = "UPDATE tb_blog_post SET comment_count = comment_count + 1 WHERE lt_id = :postId";
             $stmt = $this->sqlConnect->prepare($sql);
@@ -273,19 +275,6 @@ class TbBlogCommentService
     }
     
     public function destroy() {
-        $ltId = $this->request->ltId;
-        // 1. Check if post exists
-        $exist = $this->commentModel->select()->where('ltId', '=', $ltId)->get();
-        if (count($exist) < 1) {
-            return LtResponse::json('Comment not found', 4062, 100);
-        }
-        
-        $this->commentModel->delete('ltId','=',$ltId);
-    
-        return $this->commentModel->responseJson();
-    }
-    
-    public function toUseLater() {
         $ltId = $this->request->ltId;
         // 1. Check if post exists
         $exist = $this->commentModel->select()->where('ltId', '=', $ltId)->get();
