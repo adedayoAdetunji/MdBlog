@@ -1,3 +1,6 @@
+<?php
+ltImport('MdBlog','IncludedCssFiles.html');
+?>
 
      <div class="w-full my-4 px-2 md:w-2/3 mx-auto md:my-14" id="root">
         <main class="pt-2 flex-1 p-1 py-2 transition-all duration-300 overflow-y-auto h-full">
@@ -157,6 +160,11 @@
     <!-- Footer -->
 
 </div>
+
+<?php
+ltImport('MdBlog','IncludedJsFiles.js');
+?>
+
 <script>
 
 
@@ -238,8 +246,8 @@
                 ${s.status == 'isActive' ? 'Active' : 'Not Active'}
               </span>
             </td>
-            <td class="py-3 px-4 border-b border-gray-200">${formatTime(s.createdAt)}</td>
-            <td class="py-3 px-4 border-b border-gray-200">${formatTime(s.updatedAt)}</td>
+            <td class="py-3 px-4 border-b border-gray-200">${mdblogFormatTime(s.createdAt)}</td>
+            <td class="py-3 px-4 border-b border-gray-200">${mdblogFormatTime(s.updatedAt)}</td>
             <td class="py-3 px-4 border-b border-gray-200">
               <div class="flex justify-center">
                 <button aria-label="Edit" class="text-gray-500 hover:text-blue-600 mx-1 focus:outline-none" data-id="${s.ltId}">
@@ -417,10 +425,10 @@ function updatePagination(total, totalPages) {
                         elements.submitBtn.innerHTML = '<span class="animate-pulse">processing...</span>';
                     try{
                         
-                        const response = await fetch(`${BASE_URL}/blogs/tags/${editId}`, {
+                        const response = await fetch(`${MDBLOG_BASE_URL}/blogs/tags/${editId}`, {
                             method: 'PATCH',
                             headers: {
-                                'Authorization': `Bearer ${LW_TOKEN}`,
+                                'Authorization': `Bearer ${MDBLOG_LW_TOKEN}`,
                                 'Accept': 'application/json'
     
                             },
@@ -473,10 +481,10 @@ function updatePagination(total, totalPages) {
                     try {
                         elements.submitBtn.innerHTML = '<span class="animate-pulse">processing...</span>';
                         // 4. The Direct Fetch Call
-                        const response = await fetch(`${BASE_URL}/blogs/tags`, {
+                        const response = await fetch(`${MDBLOG_BASE_URL}/blogs/tags`, {
                             method: 'POST',
                             headers: {
-                                'Authorization': `Bearer ${LW_TOKEN}`,
+                                'Authorization': `Bearer ${MDBLOG_LW_TOKEN}`,
                                 'Accept': 'application/json'
     
                             },
@@ -576,10 +584,10 @@ function updatePagination(total, totalPages) {
    
                 try{
                     
-                     const response = await fetch(`${BASE_URL}/blogs/tags/${ltId}`, {
+                     const response = await fetch(`${MDBLOG_BASE_URL}/blogs/tags/${ltId}`, {
                         method: 'DELETE',
                         headers: {
-                            'Authorization': `Bearer ${LW_TOKEN}`,
+                            'Authorization': `Bearer ${MDBLOG_LW_TOKEN}`,
                             'Accept': 'application/json'
     
                         }
@@ -629,10 +637,10 @@ function updatePagination(total, totalPages) {
             if (result.isConfirmed) {
                 try{
                     
-                     const response = await fetch(`${BASE_URL}/blogs/tags/${ltId}/toggle-active`, {
+                     const response = await fetch(`${MDBLOG_BASE_URL}/blogs/tags/${ltId}/toggle-active`, {
                         method: 'PATCH',
                         headers: {
-                            'Authorization': `Bearer ${LW_TOKEN}`,
+                            'Authorization': `Bearer ${MDBLOG_LW_TOKEN}`,
                             'Accept': 'application/json'
     
                         }
@@ -722,13 +730,13 @@ function updatePagination(total, totalPages) {
         
         async function onLoadTag(){
               
-            fx_lifetech_button_loader_open();
+            mdblog_fx_lifetech_button_loader_open();
             try{
                 
-                const response = await fetch(`${BASE_URL}/blogs/tags`, {
+                const response = await fetch(`${MDBLOG_BASE_URL}/blogs/tags`, {
                     method: 'GET',
                     headers: {
-                        'Authorization': `Bearer ${LW_TOKEN}`,
+                        'Authorization': `Bearer ${MDBLOG_LW_TOKEN}`,
                         'Accept': 'application/json'
 
                     }
@@ -746,7 +754,7 @@ function updatePagination(total, totalPages) {
                      Swal.fire('Notice!!!', `${responseResult}`, 'warning')
                  }
                  
-                 fx_lifetech_button_loader_close(); 
+                 mdblog_fx_lifetech_button_loader_close(); 
             }catch(error){
                  
                  console.log(error);

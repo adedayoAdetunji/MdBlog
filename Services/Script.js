@@ -1,3 +1,7 @@
+const MDBLOG_BASE_URL = "<?= ApiTokenDetails::backEndBaseUrl(); ?>"; 
+const MDBLOG_getTokenName = "<?= ApiTokenDetails::tokenName(); ?>";
+
+const MDBLOG_LW_TOKEN = localStorage.getItem(`${MDBLOG_getTokenName}`); 
 
 
 function timeAgo(timestamp) {
@@ -42,4 +46,61 @@ function timeAgo(timestamp) {
         return `${value} year${value > 1 ? "s" : ""} ago`;
     }
 }
+
+
+
+ let mdblog_loaderCount = 0;
+function mdblog_fx_lifetech_button_loader_open() {
+  mdblog_loaderCount++;
+
+  let loaderEl = document.querySelector('.lifetech_button_loader');
+  let overlayEl = document.querySelector('.lifetech_page_overlay');
+
+  if (!overlayEl) {
+    overlayEl = document.createElement('div');
+    overlayEl.className = 'lifetech_page_overlay';
+    document.body.appendChild(overlayEl);
+  }
+
+  if (!loaderEl) {
+    loaderEl = document.createElement('div');
+    loaderEl.className = 'lifetech_button_loader';
+    document.body.appendChild(loaderEl);
+  }
+
+  overlayEl.style.display = 'block';
+  loaderEl.style.display = 'block';
+}
+
+function mdblog_fx_lifetech_button_loader_close() {
+  mdblog_loaderCount--;
+
+  if (mdblog_loaderCount <= 0) {
+    mdblog_loaderCount = 0;
+
+    const loaderEl = document.querySelector('.lifetech_button_loader');
+    const overlayEl = document.querySelector('.lifetech_page_overlay');
+
+    if (loaderEl) loaderEl.style.display = 'none';
+    if (overlayEl) overlayEl.style.display = 'none';
+  }
+}
+
+function mdblogFormatTime(timeString, includeSeconds = false) {
+    const options = {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+    };
+    
+    if (includeSeconds) {
+        options.second = '2-digit';
+    }
+    
+    return new Date(timeString).toLocaleString('en-US', options);
+}    
+  
 
