@@ -1,40 +1,6 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>User Profile — MdBlog</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              primary: {
-                DEFAULT: "#4F46E5",
-                hover: "#4338CA",
-                light: "#EEF2FF",
-              },
-            },
-          },
-        },
-      };
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
-  </head>
-  <body
-    class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 min-h-screen font-sans"
-  >
+<?php
+ltImport('MdBlog','IncludedCssFiles.html');
+?>
     <main class="container flex-grow mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
       <div
         class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 shadow-xl overflow-hidden mb-8"
@@ -219,7 +185,9 @@
         ></div>
       </section>
     </main>
-
+<?php
+ltImport('MdBlog','IncludedJsFiles.js');
+?>
     <script>
         const userDetailsKey = <?= 
             class_exists('ApiTokenDetails') && method_exists('ApiTokenDetails', 'appId')
@@ -322,18 +290,14 @@
       }
 
       document.addEventListener("DOMContentLoaded", async () => {
-        // if (!userId || userId === "0") {
-        //   window.location.href = `${siteHostAddress || ""}/MdBlog/Login.html`;
-        //   return;
-        // }
 
         try {
           const response = await fetch(
-            `${BASE_URL}/blogs/user/${encodeURIComponent(userId)}/record`,
+            `${MDBLOG_BASE_URL}/blogs/user/record`,
             {
               headers: {
                 Accept: "application/json",
-                Authorization: `Bearer ${LW_TOKEN}`,
+                Authorization: `Bearer ${MDBLOG_LW_TOKEN}`,
               },
             },
           );
@@ -349,5 +313,3 @@
         }
       });
     </script>
-  </body>
-</html>

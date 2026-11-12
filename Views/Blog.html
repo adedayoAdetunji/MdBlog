@@ -1,3 +1,6 @@
+<?php
+ltImport('MdBlog','IncludedCssFiles.html');
+?>
 <style>
     <?php  ltImport('MdBlog','styles.css')  ?>
     #expand_more {
@@ -118,11 +121,11 @@
         </section>
       </main>
     </div>
-
+<?php
+ltImport('MdBlog','IncludedJsFiles.js');
+?>
       
 <script>
-<?php  ltImport('MdBlog','Tailwind-config.js') ?>
-
 
     let POSTS = [];
     let CATEGORIES = [{ ltId: 1, categoryName: "All Categories" }];
@@ -557,14 +560,14 @@
             const firstImage = p.media.find(m => m.mimeType && m.mimeType.startsWith('image/'));
             
             if (firstImage) {
-                coverImageUrl = `${siteHostAddress || ''}/${firstImage.storagePath}`;
+                coverImageUrl = `${MDBLOG_SiteHostAddress || ''}/${firstImage.storagePath}`;
             }
         }
     
         // 2. Build conditional image markup
         // If no image is found, we inject a subtle gradient top border instead of a giant placeholder
         const imageBlock = coverImageUrl
-            ? `<a href="${siteHostAddress}/blog/post/${p.slug}" class="block overflow-hidden shrink-0 border-b border-border" aria-label="Read: ${domParser(p.title)}"> 
+            ? `<a href="${MDBLOG_SiteHostAddress}/blog/post/${p.slug}" class="block overflow-hidden shrink-0 border-b border-border" aria-label="Read: ${domParser(p.title)}"> 
                    <div class="aspect-[16/10] overflow-hidden">
                        <img src="${coverImageUrl}" alt="${p.title}" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
                    </div>
@@ -586,7 +589,7 @@
                         </span>
                     </div>
     
-                    <a href="${siteHostAddress}/blog/post/${p.slug}" class="flex flex-col flex-1">
+                    <a href="${MDBLOG_SiteHostAddress}/blog/post/${p.slug}" class="flex flex-col flex-1">
                         <h2 class="clamp-2 font-serif text-xl font-bold leading-snug tracking-tight text-foreground transition group-hover:text-accent">
                             ${domParser(p.title)}
                         </h2>
@@ -619,97 +622,6 @@
         `;
     }
     
-    // function renderCardMarkup(p){
-        
-    //     const liked = likedSet.has(p.id);
-    //     const likeCount = p.likes + (liked ? 1 : 0);
-    //     let coverImageUrl = 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original';
-    //     let attachedFilesCount = 0;
-
-    //     // Assuming your backend returns the nested media array as 'additionalMedia'
-    //     if (p.media && Array.isArray(p.media)) {
-    //         attachedFilesCount = p.media.length;
-            
-    //         // Find the very first media item that is an image
-    //         const firstImage = p.media.find(m => m.mimeType && m.mimeType.startsWith('image/'));
-            
-    //         if (firstImage) {
-    //             // Make sure 'siteHostAddress' is defined globally in your script, or use a relative path
-    //             coverImageUrl = `${siteHostAddress || ''}/${firstImage.storagePath}`;
-                
-    //         }
-    //     }
-        
-        
-    //     return `
-    //         <article class="group animate-fade-up overflow-hidden rounded-2xl border border-border bg-surface transition hover:shadow-lg hover:shadow-black/5">
-    
-    //             <a href="${siteHostAddress}/blog/post/${p.slug}" class="block overflow-hidden" aria-label="Read: ${domParser(p.title)}"> 
-    //                 <div class="aspect-[16/10] overflow-hidden">
-    //                     <img src="${coverImageUrl}" alt="${p.title}" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
-    //                 </div>
-    //             </a>
-    
-    //             <div class="p-5">
-    
-    //                 <span class="inline-block rounded-full bg-accent-soft px-3 py-1 text-xs font-semibold text-accent-hover">
-    //                     ${getCategoryName(p.category)}
-    //                 </span>
-    
-    //                 <a href="${siteHostAddress}/blog/post/${p.slug}">
-    //                     <h2 class="clamp-2 mt-3 font-serif text-xl font-semibold leading-snug tracking-tight text-foreground transition group-hover:text-accent">
-    //                         ${domParser(p.title)}
-    //                     </h2>
-    //                 </a>
-    
-    //                 <p class="clamp-2 mt-2 text-sm leading-relaxed text-muted">
-    //                     ${domParser(p.excerpt)}
-    //                 </p>
-    
-    //                 <div class="mt-5 flex items-center justify-between border-t border-border pt-4 text-sm text-muted">
-    
-    //                     <time datetime="${p.date}">
-    //                         ${formatDate(p.date)}
-    //                     </time>
-    
-    //                     <div class="flex items-center gap-4">
-    
-    //                         <button
-    //                             type="button"
-    //                             data-like="${p.id}"
-    //                             aria-pressed="${liked}"
-    //                             aria-label="Like this post"
-    //                             class="flex items-center gap-1.5 transition hover:text-accent ${liked ? "text-accent" : ""}">
-    
-    //                             <span class="like-icon">
-    //                                 ${heartIcon(liked)}
-    //                             </span>
-    
-    //                             <span class="like-count font-medium">
-    //                                 ${formatCount(likeCount)}
-    //                             </span>
-    
-    //                         </button>
-    
-    //                         <span class="flex items-center gap-1.5"
-    //                               aria-label="${p.views} views">
-    
-    //                             ${EYE_ICON}
-    
-    //                             <span class="font-medium">
-    //                                 ${formatCount(p.views)}
-    //                             </span>
-    
-    //                         </span>
-    //                     </div>
-    //                 </div>
-    
-    //             </div>
-    
-    //         </article>
-    //     `;
-    // }
-
     function renderPage() {
         
         if(POSTS.length === 0){
@@ -866,7 +778,7 @@
         try {
     
             const response = await fetch(
-                `${BASE_URL}/blogs/posts/widget?limit=6&type=popular`,
+                `${MDBLOG_BASE_URL}/blogs/posts/widget?limit=6&type=popular`,
                 {
                     headers: {
                         Accept: "application/json"
@@ -905,13 +817,13 @@
             const firstImage = post.media.find(m => m.mimeType && m.mimeType.startsWith('image/'));
             
             if (firstImage) {
-                coverImageUrl = `${siteHostAddress || ''}/${firstImage.storagePath}`;
+                coverImageUrl = `${MDBLOG_SiteHostAddress || ''}/${firstImage.storagePath}`;
             }
         }
 
         const readTime = Math.max(4, Math.round(post.views / 1200));
         return `
-           <a href="${siteHostAddress}/blog/post/${post.slug}" class="compact-post group flex gap-3">
+           <a href="${MDBLOG_SiteHostAddress}/blog/post/${post.slug}" class="compact-post group flex gap-3">
               <img src="${coverImageUrl}" alt="${post.title}" loading="lazy" class="h-full w-24 shrink-0 rounded-lg object-cover" />
             
               <span class="w-full min-w-0">
@@ -1050,7 +962,7 @@
         try {
     
             const response = await fetch(
-                `${BASE_URL}/blogs/filter/posts?page=${encodeURIComponent(state.page)}&limit=${encodeURIComponent(state.limit)}&q=${encodeURIComponent(state.q)}&category=${encodeURIComponent(category)}&sort=${encodeURIComponent(state.sort)}`,
+                `${MDBLOG_BASE_URL}/blogs/filter/posts?page=${encodeURIComponent(state.page)}&limit=${encodeURIComponent(state.limit)}&q=${encodeURIComponent(state.q)}&category=${encodeURIComponent(category)}&sort=${encodeURIComponent(state.sort)}`,
                 {
                     headers: {
                         Accept: "application/json"
@@ -1090,7 +1002,7 @@
         noResults.innerHTML = skeletonLoader(state.limit);
         try{
             
-                const categoryData = await fetch(`${BASE_URL}/blogs/filter/categories?status=isActive`, {
+                const categoryData = await fetch(`${MDBLOG_BASE_URL}/blogs/filter/categories?status=isActive`, {
                     method: 'GET',
                     headers: {
                         'Accept': 'application/json'

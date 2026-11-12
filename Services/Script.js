@@ -1,6 +1,6 @@
 const MDBLOG_BASE_URL = "<?= ApiTokenDetails::backEndBaseUrl(); ?>"; 
 const MDBLOG_getTokenName = "<?= ApiTokenDetails::tokenName(); ?>";
-
+const MDBLOG_SiteHostAddress = "<?= ltSiteHostAddress(); ?>";
 const MDBLOG_LW_TOKEN = localStorage.getItem(`${MDBLOG_getTokenName}`); 
 
 

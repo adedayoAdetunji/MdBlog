@@ -1,38 +1,6 @@
-<!doctype html>
-<html lang="en" class="h-full">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login — MdBlog</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              primary: {
-                DEFAULT: "#4F46E5",
-                hover: "#4338CA",
-                light: "#EEF2FF",
-              },
-            },
-          },
-        },
-      };
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
-  </head>
-  <body class="bg-slate-50 text-slate-900 min-h-full flex flex-col font-sans">
+<?php
+ltImport('MdBlog','IncludedCssFiles.html');
+?>
 
     <main class="flex-grow flex items-center justify-center px-4 py-12">
       <div
@@ -112,7 +80,9 @@
         </div>
       </div>
     </main>
-
+<?php
+ltImport('MdBlog','IncludedJsFiles.js');
+?>
     <script>
 
       const setButtonLoading = (btn, isLoading, originalText = "") => {
@@ -138,7 +108,7 @@
           setButtonLoading(btn, true);
 
           try {
-            const response = await fetch(`${BASE_URL}/blogs/auth/signin`, {
+            const response = await fetch(`${MDBLOG_BASE_URL}/blogs/auth/signin`, {
               method: "POST",
               headers: {
                 Accept: "application/json",
@@ -168,7 +138,7 @@
               );
               setTimeout(
                 () =>
-                  (window.location.href = `${siteHostAddress}/MdBlog/User-profile`),
+                  (window.location.href = `${MDBLOG_SiteHostAddress}/MdBlog/User-profile`),
                 800,
               );
             } else {
@@ -194,5 +164,3 @@
         }
       }
     </script>
-  </body>
-</html>

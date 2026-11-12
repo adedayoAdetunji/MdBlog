@@ -13,9 +13,7 @@
         "updatedAt": "2026-11-05 07:46:23",
         "c81e728d9d4c2f": 0,
         "accbc87e4b5ce2": 1,
-        "ri3wqzb4sc1v": 0,
-        "w0srn68uzbap": 0,
-        "20dou7ay4gfp": 0
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178369921047365",
@@ -31,9 +29,7 @@
         "updatedAt": "2026-11-05 00:38:29",
         "c81e728d9d4c2f": 0,
         "accbc87e4b5ce2": 1,
-        "ri3wqzb4sc1v": 0,
-        "w0srn68uzbap": 0,
-        "20dou7ay4gfp": 0
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178371055383714",
@@ -49,9 +45,7 @@
         "updatedAt": "2026-11-05 00:38:29",
         "c81e728d9d4c2f": 0,
         "accbc87e4b5ce2": 1,
-        "ri3wqzb4sc1v": 0,
-        "w0srn68uzbap": 0,
-        "20dou7ay4gfp": 0
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178389306820771",
@@ -67,9 +61,7 @@
         "updatedAt": "2026-11-05 00:38:29",
         "c81e728d9d4c2f": 1,
         "accbc87e4b5ce2": 1,
-        "ri3wqzb4sc1v": 0,
-        "w0srn68uzbap": 0,
-        "20dou7ay4gfp": 0
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "178611558754213",
@@ -85,9 +77,7 @@
         "updatedAt": "2026-11-05 00:38:29",
         "c81e728d9d4c2f": 0,
         "accbc87e4b5ce2": 1,
-        "ri3wqzb4sc1v": 0,
-        "w0srn68uzbap": 0,
-        "20dou7ay4gfp": 0
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "179242583733056",
@@ -103,9 +93,7 @@
         "updatedAt": "2026-11-05 00:38:29",
         "c81e728d9d4c2f": 1,
         "accbc87e4b5ce2": 1,
-        "ri3wqzb4sc1v": 0,
-        "w0srn68uzbap": 0,
-        "20dou7ay4gfp": 0
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "179242691190678",
@@ -121,9 +109,7 @@
         "updatedAt": "2026-11-05 00:38:29",
         "c81e728d9d4c2f": 0,
         "accbc87e4b5ce2": 1,
-        "ri3wqzb4sc1v": 0,
-        "w0srn68uzbap": 0,
-        "20dou7ay4gfp": 0
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "179242699399670",
@@ -139,9 +125,7 @@
         "updatedAt": "2026-11-05 00:38:29",
         "c81e728d9d4c2f": 0,
         "accbc87e4b5ce2": 1,
-        "ri3wqzb4sc1v": 0,
-        "w0srn68uzbap": 0,
-        "20dou7ay4gfp": 0
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "179244560378589",
@@ -157,9 +141,7 @@
         "updatedAt": "2026-11-05 00:38:29",
         "c81e728d9d4c2f": 0,
         "accbc87e4b5ce2": 1,
-        "ri3wqzb4sc1v": 0,
-        "w0srn68uzbap": 0,
-        "20dou7ay4gfp": 0
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "179247859923269",
@@ -175,9 +157,7 @@
         "updatedAt": "2026-11-05 00:38:29",
         "c81e728d9d4c2f": 0,
         "accbc87e4b5ce2": 1,
-        "ri3wqzb4sc1v": 0,
-        "w0srn68uzbap": 0,
-        "20dou7ay4gfp": 0
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "179248034544173",
@@ -193,9 +173,7 @@
         "updatedAt": "2026-11-05 00:38:29",
         "c81e728d9d4c2f": 1,
         "accbc87e4b5ce2": 1,
-        "ri3wqzb4sc1v": 0,
-        "w0srn68uzbap": 0,
-        "20dou7ay4gfp": 0
+        "ri3wqzb4sc1v": 0
     },
     {
         "ltId": "179248046083465",
@@ -211,8 +189,22 @@
         "updatedAt": "2026-11-05 00:38:29",
         "c81e728d9d4c2f": 1,
         "accbc87e4b5ce2": 1,
-        "ri3wqzb4sc1v": 0,
-        "w0srn68uzbap": 0,
-        "20dou7ay4gfp": 0
+        "ri3wqzb4sc1v": 0
+    },
+    {
+        "ltId": "179446978788864",
+        "packageName": "MdBlog",
+        "menuLevel": 2,
+        "menuName": "Manage-settings.html",
+        "contentName": "Manage-settings.html",
+        "parentMenuId": "178367835091057",
+        "routePath": "\/MdBlog\/Manage-settings",
+        "slug": null,
+        "target": "_blank",
+        "sortOrder": null,
+        "updatedAt": "2026-11-12 08:49:47",
+        "c81e728d9d4c2f": 0,
+        "accbc87e4b5ce2": 1,
+        "ri3wqzb4sc1v": 0
     }
 ]

@@ -39,7 +39,7 @@ ltImport('MdBlog','IncludedCssFiles.html');
     <main>
         
         <!-- Back Button -->
-        <a href="<?= ltSiteUrl() ?>/blog" class="text-muted hover:text-accent mb-12 inline-flex items-center gap-2 text-sm font-medium transition-colors">
+        <a href="<?= ltSiteUrl() ?>/MdBlog/blog" class="text-muted hover:text-accent mb-12 inline-flex items-center gap-2 text-sm font-medium transition-colors">
             <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
             Back to all posts
         </a>
@@ -328,12 +328,11 @@ ltImport('MdBlog','IncludedCssFiles.html');
 
 
 <!--</main>-->
-      
-<!--editor parser-->
-<script src="https://cdn.jsdelivr.net/npm/editorjs-html@3.4.0/build/edjsHTML.browser.js"></script>
+
+<?php
+ltImport('MdBlog','IncludedJsFiles.js');
+?>
 <script>
-<?php  ltImport('MdBlog','Tailwind-config.js') ?>
-<?php  ltImport('MdBlog','Script.js') ?>
 
 
 document.addEventListener('DOMContentLoaded', async function(){
@@ -383,7 +382,7 @@ function formatMarkdownImages(text) {
     return text.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (match, altText, filename) => {
 
         // const basePath = '/packages/modules/MdDocs/Media/';
-        const basePath = `${siteHostAddress}/packagers/modules/MdDocs/Media/`;
+        const basePath = `${MDBLOG_SiteHostAddress}/packages/modules/MdBlog/Media/`;
         const fullPath = filename.startsWith('http') || filename.startsWith('/') 
             ? filename 
             : basePath + filename;
@@ -568,7 +567,7 @@ function formatMarkdownImages(text) {
         mediaGrid.innerHTML = '';
     
         mediaArray.forEach((media, index) => {
-            const fullUrl = `${siteHostAddress}/${media.storagePath}`; // Adjust based on your API structure
+            const fullUrl = `${MDBLOG_SiteHostAddress}/${media.storagePath}`; // Adjust based on your API structure
             const fileExt = media.originalName.split('.').pop().toLowerCase();
             
             let cardHTML = '';
@@ -762,7 +761,7 @@ function formatMarkdownImages(text) {
             
             // 4. Send to your PHP backend
             try {
-                const response = await fetch(`${BASE_URL}/blogs/posts/react`, {
+                const response = await fetch(`${MDBLOG_BASE_URL}/blogs/posts/react`, {
                     method: 'POST',
                     headers: { 
                         'Accept': 'application/json',
@@ -807,7 +806,7 @@ function formatMarkdownImages(text) {
 //   /* ---------- Views ---------- */
     async function updateViews(){
         try {
-            const response = await fetch(`${BASE_URL}/blogs/posts/view-update`, {
+            const response = await fetch(`${MDBLOG_BASE_URL}/blogs/posts/view-update`, {
                 method: 'POST',
                 headers: { 'Accept': 'application/json' },
                 body: JSON.stringify({ 
@@ -912,7 +911,7 @@ function formatMarkdownImages(text) {
         submitBtn.disabled = true;
         
         try {
-            const response = await fetch(`${BASE_URL}/blogs/reports/create`, {
+            const response = await fetch(`${MDBLOG_BASE_URL}/blogs/reports/create`, {
                 method: 'POST',
                  headers: { 'Accept': 'application/json' },
                 body: JSON.stringify({ 
@@ -1031,7 +1030,7 @@ function formatMarkdownImages(text) {
 
             // 3. Send the request to the server
             try {
-                const response = await fetch(`${BASE_URL}/blogs/comments/like`, {
+                const response = await fetch(`${MDBLOG_BASE_URL}/blogs/comments/like`, {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -1111,7 +1110,7 @@ function formatMarkdownImages(text) {
               if (!val) return;
                 
                 try{
-                    const response = await fetch(`${BASE_URL}/blogs/comments/create`, {
+                    const response = await fetch(`${MDBLOG_BASE_URL}/blogs/comments/create`, {
                         method: 'POST',
                         headers: { 'Accept': 'application/json' },
                         body: JSON.stringify({
@@ -1228,7 +1227,7 @@ function formatMarkdownImages(text) {
         
         // 2. Send the data to PHP backend
         try {
-            const response = await fetch(`${BASE_URL}/blogs/comments/create`, {
+            const response = await fetch(`${MDBLOG_BASE_URL}/blogs/comments/create`, {
                 method: 'POST',
                 headers: { 
                     'Accept': 'application/json',
@@ -1291,12 +1290,12 @@ function formatMarkdownImages(text) {
         if (post.media && Array.isArray(post.media)) {
             const firstImage = post.media.find(m => m.mimeType && m.mimeType.startsWith('image/'));
             if (firstImage) {
-                coverImageUrl = `${siteHostAddress || ''}/${firstImage.storagePath}`;
+                coverImageUrl = `${MDBLOG_SiteHostAddress || ''}/${firstImage.storagePath}`;
             }
         }
     
         return `
-            <a href="${siteHostAddress}/blog/post/${post.slug}" class="group flex items-start gap-4 transition-all mb-6 last:mb-0">
+            <a href="${MDBLOG_SiteHostAddress}/MdBlog/blog/post/${post.slug}" class="group flex items-start gap-4 transition-all mb-6 last:mb-0">
                 <!-- Thumbnail -->
                 <div class="h-20 w-24 shrink-0 overflow-hidden rounded-lg border border-border bg-surface shadow-sm">
                     <img src="${coverImageUrl}" alt="${post.title}" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
@@ -1337,7 +1336,7 @@ function formatMarkdownImages(text) {
     
         try {
             // Construct the URL dynamically
-            let url = `${BASE_URL}/blogs/posts/widget?limit=3&type=${type}`;
+            let url = `${MDBLOG_BASE_URL}/blogs/posts/widget?limit=3&type=${type}`;
             if (type === 'related' && currentPostId) {
                 url += `&postId=${currentPostId}&categoryId=${currentPostCategory || ''}`;
             }
@@ -1389,21 +1388,21 @@ function formatMarkdownImages(text) {
                   timer: 3000,
                   showConfirmButton: false
                 }).then(() => {
-                  window.location.href = `${siteHostAddress}/blog`;
+                  window.location.href = `${MDBLOG_SiteHostAddress}/MdBlog/blog`;
                 });
                 return;
             }
             
             try{
                 const [response, categoryData] = await Promise.all([
-                        fetch(`${BASE_URL}/blogs/posts/${encodeURIComponent(slug)}/slug`, {
+                        fetch(`${MDBLOG_BASE_URL}/blogs/posts/${encodeURIComponent(slug)}/slug`, {
                             method: 'GET',
                             headers: {
                                 'Accept': 'application/json'
         
                             }
                         }),
-                        fetch(`${BASE_URL}/blogs/filter/categories?status=isActive`, {
+                        fetch(`${MDBLOG_BASE_URL}/blogs/filter/categories?status=isActive`, {
                             method: 'GET',
                             headers: {
                                 'Accept': 'application/json'
