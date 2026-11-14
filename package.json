@@ -2,7 +2,7 @@
   "ltId": "178367835066411",
   "packageName": "MdBlog",
   "packageType": "module",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "dependsOn": [
     {
       "packageName": "MdLt",
